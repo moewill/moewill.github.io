@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maurice Rashad - Tech Solutions & Consulting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0EA5E9',
+                        secondary: '#0F172A',
+                        accent: '#06B6D4',
+                        success: '#10B981',
+                        warning: '#F59E0B',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #0EA5E9, #06B6D4, #10B981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(14, 165, 233, 0.3);
+        }
+        
+        .hero-background {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .service-details {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .service-card:hover .service-details {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 200px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold gradient-text">Maurice Rashad</div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#services" class="text-gray-700 hover:text-primary transition-colors duration-300">Services</a>
+                        <a href="#about" class="text-gray-700 hover:text-primary transition-colors duration-300">About</a>
+                        <a href="#contact" class="text-gray-700 hover:text-primary transition-colors duration-300">Contact</a>
+                        <a href="#contact" class="cta-button text-white px-6 py-2 rounded-full text-sm font-medium">Get Started</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-background relative overflow-hidden pt-16 pb-20">
+        <div class="absolute inset-0 opacity-10">
+            <div class="floating-element absolute top-20 left-10 w-20 h-20 bg-primary rounded-full"></div>
+            <div class="floating-element absolute top-40 right-20 w-16 h-16 bg-accent rounded-full" style="animation-delay: 2s;"></div>
+            <div class="floating-element absolute bottom-20 left-1/4 w-12 h-12 bg-success rounded-full" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up">
+                    Tech Solutions That 
+                    <span class="gradient-text">Transform</span> 
+                    Your Business
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
+                    From strategic consulting to custom automation, I help businesses leverage technology to achieve extraordinary results.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <a href="#services" class="cta-button text-white px-8 py-4 rounded-full text-lg font-medium inline-flex items-center">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Explore Services
+                    </a>
+                    <a href="#contact" class="bg-white/10 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-all duration-300 inline-flex items-center">
+                        <i class="fas fa-calendar mr-2"></i>
+                        Book Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Stats Section -->
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
+                    <div class="text-3xl font-bold text-white mb-2">50+</div>
+                    <div class="text-gray-300">Businesses Transformed</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
+                    <div class="text-3xl font-bold text-white mb-2">99%</div>
+                    <div class="text-gray-300">Client Satisfaction</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
+                    <div class="text-3xl font-bold text-white mb-2">24/7</div>
+                    <div class="text-gray-300">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Services That <span class="gradient-text">Drive Results</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive tech solutions designed to accelerate your business growth and streamline operations.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Consultation Service -->
+                <div class="service-card bg-white rounded-2xl p-8 border border-gray-200 hover:border-primary/50 group">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-pulse-slow">
+                            <i class="fas fa-comments text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Strategic Consulting</h3>
+                        <p class="text-gray-600 mb-6">
+                            Get personalized guidance to solve your toughest tech challenges and unlock new opportunities.
+                        </p>
+                        <div class="text-3xl font-bold text-primary mb-2">$100<span class="text-lg text-gray-500">/month</span></div>
+                        <p class="text-sm text-gray-500 mb-6">2x 1-hour calls included</p>
+                        
+                        <div class="service-details">
+                            <ul class="text-left space-y-2 text-gray-600 mb-6">
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Strategic planning sessions</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Technology roadmap development</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Problem-solving workshops</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Growth strategy recommendations</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#contact" class="w-full bg-primary text-white py-3 px-6 rounded-full font-medium hover:bg-primary/90 transition-all duration-300 inline-block">
+                            Start Consulting
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tech Services -->
+                <div class="service-card bg-white rounded-2xl p-8 border border-gray-200 hover:border-primary/50 group">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-accent to-success rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-pulse-slow">
+                            <i class="fas fa-cogs text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Technology Services</h3>
+                        <p class="text-gray-600 mb-6">
+                            Custom automation, web development, hosting solutions, and technical problem-solving.
+                        </p>
+                        <div class="text-3xl font-bold text-accent mb-2">$75<span class="text-lg text-gray-500">/hour</span></div>
+                        <p class="text-sm text-gray-500 mb-6">Flexible project-based pricing</p>
+                        
+                        <div class="service-details">
+                            <ul class="text-left space-y-2 text-gray-600 mb-6">
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Custom automation solutions</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Website development & fixes</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>App development</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Hosting & migration services</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#contact" class="w-full bg-accent text-white py-3 px-6 rounded-full font-medium hover:bg-accent/90 transition-all duration-300 inline-block">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Workshops -->
+                <div class="service-card bg-white rounded-2xl p-8 border border-gray-200 hover:border-primary/50 group">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-success to-warning rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-pulse-slow">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Expert Workshops</h3>
+                        <p class="text-gray-600 mb-6">
+                            Learn cutting-edge skills in AI, cybersecurity, and emerging technologies through hands-on workshops.
+                        </p>
+                        <div class="text-3xl font-bold text-success mb-2">$99<span class="text-lg text-gray-500">/workshop</span></div>
+                        <p class="text-sm text-gray-500 mb-6">Group discounts available</p>
+                        
+                        <div class="service-details">
+                            <ul class="text-left space-y-2 text-gray-600 mb-6">
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>AI Agents & Automation</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Cybersecurity Fundamentals</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Modern Web Development</li>
+                                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i>Cloud Technologies</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#contact" class="w-full bg-success text-white py-3 px-6 rounded-full font-medium hover:bg-success/90 transition-all duration-300 inline-block">
+                            Join Workshop
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-in-left">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                        Meet <span class="gradient-text">Maurice</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-6">
+                        With over a decade of experience in technology consulting and development, I help businesses transform their operations through strategic tech solutions.
+                    </p>
+                    <p class="text-lg text-gray-400 mb-8">
+                        My approach combines deep technical expertise with business acumen to deliver solutions that not only work but drive measurable results for your organization.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm">Full-Stack Development</span>
+                        <span class="bg-accent/20 text-accent px-4 py-2 rounded-full text-sm">AI & Automation</span>
+                        <span class="bg-success/20 text-success px-4 py-2 rounded-full text-sm">Cloud Solutions</span>
+                        <span class="bg-warning/20 text-warning px-4 py-2 rounded-full text-sm">Cybersecurity</span>
+                    </div>
+                    <a href="#contact" class="cta-button text-white px-8 py-4 rounded-full text-lg font-medium inline-flex items-center">
+                        <i class="fas fa-handshake mr-2"></i>
+                        Let's Work Together
+                    </a>
+                </div>
+                
+                <div class="animate-slide-in-right">
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-white mb-6">Why Choose Maurice?</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-rocket text-primary text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white">Results-Driven</h4>
+                                    <p class="text-gray-300">Focus on measurable outcomes that impact your bottom line</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-brain text-accent text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white">Innovation-First</h4>
+                                    <p class="text-gray-300">Leverage cutting-edge technologies to stay ahead</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-users text-success text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white">Partnership Approach</h4>
+                                    <p class="text-gray-300">Long-term relationships built on trust and success</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                See Our <span class="gradient-text">Solutions</span> in Action
+            </h2>
+            <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                Watch how our technology solutions have transformed businesses across industries.
+            </p>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe 
+                            class="w-full h-80 md:h-96 lg:h-[32rem]"
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            title="Maurice Rashad - Tech Solutions Demo" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-secondary to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                    Ready to <span class="gradient-text">Transform</span> Your Business?
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Let's discuss how we can leverage technology to accelerate your growth and streamline your operations.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">Get in Touch</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Service Interest</label>
+                            <select class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Select a service</option>
+                                <option value="consulting">Strategic Consulting</option>
+                                <option value="tech">Technology Services</option>
+                                <option value="workshops">Expert Workshops</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full cta-button text-white py-4 px-6 rounded-full text-lg font-medium">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-primary text-xl mr-4"></i>
+                                <div>
+                                    <div class="text-white font-medium">Email</div>
+                                    <div class="text-gray-300">mauricerashad@gmail.com</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-accent text-xl mr-4"></i>
+                                <div>
+                                    <div class="text-white font-medium">Response Time</div>
+                                    <div class="text-gray-300">Within 24 hours</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-globe text-success text-xl mr-4"></i>
+                                <div>
+                                    <div class="text-white font-medium">Availability</div>
+                                    <div class="text-gray-300">Global, Remote-First</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-white mb-6">Quick Start</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-primary rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-sm mr-4 mt-1">1</div>
+                                <div>
+                                    <div class="text-white font-medium">Schedule Consultation</div>
+                                    <div class="text-gray-300 text-sm">Book your first strategy call</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-accent rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-sm mr-4 mt-1">2</div>
+                                <div>
+                                    <div class="text-white font-medium">Assess & Plan</div>
+                                    <div class="text-gray-300 text-sm">Understand your needs and goals</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-success rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-sm mr-4 mt-1">3</div>
+                                <div>
+                                    <div class="text-white font-medium">Execute & Deliver</div>
+                                    <div class="text-gray-300 text-sm">Transform your business with tech</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-3xl font-bold gradient-text mb-4">Maurice Rashad</div>
+                <p class="text-gray-400 mb-8">Transforming businesses through innovative technology solutions</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-800 pt-8">
+                    <p class="text-gray-500">&copy; 2024 Maurice Rashad. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I\'ll get back to you within 24 hours.');
+        });
+    </script>
+</body>
+</html>
