@@ -3,7 +3,7 @@
 const CHATBOT_CONFIG = {
     // Replace with your actual Railway URL after deployment
     // Example: 'https://maurice-chat-production.up.railway.app'
-    BACKEND_URL: 'https://your-railway-app.up.railway.app',
+    BACKEND_URL: 'https://maurice-chat-production.up.railway.app',
     
     // WebSocket URL for voice chat (usually same domain with /ws)
     get WS_URL() {
