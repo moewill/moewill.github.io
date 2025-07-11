@@ -1,14 +1,15 @@
-// Enhanced Chatbot with Claude API Integration and Voice Features
+// Enhanced Chatbot with Railway Backend Integration and Voice Features
 class ClaudeChatbot {
     constructor() {
-        this.apiKey = null;
         this.messages = [];
         this.isOpen = false;
         this.resumeData = null;
         this.isRecording = false;
-        this.recognition = null;
         this.speechSynthesis = window.speechSynthesis;
         this.isVoiceEnabled = false;
+        this.backendUrl = 'https://your-railway-app.up.railway.app'; // Update this with your Railway URL
+        this.wsUrl = 'wss://your-railway-app.up.railway.app/ws'; // WebSocket URL for voice chat
+        this.wsConnection = null;
         this.init();
     }
 
@@ -31,39 +32,12 @@ class ClaudeChatbot {
     }
 
     initializeSpeechRecognition() {
-        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            this.recognition = new SpeechRecognition();
-            this.recognition.continuous = false;
-            this.recognition.interimResults = false;
-            this.recognition.lang = 'en-US';
-            
-            this.recognition.onstart = () => {
-                this.isRecording = true;
-                this.updateVoiceButton();
-                this.addMessage('🎤 Listening...', 'system');
-            };
-            
-            this.recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                this.handleVoiceInput(transcript);
-            };
-            
-            this.recognition.onerror = (event) => {
-                console.error('Speech recognition error:', event.error);
-                this.isRecording = false;
-                this.updateVoiceButton();
-                this.addMessage('Voice recognition error. Please try again.', 'system');
-            };
-            
-            this.recognition.onend = () => {
-                this.isRecording = false;
-                this.updateVoiceButton();
-            };
-            
+        // Check if browser supports WebSocket for voice chat
+        if ('WebSocket' in window || 'MozWebSocket' in window) {
             this.isVoiceEnabled = true;
+            console.log('Voice chat enabled via WebSocket');
         } else {
-            console.log('Speech recognition not supported in this browser');
+            console.log('WebSocket not supported in this browser');
             this.isVoiceEnabled = false;
         }
     }
@@ -101,17 +75,9 @@ class ClaudeChatbot {
                         </button>
                     </div>
                     <div class="chatbot-footer" style="padding: 10px 20px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0;">
-                        <div class="api-key-section" id="api-key-section">
-                            <p>Enter your Claude API key for AI responses:</p>
-                            <div style="display: flex; gap: 10px; margin-top: 8px;">
-                                <input type="password" id="api-key-input" placeholder="sk-ant-..." style="flex: 1; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px;">
-                                <button id="api-key-save" style="padding: 8px 12px; background: var(--primary); color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;">Save</button>
-                            </div>
-                            <p style="margin-top: 5px; font-size: 11px;">Your API key is stored locally and never sent to our servers.</p>
-                        </div>
-                        <div class="api-status" id="api-status" style="display: none;">
-                            <span style="color: var(--success);">✓ Claude API Connected</span>
-                            <button id="api-key-reset" style="margin-left: 10px; background: none; border: none; color: #64748b; font-size: 11px; cursor: pointer; text-decoration: underline;">Change Key</button>
+                        <div class="connection-status" id="connection-status">
+                            <span style="color: var(--success);">✓ Connected to Maurice's AI Backend</span>
+                            <p style="margin-top: 5px; font-size: 11px;">Secure voice chat via Deepgram • Text chat via Claude Haiku</p>
                         </div>
                     </div>
                 </div>
@@ -126,24 +92,16 @@ class ClaudeChatbot {
         const input = document.getElementById('chatbot-input');
         const send = document.getElementById('chatbot-send');
         const voice = document.getElementById('chatbot-voice');
-        const apiKeySave = document.getElementById('api-key-save');
-        const apiKeyReset = document.getElementById('api-key-reset');
-
         if (toggle) toggle.addEventListener('click', () => this.toggleChat());
         if (close) close.addEventListener('click', () => this.toggleChat());
         if (send) send.addEventListener('click', () => this.sendMessage());
         if (voice) voice.addEventListener('click', () => this.toggleVoiceInput());
-        if (apiKeySave) apiKeySave.addEventListener('click', () => this.saveApiKey());
-        if (apiKeyReset) apiKeyReset.addEventListener('click', () => this.resetApiKey());
         
         if (input) {
             input.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') this.sendMessage();
             });
         }
-
-        // Load saved API key
-        this.loadApiKey();
 
         // Close chat when clicking outside
         document.addEventListener('click', (e) => {
@@ -156,52 +114,6 @@ class ClaudeChatbot {
         this.updateVoiceButton();
     }
 
-    saveApiKey() {
-        const apiKeyInput = document.getElementById('api-key-input');
-        if (!apiKeyInput) return;
-        
-        const apiKey = apiKeyInput.value.trim();
-        
-        if (!apiKey || !apiKey.startsWith('sk-ant-')) {
-            alert('Please enter a valid Claude API key (starts with sk-ant-)');
-            return;
-        }
-
-        this.apiKey = apiKey;
-        localStorage.setItem('claude_api_key', apiKey);
-        this.updateApiKeyUI();
-        this.addMessage('Great! I\'m now connected to Claude AI. You can ask me detailed questions about Maurice\'s experience and expertise.', 'bot');
-    }
-
-    loadApiKey() {
-        const savedKey = localStorage.getItem('claude_api_key');
-        if (savedKey) {
-            this.apiKey = savedKey;
-            this.updateApiKeyUI();
-        }
-    }
-
-    resetApiKey() {
-        this.apiKey = null;
-        localStorage.removeItem('claude_api_key');
-        const apiKeyInput = document.getElementById('api-key-input');
-        if (apiKeyInput) apiKeyInput.value = '';
-        this.updateApiKeyUI();
-        this.addMessage('API key removed. Enter a new key to enable AI responses.', 'bot');
-    }
-
-    updateApiKeyUI() {
-        const apiKeySection = document.getElementById('api-key-section');
-        const apiStatus = document.getElementById('api-status');
-        
-        if (this.apiKey) {
-            if (apiKeySection) apiKeySection.style.display = 'none';
-            if (apiStatus) apiStatus.style.display = 'block';
-        } else {
-            if (apiKeySection) apiKeySection.style.display = 'block';
-            if (apiStatus) apiStatus.style.display = 'none';
-        }
-    }
 
     toggleChat() {
         const widget = document.getElementById('chatbot-widget');
@@ -219,12 +131,12 @@ class ClaudeChatbot {
     }
 
     addWelcomeMessage() {
-        const voiceStatus = this.isVoiceEnabled ? ' Click the 🎤 button to speak!' : '';
-        const welcomeMessage = `Hi! I'm Maurice's AI assistant powered by Claude. I can answer detailed questions about his background, experience, and services.${voiceStatus} ${this.apiKey ? 'I\'m ready to help!' : 'Please enter your Claude API key to enable AI responses.'}`;
+        const voiceStatus = this.isVoiceEnabled ? ' Click the 🎤 button for voice chat!' : '';
+        const welcomeMessage = `Hi! I'm Maurice's AI assistant. I can answer detailed questions about his background, experience, and services.${voiceStatus} I'm ready to help!`;
         this.addMessage(welcomeMessage, 'bot');
         
         if (this.isVoiceEnabled) {
-            this.addMessage('🎤 Voice features enabled! You can speak to me and I\'ll respond with voice.', 'system');
+            this.addMessage('🎤 Voice chat enabled! Click the microphone to start a voice conversation with Deepgram + Claude.', 'system');
         }
     }
 
@@ -310,9 +222,9 @@ class ClaudeChatbot {
         }
 
         if (this.isRecording) {
-            this.recognition.stop();
+            this.stopVoiceChat();
         } else {
-            this.recognition.start();
+            this.startVoiceChat();
         }
     }
 
@@ -337,13 +249,107 @@ class ClaudeChatbot {
         }
     }
 
-    handleVoiceInput(transcript) {
-        const input = document.getElementById('chatbot-input');
-        if (input) {
-            input.value = transcript;
-            this.addMessage(`🎤 You said: "${transcript}"`, 'system');
-            // Automatically send the message
-            setTimeout(() => this.sendMessage(), 500);
+    async startVoiceChat() {
+        try {
+            this.isRecording = true;
+            this.updateVoiceButton();
+            this.addMessage('🎤 Connecting to voice chat...', 'system');
+            
+            // Connect to Railway backend WebSocket for voice chat
+            this.wsConnection = new WebSocket(this.wsUrl);
+            
+            this.wsConnection.onopen = () => {
+                this.addMessage('🎤 Voice chat connected! Speak now...', 'system');
+                // Initialize voice recording via WebSocket
+                this.initializeVoiceRecording();
+            };
+            
+            this.wsConnection.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.type === 'response') {
+                    this.addMessage(data.content, 'bot');
+                    this.speakResponse(data.content);
+                } else if (data.type === 'transcript') {
+                    this.addMessage(`🎤 You said: "${data.content}"`, 'system');
+                }
+            };
+            
+            this.wsConnection.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                this.addMessage('Voice chat connection error. Please try again.', 'system');
+                this.stopVoiceChat();
+            };
+            
+            this.wsConnection.onclose = () => {
+                this.addMessage('Voice chat disconnected.', 'system');
+                this.stopVoiceChat();
+            };
+            
+        } catch (error) {
+            console.error('Voice chat error:', error);
+            this.addMessage('Failed to start voice chat. Please try again.', 'system');
+            this.stopVoiceChat();
+        }
+    }
+    
+    stopVoiceChat() {
+        this.isRecording = false;
+        this.updateVoiceButton();
+        
+        if (this.wsConnection) {
+            this.wsConnection.close();
+            this.wsConnection = null;
+        }
+        
+        if (this.mediaRecorder) {
+            this.mediaRecorder.stop();
+            this.mediaRecorder = null;
+        }
+        
+        if (this.mediaStream) {
+            this.mediaStream.getTracks().forEach(track => track.stop());
+            this.mediaStream = null;
+        }
+    }
+    
+    async initializeVoiceRecording() {
+        try {
+            this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            
+            this.mediaRecorder = new MediaRecorder(this.mediaStream);
+            const audioChunks = [];
+            
+            this.mediaRecorder.ondataavailable = (event) => {
+                audioChunks.push(event.data);
+            };
+            
+            this.mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                this.sendVoiceData(audioBlob);
+            };
+            
+            // Record in chunks for real-time processing
+            this.mediaRecorder.start(1000); // 1 second chunks
+            
+        } catch (error) {
+            console.error('Microphone access error:', error);
+            this.addMessage('Microphone access denied. Please allow microphone access for voice chat.', 'system');
+            this.stopVoiceChat();
+        }
+    }
+    
+    sendVoiceData(audioBlob) {
+        if (this.wsConnection && this.wsConnection.readyState === WebSocket.OPEN) {
+            // Convert blob to base64 for WebSocket transmission
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64Audio = reader.result.split(',')[1];
+                this.wsConnection.send(JSON.stringify({
+                    type: 'audio',
+                    data: base64Audio
+                }));
+            };
+            reader.readAsDataURL(audioBlob);
         }
     }
 
@@ -376,42 +382,31 @@ class ClaudeChatbot {
     }
 
     async getClaudeResponse(userMessage) {
-        if (!this.apiKey) {
-            return 'Please enter your Claude API key to enable AI responses. You can get one from Anthropic\'s website.';
-        }
+        try {
+            // Use Railway backend for text chat (secure, uses Haiku model)
+            const response = await fetch(`${this.backendUrl}/api/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: userMessage,
+                    type: 'text'
+                })
+            });
 
-        const systemPrompt = this.buildSystemPrompt();
-        
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': this.apiKey,
-                'anthropic-version': '2023-06-01'
-            },
-            body: JSON.stringify({
-                model: 'claude-3-sonnet-20240229',
-                max_tokens: 500,
-                system: systemPrompt,
-                messages: [
-                    {
-                        role: 'user',
-                        content: userMessage
-                    }
-                ]
-            })
-        });
-
-        if (!response.ok) {
-            if (response.status === 401) {
-                this.resetApiKey();
-                throw new Error('Invalid API key. Please check your Claude API key.');
+            if (!response.ok) {
+                throw new Error(`Backend error: ${response.status}`);
             }
-            throw new Error(`Claude API error: ${response.status}`);
-        }
 
-        const data = await response.json();
-        return data.content[0].text;
+            const data = await response.json();
+            return data.response;
+        } catch (error) {
+            console.error('Backend chat error:', error);
+            
+            // Fallback to basic responses if backend is unavailable
+            return this.getFallbackResponse(userMessage);
+        }
     }
 
     buildSystemPrompt() {
