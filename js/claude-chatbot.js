@@ -10,6 +10,8 @@ class ClaudeChatbot {
         this.backendUrl = CHATBOT_CONFIG.BACKEND_URL;
         this.wsUrl = CHATBOT_CONFIG.WS_URL;
         this.wsConnection = null;
+        this.currentTranscriptionId = null;
+        this.isSpeaking = false;
         this.init();
     }
 
@@ -266,11 +268,18 @@ class ClaudeChatbot {
             
             this.wsConnection.onmessage = (event) => {
                 const data = JSON.parse(event.data);
-                if (data.type === 'response') {
+                console.log('WebSocket message received:', data);
+                
+                if (data.type === 'connected') {
+                    this.addMessage('🎤 ' + data.message, 'system');
+                } else if (data.type === 'response') {
                     this.addMessage(data.content, 'bot');
                     this.speakResponse(data.content);
                 } else if (data.type === 'transcript') {
-                    this.addMessage(`🎤 You said: "${data.content}"`, 'system');
+                    // Show live transcription
+                    this.updateTranscription(data.content);
+                } else if (data.type === 'final_transcript') {
+                    this.addMessage(`🎤 You said: "${data.content}"`, 'user');
                 }
             };
             
@@ -296,15 +305,18 @@ class ClaudeChatbot {
         this.isRecording = false;
         this.updateVoiceButton();
         
+        // Clear any live transcription
+        this.clearTranscription();
+        
         if (this.wsConnection) {
             this.wsConnection.close();
             this.wsConnection = null;
         }
         
-        if (this.mediaRecorder) {
+        if (this.mediaRecorder && this.mediaRecorder.state === 'recording') {
             this.mediaRecorder.stop();
-            this.mediaRecorder = null;
         }
+        this.mediaRecorder = null;
         
         if (this.mediaStream) {
             this.mediaStream.getTracks().forEach(track => track.stop());
@@ -316,20 +328,33 @@ class ClaudeChatbot {
         try {
             this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
             
-            this.mediaRecorder = new MediaRecorder(this.mediaStream);
+            this.mediaRecorder = new MediaRecorder(this.mediaStream, {
+                mimeType: 'audio/webm;codecs=opus'
+            });
+            
             const audioChunks = [];
             
             this.mediaRecorder.ondataavailable = (event) => {
-                audioChunks.push(event.data);
+                if (event.data.size > 0) {
+                    audioChunks.push(event.data);
+                    
+                    // Stop current speech if user starts speaking (interruption)
+                    if (this.isSpeaking) {
+                        this.stopSpeech();
+                        this.addMessage('🎤 Interrupted! Listening...', 'system');
+                    }
+                    
+                    // Send audio chunk for real-time processing
+                    this.sendVoiceData(event.data);
+                }
             };
             
             this.mediaRecorder.onstop = () => {
-                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                this.sendVoiceData(audioBlob);
+                console.log('Recording stopped');
             };
             
-            // Record in chunks for real-time processing
-            this.mediaRecorder.start(1000); // 1 second chunks
+            // Record in small chunks for real-time processing
+            this.mediaRecorder.start(500); // 500ms chunks for better real-time response
             
         } catch (error) {
             console.error('Microphone access error:', error);
@@ -346,10 +371,48 @@ class ClaudeChatbot {
                 const base64Audio = reader.result.split(',')[1];
                 this.wsConnection.send(JSON.stringify({
                     type: 'audio',
-                    data: base64Audio
+                    data: base64Audio,
+                    timestamp: Date.now()
                 }));
             };
             reader.readAsDataURL(audioBlob);
+        }
+    }
+    
+    updateTranscription(text) {
+        // Show live transcription in a special message that updates
+        if (this.currentTranscriptionId) {
+            // Update existing transcription
+            const existingMsg = document.getElementById(this.currentTranscriptionId);
+            if (existingMsg) {
+                existingMsg.textContent = `🎤 Transcribing: "${text}..."`;
+                return;
+            }
+        }
+        
+        // Create new transcription message
+        const messagesContainer = document.getElementById('chatbot-messages');
+        if (!messagesContainer) return;
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message system';
+        this.currentTranscriptionId = 'transcription-' + Date.now();
+        messageDiv.id = this.currentTranscriptionId;
+        messageDiv.textContent = `🎤 Transcribing: "${text}..."`;
+        messageDiv.style.opacity = '0.7';
+        messageDiv.style.fontStyle = 'italic';
+        
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+    
+    clearTranscription() {
+        if (this.currentTranscriptionId) {
+            const msg = document.getElementById(this.currentTranscriptionId);
+            if (msg) {
+                msg.remove();
+            }
+            this.currentTranscriptionId = null;
         }
     }
 
@@ -377,7 +440,24 @@ class ClaudeChatbot {
                 utterance.voice = preferredVoice;
             }
             
+            // Allow interruption during voice recording
+            utterance.onstart = () => {
+                this.isSpeaking = true;
+            };
+            
+            utterance.onend = () => {
+                this.isSpeaking = false;
+            };
+            
             this.speechSynthesis.speak(utterance);
+        }
+    }
+    
+    // Add method to stop current speech (for interruption)
+    stopSpeech() {
+        if (this.speechSynthesis) {
+            this.speechSynthesis.cancel();
+            this.isSpeaking = false;
         }
     }
 
