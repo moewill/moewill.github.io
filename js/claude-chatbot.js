@@ -1,15 +1,20 @@
-// Enhanced Chatbot with Claude API Integration
+// Enhanced Chatbot with Claude API Integration and Voice Features
 class ClaudeChatbot {
     constructor() {
         this.apiKey = null;
         this.messages = [];
         this.isOpen = false;
         this.resumeData = null;
+        this.isRecording = false;
+        this.recognition = null;
+        this.speechSynthesis = window.speechSynthesis;
+        this.isVoiceEnabled = false;
         this.init();
     }
 
     async init() {
         await this.loadResumeData();
+        this.initializeSpeechRecognition();
         this.createChatbotHTML();
         this.bindEvents();
         this.addWelcomeMessage();
@@ -22,6 +27,44 @@ class ClaudeChatbot {
         } catch (error) {
             console.error('Failed to load resume data:', error);
             this.resumeData = null;
+        }
+    }
+
+    initializeSpeechRecognition() {
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            this.recognition = new SpeechRecognition();
+            this.recognition.continuous = false;
+            this.recognition.interimResults = false;
+            this.recognition.lang = 'en-US';
+            
+            this.recognition.onstart = () => {
+                this.isRecording = true;
+                this.updateVoiceButton();
+                this.addMessage('🎤 Listening...', 'system');
+            };
+            
+            this.recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                this.handleVoiceInput(transcript);
+            };
+            
+            this.recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                this.isRecording = false;
+                this.updateVoiceButton();
+                this.addMessage('Voice recognition error. Please try again.', 'system');
+            };
+            
+            this.recognition.onend = () => {
+                this.isRecording = false;
+                this.updateVoiceButton();
+            };
+            
+            this.isVoiceEnabled = true;
+        } else {
+            console.log('Speech recognition not supported in this browser');
+            this.isVoiceEnabled = false;
         }
     }
 
@@ -50,6 +93,9 @@ class ClaudeChatbot {
                             placeholder="Ask about my experience, skills, or services..."
                             maxlength="500"
                         >
+                        <button class="chatbot-voice" id="chatbot-voice" title="Voice Input">
+                            <i class="fas fa-microphone"></i>
+                        </button>
                         <button class="chatbot-send" id="chatbot-send">
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -79,12 +125,14 @@ class ClaudeChatbot {
         const close = document.getElementById('chatbot-close');
         const input = document.getElementById('chatbot-input');
         const send = document.getElementById('chatbot-send');
+        const voice = document.getElementById('chatbot-voice');
         const apiKeySave = document.getElementById('api-key-save');
         const apiKeyReset = document.getElementById('api-key-reset');
 
         if (toggle) toggle.addEventListener('click', () => this.toggleChat());
         if (close) close.addEventListener('click', () => this.toggleChat());
         if (send) send.addEventListener('click', () => this.sendMessage());
+        if (voice) voice.addEventListener('click', () => this.toggleVoiceInput());
         if (apiKeySave) apiKeySave.addEventListener('click', () => this.saveApiKey());
         if (apiKeyReset) apiKeyReset.addEventListener('click', () => this.resetApiKey());
         
@@ -103,6 +151,9 @@ class ClaudeChatbot {
                 this.toggleChat();
             }
         });
+
+        // Initialize voice button state
+        this.updateVoiceButton();
     }
 
     saveApiKey() {
@@ -168,8 +219,13 @@ class ClaudeChatbot {
     }
 
     addWelcomeMessage() {
-        const welcomeMessage = `Hi! I'm Maurice's AI assistant powered by Claude. I can answer detailed questions about his background, experience, and services. ${this.apiKey ? 'I\'m ready to help!' : 'Please enter your Claude API key to enable AI responses.'}`;
+        const voiceStatus = this.isVoiceEnabled ? ' Click the 🎤 button to speak!' : '';
+        const welcomeMessage = `Hi! I'm Maurice's AI assistant powered by Claude. I can answer detailed questions about his background, experience, and services.${voiceStatus} ${this.apiKey ? 'I\'m ready to help!' : 'Please enter your Claude API key to enable AI responses.'}`;
         this.addMessage(welcomeMessage, 'bot');
+        
+        if (this.isVoiceEnabled) {
+            this.addMessage('🎤 Voice features enabled! You can speak to me and I\'ll respond with voice.', 'system');
+        }
     }
 
     addMessage(content, sender, isHtml = false) {
@@ -231,6 +287,9 @@ class ClaudeChatbot {
             const response = await this.getClaudeResponse(message);
             this.hideTypingIndicator();
             this.addMessage(response, 'bot');
+            
+            // Speak the response if voice is enabled
+            this.speakResponse(response);
         } catch (error) {
             this.hideTypingIndicator();
             console.error('Claude API Error:', error);
@@ -238,6 +297,81 @@ class ClaudeChatbot {
             // Fallback to basic responses
             const fallbackResponse = this.getFallbackResponse(message);
             this.addMessage(fallbackResponse, 'bot');
+            
+            // Speak the fallback response
+            this.speakResponse(fallbackResponse);
+        }
+    }
+
+    toggleVoiceInput() {
+        if (!this.isVoiceEnabled) {
+            this.addMessage('Voice input is not supported in this browser. Please use Chrome, Safari, or Edge for voice features.', 'system');
+            return;
+        }
+
+        if (this.isRecording) {
+            this.recognition.stop();
+        } else {
+            this.recognition.start();
+        }
+    }
+
+    updateVoiceButton() {
+        const voiceBtn = document.getElementById('chatbot-voice');
+        if (!voiceBtn) return;
+
+        if (!this.isVoiceEnabled) {
+            voiceBtn.style.opacity = '0.5';
+            voiceBtn.style.cursor = 'not-allowed';
+            return;
+        }
+
+        if (this.isRecording) {
+            voiceBtn.style.color = '#ef4444';
+            voiceBtn.innerHTML = '<i class="fas fa-stop"></i>';
+            voiceBtn.title = 'Stop Recording';
+        } else {
+            voiceBtn.style.color = '#0EA5E9';
+            voiceBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+            voiceBtn.title = 'Voice Input';
+        }
+    }
+
+    handleVoiceInput(transcript) {
+        const input = document.getElementById('chatbot-input');
+        if (input) {
+            input.value = transcript;
+            this.addMessage(`🎤 You said: "${transcript}"`, 'system');
+            // Automatically send the message
+            setTimeout(() => this.sendMessage(), 500);
+        }
+    }
+
+    speakResponse(text) {
+        // Clean up text for better speech
+        const cleanText = text.replace(/[#*_`]/g, '').replace(/\n+/g, ' ').trim();
+        
+        if (this.speechSynthesis && cleanText) {
+            // Stop any current speech
+            this.speechSynthesis.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            utterance.volume = 0.8;
+            
+            // Try to use a natural voice
+            const voices = this.speechSynthesis.getVoices();
+            const preferredVoice = voices.find(voice => 
+                voice.lang.startsWith('en') && 
+                (voice.name.includes('Google') || voice.name.includes('Natural') || voice.name.includes('Premium'))
+            ) || voices.find(voice => voice.lang.startsWith('en')) || voices[0];
+            
+            if (preferredVoice) {
+                utterance.voice = preferredVoice;
+            }
+            
+            this.speechSynthesis.speak(utterance);
         }
     }
 

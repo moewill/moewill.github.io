@@ -171,6 +171,17 @@
     border-bottom-left-radius: 4px;
 }
 
+.message.system {
+    background: #fef3c7;
+    color: #92400e;
+    align-self: center;
+    font-size: 12px;
+    font-style: italic;
+    border-radius: 12px;
+    max-width: 90%;
+    text-align: center;
+}
+
 .chatbot-input-container {
     padding: 20px;
     border-top: 1px solid #e2e8f0;
@@ -189,6 +200,42 @@
 
 .chatbot-input:focus {
     border-color: var(--primary);
+}
+
+.chatbot-voice {
+    background: var(--success);
+    color: white;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.chatbot-voice:hover {
+    background: var(--warning);
+    transform: scale(1.05);
+}
+
+.chatbot-voice:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.chatbot-voice.recording {
+    background: #ef4444;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 .chatbot-send {
