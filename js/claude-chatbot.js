@@ -7,8 +7,8 @@ class ClaudeChatbot {
         this.isRecording = false;
         this.speechSynthesis = window.speechSynthesis;
         this.isVoiceEnabled = false;
-        this.backendUrl = 'https://your-railway-app.up.railway.app'; // Update this with your Railway URL
-        this.wsUrl = 'wss://your-railway-app.up.railway.app/ws'; // WebSocket URL for voice chat
+        this.backendUrl = CHATBOT_CONFIG.BACKEND_URL;
+        this.wsUrl = CHATBOT_CONFIG.WS_URL;
         this.wsConnection = null;
         this.init();
     }
