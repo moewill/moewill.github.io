@@ -76,52 +76,17 @@ class LinkedInRecommendations {
     }
     
     async loadRecommendations() {
-        // Real LinkedIn recommendations from Maurice Rashad Williams
+        // Real LinkedIn recommendation from Maurice Rashad Williams
         this.recommendations = [
             {
                 name: "Nikita Williams",
-                title: "Business Coach & Entrepreneur",
-                company: "Thrive With Nikita (Crafted to Thrive LLC)",
-                content: "Maurice is great! He is very professional and you can tell that he loves what he does. He has been a photographer for several of my art and craft events and captured the true essence of what I am trying to accomplish, a community.",
+                title: "Top 2.5% Podcast Host Est. 2017 | Business Coach",
+                company: "Thrive With Nikita - Business Coach for the Chronically Ill, Creatively Driven, and Capacity-Aware",
+                content: "Maurice is great! He is very professional and you can tell that he loves what he does. He has been a photographer for several of my art and craft events and captured the true essence of what I am trying to accomplish, a community. I highly recommend him and I know he will work to make any businesses message come through is photography.",
                 rating: 5,
                 linkedin: "https://linkedin.com/in/nikitawilliams",
-                relationship: "Client"
-            },
-            {
-                name: "Alex Rodriguez",
-                title: "Operations Manager",
-                company: "A.R. Sims HVAC",
-                content: "Maurice's tech solutions transformed our business operations. His cybersecurity consultation and cloud management setup gave us peace of mind and improved our efficiency dramatically.",
-                rating: 5,
-                linkedin: "https://linkedin.com/in/alexrodriguez",
-                relationship: "Client"
-            },
-            {
-                name: "Sarah Chen",
-                title: "Startup Founder",
-                company: "TechFlow Solutions",
-                content: "Working with Maurice was exceptional. His strategic guidance helped us navigate complex technical challenges and his implementation skills are top-notch. The IT consulting and network support were exactly what we needed.",
-                rating: 5,
-                linkedin: "https://linkedin.com/in/sarahchen",
-                relationship: "Client"
-            },
-            {
-                name: "David Martinez",
-                title: "Creative Director",
-                company: "Digital Innovations",
-                content: "Maurice's videography and corporate photography work exceeded our expectations. His technical expertise in backup & recovery systems also saved our company when we had a critical data issue.",
-                rating: 5,
-                linkedin: "https://linkedin.com/in/davidmartinez",
-                relationship: "Client"
-            },
-            {
-                name: "Jennifer Thompson",
-                title: "Marketing Manager",
-                company: "Growth Dynamics",
-                content: "Maurice's portrait photography captured our team perfectly, and his information security consultation helped us implement robust data protection. Professional and knowledgeable in multiple areas.",
-                rating: 5,
-                linkedin: "https://linkedin.com/in/jenniferthompson",
-                relationship: "Client"
+                relationship: "Client since March 2012",
+                date: "March 22, 2012"
             }
         ];
         
@@ -144,6 +109,7 @@ class LinkedInRecommendations {
                             <div class="font-bold text-gray-900">${rec.name}</div>
                             <div class="text-gray-600 text-sm">${rec.title}</div>
                             <div class="text-gray-500 text-xs">${rec.company}</div>
+                            <div class="text-gray-400 text-xs mt-1">${rec.relationship} • ${rec.date}</div>
                         </div>
                     </div>
                     <div class="text-gray-600 italic mb-6">
