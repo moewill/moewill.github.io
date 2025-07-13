@@ -709,6 +709,32 @@ h1, h2, h3, h4, h5, h6 {
     50% { transform: scale(1.05); }
 }
 
+.chatbot-mute {
+    background: #6b7280;
+    color: white;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.chatbot-mute:hover {
+    background: #374151;
+    transform: scale(1.05);
+}
+
+.chatbot-mute:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .chatbot-send {
     background: var(--primary);
     color: white;

@@ -152,20 +152,40 @@ class LinkedInRecommendations {
     
     updateCarouselLayout() {
         const itemsToShow = this.getItemsToShow();
-        const itemWidth = 100 / itemsToShow;
+        const totalItems = this.recommendations.length;
         
-        // Update each recommendation item width
-        const items = this.container.querySelectorAll('.w-full');
-        items.forEach(item => {
-            item.style.minWidth = `${itemWidth}%`;
-            item.style.flex = `0 0 ${itemWidth}%`;
-        });
-        
-        // Ensure proper spacing based on number of items
-        if (this.recommendations.length < itemsToShow) {
+        // If we have fewer items than what can be shown, center them
+        if (totalItems <= itemsToShow) {
+            const itemWidth = Math.min(100 / itemsToShow, 100 / totalItems);
+            
+            // Update each recommendation item
+            const items = this.container.querySelectorAll('.w-full');
+            items.forEach(item => {
+                if (totalItems === 1) {
+                    // Single item - make it smaller and centered
+                    item.style.minWidth = '60%';
+                    item.style.maxWidth = '600px';
+                    item.style.flex = '0 0 60%';
+                } else {
+                    // Multiple items but less than screen capacity
+                    item.style.minWidth = `${itemWidth}%`;
+                    item.style.flex = `0 0 ${itemWidth}%`;
+                }
+            });
+            
+            // Center the container
             this.container.style.justifyContent = 'center';
+            this.container.style.gap = '1rem';
         } else {
+            // More items than can be shown - use normal carousel behavior
+            const itemWidth = 100 / itemsToShow;
+            const items = this.container.querySelectorAll('.w-full');
+            items.forEach(item => {
+                item.style.minWidth = `${itemWidth}%`;
+                item.style.flex = `0 0 ${itemWidth}%`;
+            });
             this.container.style.justifyContent = 'flex-start';
+            this.container.style.gap = '0';
         }
     }
     

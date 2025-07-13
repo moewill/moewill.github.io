@@ -12,6 +12,7 @@ class ClaudeChatbot {
         this.wsConnection = null;
         this.currentTranscriptionId = null;
         this.isSpeaking = false;
+        this.isMuted = false;
         this.init();
     }
 
@@ -72,6 +73,9 @@ class ClaudeChatbot {
                         <button class="chatbot-voice" id="chatbot-voice" title="Voice Input">
                             <i class="fas fa-microphone"></i>
                         </button>
+                        <button class="chatbot-mute" id="chatbot-mute" title="Mute Voice Response">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
                         <button class="chatbot-send" id="chatbot-send">
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -94,6 +98,7 @@ class ClaudeChatbot {
         const input = document.getElementById('chatbot-input');
         const send = document.getElementById('chatbot-send');
         const voice = document.getElementById('chatbot-voice');
+        const mute = document.getElementById('chatbot-mute');
         const widget = document.getElementById('chatbot-widget');
         
         if (toggle) toggle.addEventListener('click', (e) => {
@@ -112,11 +117,16 @@ class ClaudeChatbot {
             e.stopPropagation();
             this.toggleVoiceInput();
         });
+        if (mute) mute.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleMute();
+        });
         
-        // Make entire widget clickable when closed
-        if (widget) {
-            widget.addEventListener('click', (e) => {
-                if (!this.isOpen) {
+        // Make entire chatbot container clickable when closed
+        const container = document.querySelector('.chatbot-container');
+        if (container) {
+            container.addEventListener('click', (e) => {
+                if (!this.isOpen && !e.target.closest('button')) {
                     e.stopPropagation();
                     this.toggleChat();
                 }
@@ -141,6 +151,7 @@ class ClaudeChatbot {
 
         // Initialize voice button state
         this.updateVoiceButton();
+        this.updateMuteButton();
     }
 
 
@@ -453,6 +464,9 @@ class ClaudeChatbot {
     }
 
     speakResponse(text) {
+        // Don't speak if muted
+        if (this.isMuted) return;
+        
         // Clean up text for better speech
         const cleanText = text.replace(/[#*_`]/g, '').replace(/\n+/g, ' ').trim();
         
@@ -461,28 +475,83 @@ class ClaudeChatbot {
             this.speechSynthesis.cancel();
             
             const utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.rate = 0.9;
-            utterance.pitch = 1;
-            utterance.volume = 0.8;
+            utterance.rate = 0.95;
+            utterance.pitch = 1.1;
+            utterance.volume = 0.9;
             
-            // Try to use a natural voice
+            // Try to find the most natural voice available
             const voices = this.speechSynthesis.getVoices();
-            const preferredVoice = voices.find(voice => 
-                voice.lang.startsWith('en') && 
-                (voice.name.includes('Google') || voice.name.includes('Natural') || voice.name.includes('Premium'))
-            ) || voices.find(voice => voice.lang.startsWith('en')) || voices[0];
             
-            if (preferredVoice) {
-                utterance.voice = preferredVoice;
+            // Priority order for natural voices
+            const preferredVoiceNames = [
+                // Apple voices (iOS/macOS - very natural)
+                'Samantha', 'Alex', 'Allison', 'Ava', 'Susan', 'Karen',
+                // Google voices (Android/Chrome - high quality)
+                'Google US English', 'Google UK English Female', 'Google UK English Male',
+                // Microsoft voices (Edge/Windows - neural voices)
+                'Microsoft Aria Online (Natural) - English (United States)',
+                'Microsoft Zira - English (United States)',
+                'Microsoft Mark - English (United States)',
+                // Premium/Neural indicators
+                'Neural', 'Premium', 'Natural', 'Enhanced'
+            ];
+            
+            let selectedVoice = null;
+            
+            // First, try to find exact matches for premium voices
+            for (const voiceName of preferredVoiceNames) {
+                selectedVoice = voices.find(voice => 
+                    voice.lang.startsWith('en') && voice.name.includes(voiceName)
+                );
+                if (selectedVoice) break;
+            }
+            
+            // If no exact match, find voices with quality indicators
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => 
+                    voice.lang.startsWith('en') && 
+                    (voice.name.toLowerCase().includes('neural') || 
+                     voice.name.toLowerCase().includes('premium') ||
+                     voice.name.toLowerCase().includes('enhanced') ||
+                     voice.name.toLowerCase().includes('natural'))
+                );
+            }
+            
+            // Fallback to any English voice that sounds female (often more pleasant)
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => 
+                    voice.lang.startsWith('en') && 
+                    (voice.name.toLowerCase().includes('female') || 
+                     voice.name.toLowerCase().includes('woman') ||
+                     voice.name.toLowerCase().includes('aria') ||
+                     voice.name.toLowerCase().includes('zira'))
+                );
+            }
+            
+            // Last fallback to any English voice
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+                console.log(`Using voice: ${selectedVoice.name} (${selectedVoice.lang})`);
             }
             
             // Allow interruption during voice recording
             utterance.onstart = () => {
                 this.isSpeaking = true;
+                this.updateMuteButton();
             };
             
             utterance.onend = () => {
                 this.isSpeaking = false;
+                this.updateMuteButton();
+            };
+            
+            utterance.onerror = () => {
+                this.isSpeaking = false;
+                this.updateMuteButton();
             };
             
             this.speechSynthesis.speak(utterance);
@@ -494,6 +563,36 @@ class ClaudeChatbot {
         if (this.speechSynthesis) {
             this.speechSynthesis.cancel();
             this.isSpeaking = false;
+        }
+    }
+    
+    toggleMute() {
+        this.isMuted = !this.isMuted;
+        
+        // Stop current speech if muting
+        if (this.isMuted && this.isSpeaking) {
+            this.stopSpeech();
+        }
+        
+        this.updateMuteButton();
+        
+        // Add system message
+        const message = this.isMuted ? 'Voice responses muted 🔇' : 'Voice responses enabled 🔊';
+        this.addMessage(message, 'system');
+    }
+    
+    updateMuteButton() {
+        const muteBtn = document.getElementById('chatbot-mute');
+        if (!muteBtn) return;
+        
+        if (this.isMuted) {
+            muteBtn.style.color = '#ef4444';
+            muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            muteBtn.title = 'Unmute Voice Response';
+        } else {
+            muteBtn.style.color = this.isSpeaking ? '#10B981' : '#0EA5E9';
+            muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            muteBtn.title = 'Mute Voice Response';
         }
     }
 
@@ -530,7 +629,7 @@ class ClaudeChatbot {
 
 Maurice Rashad is a technology consultant with 10+ years of experience. He offers:
 
-1. Strategic Consulting ($100/month, 2x 1-hour calls)
+1. Strategic Consulting ($99/month, 2x 1-hour calls)
    - Strategic planning sessions
    - Technology roadmap development
    - Problem-solving workshops
@@ -547,6 +646,12 @@ Maurice Rashad is a technology consultant with 10+ years of experience. He offer
    - Cybersecurity Fundamentals
    - Modern Web Development
    - Cloud Technologies
+
+4. AI Lead Generation ($149/month)
+   - AI-powered prospect identification
+   - Automated outreach campaigns
+   - Lead scoring & qualification
+   - CRM integration & reporting
 
 Contact: mauricerashad@gmail.com
 Response time: Within 24 hours
@@ -576,15 +681,17 @@ When answering questions:
             
             'skills': "Maurice specializes in Full-Stack Development, AI & Automation, Cloud Solutions, and Cybersecurity. He works with modern technologies to deliver cutting-edge solutions for businesses.",
             
-            'services': "Maurice offers three main services:\n\n1. Strategic Consulting - $100/month for 2x 1-hour calls\n2. Technology Services - $75/hour for custom development\n3. Expert Workshops - $99 each for AI, cybersecurity, and web development training",
+            'services': "Maurice offers four main services:\n\n1. Strategic Consulting - $99/month for 2x 1-hour calls\n2. Technology Services - $75/hour for custom development\n3. Expert Workshops - $99 each for AI, cybersecurity, and web development training\n4. AI Lead Generation - $149/month for automated lead generation",
             
-            'pricing': "Pricing: Strategic Consulting ($100/month), Technology Services ($75/hour), and Workshops ($99 each). Contact mauricerashad@gmail.com for detailed quotes.",
+            'pricing': "Pricing: Strategic Consulting ($99/month), Technology Services ($75/hour), Workshops ($99 each), and AI Lead Generation ($149/month). Contact mauricerashad@gmail.com for detailed quotes.",
             
             'contact': "You can reach Maurice at mauricerashad@gmail.com. He responds within 24 hours and offers global, remote-first services.",
             
             'automation': "Maurice creates custom automation solutions that streamline business processes, from simple task automation to complex AI-powered workflow systems.",
             
-            'ai': "Maurice helps businesses implement AI solutions including chatbots, automation agents, data analysis tools, and custom AI applications tailored to specific business needs.",
+            'ai': "Maurice helps businesses implement AI solutions including chatbots, automation agents, data analysis tools, custom AI applications, and AI-powered lead generation systems that work 24/7.",
+            
+            'lead generation': "Maurice's AI Lead Generation service ($149/month) uses artificial intelligence to identify, qualify, and engage potential customers automatically. Perfect for small businesses wanting to scale their sales efforts.",
             
             'consulting': "Maurice's consulting combines technical expertise with business strategy. He helps identify opportunities, create roadmaps, and solve complex technical challenges.",
             
