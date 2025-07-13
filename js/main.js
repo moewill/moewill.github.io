@@ -73,6 +73,19 @@ class LinkedInRecommendations {
         this.setupCarousel();
         this.setupControls();
         this.startAutoSlide();
+        this.setupResizeHandler();
+    }
+    
+    setupResizeHandler() {
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.setupCarousel();
+                this.updateIndicators();
+                this.goToSlide(this.currentIndex);
+            }, 150);
+        });
     }
     
     async loadRecommendations() {
@@ -132,8 +145,28 @@ class LinkedInRecommendations {
     }
     
     setupCarousel() {
-        const itemsToShow = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+        const itemsToShow = this.getItemsToShow();
         this.maxIndex = Math.max(0, this.recommendations.length - itemsToShow);
+        this.updateCarouselLayout();
+    }
+    
+    updateCarouselLayout() {
+        const itemsToShow = this.getItemsToShow();
+        const itemWidth = 100 / itemsToShow;
+        
+        // Update each recommendation item width
+        const items = this.container.querySelectorAll('.w-full');
+        items.forEach(item => {
+            item.style.minWidth = `${itemWidth}%`;
+            item.style.flex = `0 0 ${itemWidth}%`;
+        });
+        
+        // Ensure proper spacing based on number of items
+        if (this.recommendations.length < itemsToShow) {
+            this.container.style.justifyContent = 'center';
+        } else {
+            this.container.style.justifyContent = 'flex-start';
+        }
     }
     
     setupControls() {

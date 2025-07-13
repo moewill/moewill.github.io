@@ -94,14 +94,41 @@ class ClaudeChatbot {
         const input = document.getElementById('chatbot-input');
         const send = document.getElementById('chatbot-send');
         const voice = document.getElementById('chatbot-voice');
-        if (toggle) toggle.addEventListener('click', () => this.toggleChat());
-        if (close) close.addEventListener('click', () => this.toggleChat());
-        if (send) send.addEventListener('click', () => this.sendMessage());
-        if (voice) voice.addEventListener('click', () => this.toggleVoiceInput());
+        const widget = document.getElementById('chatbot-widget');
+        
+        if (toggle) toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleChat();
+        });
+        if (close) close.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleChat();
+        });
+        if (send) send.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.sendMessage();
+        });
+        if (voice) voice.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleVoiceInput();
+        });
+        
+        // Make entire widget clickable when closed
+        if (widget) {
+            widget.addEventListener('click', (e) => {
+                if (!this.isOpen) {
+                    e.stopPropagation();
+                    this.toggleChat();
+                }
+            });
+        }
         
         if (input) {
             input.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') this.sendMessage();
+            });
+            input.addEventListener('click', (e) => {
+                e.stopPropagation();
             });
         }
 
@@ -129,6 +156,15 @@ class ClaudeChatbot {
         } else {
             if (widget) widget.classList.remove('active');
             if (toggle) toggle.innerHTML = '<i class="fas fa-comments"></i>';
+            
+            // Stop voice streaming when chat is minimized
+            if (this.isRecording) {
+                this.stopVoiceChat();
+                this.addMessage('Voice chat stopped - chat minimized.', 'system');
+            }
+            
+            // Stop any ongoing speech
+            this.stopSpeech();
         }
     }
 
