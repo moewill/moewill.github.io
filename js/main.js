@@ -293,41 +293,53 @@ class SkillsDisplay {
         this.loadSkillsData();
         
         // Real skills from Maurice's LinkedIn profile and certifications
+        // Organized by business size relevance
         this.skills = [
-            // Featured/Primary Skills (highest endorsements & certifications)
-            { name: "Troubleshooting", level: 98, featured: true, endorsements: 41 },
-            { name: "Data Center", level: 95, featured: true, endorsements: 33 },
-            { name: "Information Security", level: 94, featured: true, cert: "CISSP Prep" },
-            { name: "Windows Server", level: 92, featured: true, endorsements: 23 },
-            { name: "AI Agents", level: 90, featured: true, cert: "LinkedIn Certified" },
-            { name: "Servers", level: 89, featured: true, endorsements: 22 },
+            // Small Business Priority Skills
+            { name: "Troubleshooting", level: 98, featured: false, endorsements: 41, businessSize: "small" },
+            { name: "AI Agents", level: 90, featured: false, cert: "LinkedIn Certified", businessSize: "small" },
+            { name: "Customer Service", level: 82, featured: false, endorsements: 9, businessSize: "small" },
+            { name: "Web Design", level: 75, featured: false, endorsements: 6, businessSize: "small" },
+            { name: "Windows", level: 74, featured: false, endorsements: 4, businessSize: "small" },
+            { name: "Computer Hardware", level: 70, featured: false, endorsements: 3, businessSize: "small" },
+            { name: "AWS", level: 85, featured: false, cert: "Solutions Architect", endorsements: 3, businessSize: "small" },
+            { name: "Python", level: 85, featured: false, endorsements: 1, businessSize: "small" },
+            { name: "Cloud Computing", level: 85, featured: false, endorsements: 1, businessSize: "small" },
+            { name: "Communication", level: 85, featured: false, businessSize: "small" },
+            { name: "Problem Solving", level: 87, featured: false, businessSize: "small" },
+            { name: "Teaching", level: 80, featured: false, businessSize: "small" },
+            { name: "Training", level: 79, featured: false, businessSize: "small" },
             
-            // Cloud & DevOps (certified & experienced)
-            { name: "Kubernetes", level: 88, featured: false, cert: "CKAD", endorsements: 1 },
-            { name: "Solution Architecture", level: 87, featured: false, cert: "AWS Certified" },
-            { name: "AWS", level: 85, featured: false, cert: "Solutions Architect", endorsements: 3 },
-            { name: "DevOps", level: 84, featured: false },
-            { name: "CI/CD", level: 83, featured: false },
-            { name: "Docker", level: 82, featured: false },
-            { name: "Terraform", level: 81, featured: false, endorsements: 1 },
-            { name: "Ansible", level: 80, featured: false, endorsements: 1 },
-            { name: "Jenkins", level: 79, featured: false, endorsements: 1 },
+            // Enterprise/Large Corporation Skills
+            { name: "Data Center", level: 95, featured: false, endorsements: 33, businessSize: "enterprise" },
+            { name: "Information Security", level: 94, featured: false, cert: "CISSP Prep", businessSize: "enterprise" },
+            { name: "Windows Server", level: 92, featured: false, endorsements: 23, businessSize: "enterprise" },
+            { name: "Servers", level: 89, featured: false, endorsements: 22, businessSize: "enterprise" },
             
-            // Security & Compliance
-            { name: "Security Operations", level: 87, featured: false, cert: "CISSP Prep" },
-            { name: "IT Security Assessments", level: 85, featured: false, cert: "CISSP Prep" },
-            { name: "SOC 2", level: 84, featured: false, cert: "LinkedIn Certified" },
-            { name: "Security Audits", level: 83, featured: false, cert: "LinkedIn Certified" },
-            { name: "Network Security", level: 82, featured: false },
+            // Cloud & DevOps (enterprise-focused)
+            { name: "Kubernetes", level: 88, featured: false, cert: "CKAD", endorsements: 1, businessSize: "enterprise" },
+            { name: "Solution Architecture", level: 87, featured: false, cert: "AWS Certified", businessSize: "enterprise" },
+            { name: "DevOps", level: 84, featured: false, businessSize: "enterprise" },
+            { name: "CI/CD", level: 83, featured: false, businessSize: "enterprise" },
+            { name: "Docker", level: 82, featured: false, businessSize: "enterprise" },
+            { name: "Terraform", level: 81, featured: false, endorsements: 1, businessSize: "enterprise" },
+            { name: "Ansible", level: 80, featured: false, endorsements: 1, businessSize: "enterprise" },
+            { name: "Jenkins", level: 79, featured: false, endorsements: 1, businessSize: "enterprise" },
             
-            // Development & APIs
-            { name: "API Development", level: 91, featured: false, cert: "MCP Certified" },
-            { name: "Anthropic Claude", level: 90, featured: false, cert: "MCP Certified" },
-            { name: "Python", level: 85, featured: false, endorsements: 1 },
-            { name: "Bash", level: 84, featured: false, cert: "LinkedIn Assessment" },
-            { name: "Git", level: 82, featured: false },
-            { name: "Groovy", level: 75, featured: false, cert: "AWS Verified" },
-            { name: "SQL", level: 78, featured: false },
+            // Security & Compliance (enterprise-focused)
+            { name: "Security Operations", level: 87, featured: false, cert: "CISSP Prep", businessSize: "enterprise" },
+            { name: "IT Security Assessments", level: 85, featured: false, cert: "CISSP Prep", businessSize: "enterprise" },
+            { name: "SOC 2", level: 84, featured: false, cert: "LinkedIn Certified", businessSize: "enterprise" },
+            { name: "Security Audits", level: 83, featured: false, cert: "LinkedIn Certified", businessSize: "enterprise" },
+            { name: "Network Security", level: 82, featured: false, businessSize: "enterprise" },
+            
+            // Development & APIs (both small and enterprise)
+            { name: "API Development", level: 91, featured: false, cert: "MCP Certified", businessSize: "both" },
+            { name: "Anthropic Claude", level: 90, featured: false, cert: "MCP Certified", businessSize: "both" },
+            { name: "Bash", level: 84, featured: false, cert: "LinkedIn Assessment", businessSize: "enterprise" },
+            { name: "Git", level: 82, featured: false, businessSize: "both" },
+            { name: "Groovy", level: 75, featured: false, cert: "AWS Verified", businessSize: "enterprise" },
+            { name: "SQL", level: 78, featured: false, businessSize: "both" },
             
             // Networking & Infrastructure (highly endorsed)
             { name: "Networking", level: 88, featured: false, endorsements: 20 },
@@ -378,7 +390,23 @@ class SkillsDisplay {
             { name: "Public Speaking", level: 76, featured: false, endorsements: 1 }
         ];
         
+        this.randomizeFeaturedSkills();
         this.init();
+    }
+    
+    randomizeFeaturedSkills() {
+        // Reset all skills to not featured
+        this.skills.forEach(skill => skill.featured = false);
+        
+        // Randomly select 6 skills to be featured
+        const availableSkills = [...this.skills];
+        const featuredCount = 6;
+        
+        for (let i = 0; i < featuredCount && availableSkills.length > 0; i++) {
+            const randomIndex = Math.floor(Math.random() * availableSkills.length);
+            const selectedSkill = availableSkills.splice(randomIndex, 1)[0];
+            selectedSkill.featured = true;
+        }
     }
     
     async loadSkillsData() {
