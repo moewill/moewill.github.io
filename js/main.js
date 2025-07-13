@@ -289,6 +289,8 @@ class SkillsDisplay {
         this.container = document.getElementById('skills-container');
         this.toggle = document.getElementById('skills-toggle');
         this.isExpanded = false;
+        this.skillsData = {};
+        this.loadSkillsData();
         
         // Real skills from Maurice's LinkedIn profile and certifications
         this.skills = [
@@ -379,9 +381,68 @@ class SkillsDisplay {
         this.init();
     }
     
+    async loadSkillsData() {
+        try {
+            const response = await fetch('data/skills.json');
+            const data = await response.json();
+            this.skillsData = data.skills;
+        } catch (error) {
+            console.error('Error loading skills data:', error);
+            this.skillsData = {};
+        }
+    }
+    
     init() {
         this.renderSkills();
         this.setupToggle();
+        this.createPopupContainer();
+    }
+    
+    createPopupContainer() {
+        const popup = document.createElement('div');
+        popup.id = 'skill-popup';
+        popup.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden';
+        popup.innerHTML = `
+            <div class="bg-white rounded-2xl p-8 max-w-md mx-4 relative">
+                <button id="close-popup" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <div id="popup-content"></div>
+            </div>
+        `;
+        document.body.appendChild(popup);
+        
+        // Setup close functionality
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) this.closePopup();
+        });
+        document.getElementById('close-popup').addEventListener('click', () => this.closePopup());
+    }
+    
+    showSkillPopup(skillName) {
+        const skillData = this.skillsData[skillName];
+        if (!skillData) return;
+        
+        const popup = document.getElementById('skill-popup');
+        const content = document.getElementById('popup-content');
+        
+        content.innerHTML = `
+            <div class="skill-popup-header mb-4">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">${skillName}</h3>
+                <div class="w-12 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></div>
+            </div>
+            <div class="skill-popup-body">
+                <p class="text-gray-700 text-lg mb-4">${skillData.description}</p>
+                <p class="text-gray-600">${skillData.detail}</p>
+            </div>
+        `;
+        
+        popup.classList.remove('hidden');
+    }
+    
+    closePopup() {
+        const popup = document.getElementById('skill-popup');
+        popup.classList.add('hidden');
     }
     
     renderSkills() {
@@ -404,6 +465,11 @@ class SkillsDisplay {
             const certInfo = skill.cert ? ` | Certified: ${skill.cert}` : '';
             const endorsementInfo = skill.endorsements ? ` | ${skill.endorsements} endorsements` : '';
             skillElement.title = `${skill.name} - ${skill.level}% proficiency${certInfo}${endorsementInfo}`;
+            
+            // Add click event for popup
+            skillElement.addEventListener('click', () => {
+                this.showSkillPopup(skill.name);
+            });
             
             this.container.appendChild(skillElement);
         });
@@ -446,27 +512,6 @@ class CompanyLogos {
                 description: "Business Coaching",
                 website: "https://www.thrivewithnikita.com/",
                 industry: "Professional Services"
-            },
-            {
-                name: "TechFlow Solutions",
-                logo: null,
-                description: "Technology Consulting",
-                website: "#",
-                industry: "Technology"
-            },
-            {
-                name: "Digital Innovations",
-                logo: null,
-                description: "Creative Services",
-                website: "#",
-                industry: "Marketing"
-            },
-            {
-                name: "Growth Dynamics",
-                logo: null,
-                description: "Marketing Solutions",
-                website: "#",
-                industry: "Marketing"
             }
         ];
         
