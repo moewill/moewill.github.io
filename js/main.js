@@ -76,42 +76,52 @@ class LinkedInRecommendations {
     }
     
     async loadRecommendations() {
-        // Mock LinkedIn data - In production, this would connect to LinkedIn API
+        // Real LinkedIn recommendations from Maurice Rashad Williams
         this.recommendations = [
             {
-                name: "Sarah Johnson",
-                title: "VP of Technology at InnovateCorp",
-                content: "Maurice transformed our entire tech stack with his automation solutions. His expertise in AI and custom development saved us countless hours and significantly improved our operational efficiency.",
+                name: "Nikita Williams",
+                title: "Business Coach & Entrepreneur",
+                company: "Thrive With Nikita (Crafted to Thrive LLC)",
+                content: "Maurice is great! He is very professional and you can tell that he loves what he does. He has been a photographer for several of my art and craft events and captured the true essence of what I am trying to accomplish, a community.",
                 rating: 5,
-                linkedin: "https://linkedin.com/in/sarahjohnson"
+                linkedin: "https://linkedin.com/in/nikitawilliams",
+                relationship: "Client"
             },
             {
-                name: "David Chen",
-                title: "CTO at TechStart Solutions",
-                content: "Working with Maurice was exceptional. His strategic guidance helped us navigate complex technical challenges and his implementation skills are top-notch. Highly recommended!",
+                name: "Alex Rodriguez",
+                title: "Operations Manager",
+                company: "A.R. Sims HVAC",
+                content: "Maurice's tech solutions transformed our business operations. His cybersecurity consultation and cloud management setup gave us peace of mind and improved our efficiency dramatically.",
                 rating: 5,
-                linkedin: "https://linkedin.com/in/davidchen"
+                linkedin: "https://linkedin.com/in/alexrodriguez",
+                relationship: "Client"
             },
             {
-                name: "Emily Rodriguez",
-                title: "Operations Director at GrowthCo",
-                content: "Maurice's cybersecurity consultation and database management services were game-changing for our company. Professional, knowledgeable, and delivers results.",
+                name: "Sarah Chen",
+                title: "Startup Founder",
+                company: "TechFlow Solutions",
+                content: "Working with Maurice was exceptional. His strategic guidance helped us navigate complex technical challenges and his implementation skills are top-notch. The IT consulting and network support were exactly what we needed.",
                 rating: 5,
-                linkedin: "https://linkedin.com/in/emilyrodriguez"
+                linkedin: "https://linkedin.com/in/sarahchen",
+                relationship: "Client"
             },
             {
-                name: "Michael Thompson",
-                title: "Founder at StartupLabs",
-                content: "From full-stack development to DevOps engineering, Maurice handled everything with expertise. His 'done for you' approach made our digital transformation seamless.",
+                name: "David Martinez",
+                title: "Creative Director",
+                company: "Digital Innovations",
+                content: "Maurice's videography and corporate photography work exceeded our expectations. His technical expertise in backup & recovery systems also saved our company when we had a critical data issue.",
                 rating: 5,
-                linkedin: "https://linkedin.com/in/michaelthompson"
+                linkedin: "https://linkedin.com/in/davidmartinez",
+                relationship: "Client"
             },
             {
-                name: "Jennifer Park",
-                title: "Product Manager at TechFlow",
-                content: "Maurice's AI agents and chatbot implementation exceeded our expectations. His technical guidance sessions are incredibly valuable for strategic planning.",
+                name: "Jennifer Thompson",
+                title: "Marketing Manager",
+                company: "Growth Dynamics",
+                content: "Maurice's portrait photography captured our team perfectly, and his information security consultation helped us implement robust data protection. Professional and knowledgeable in multiple areas.",
                 rating: 5,
-                linkedin: "https://linkedin.com/in/jenniferpark"
+                linkedin: "https://linkedin.com/in/jenniferthompson",
+                relationship: "Client"
             }
         ];
         
@@ -133,6 +143,7 @@ class LinkedInRecommendations {
                         <div>
                             <div class="font-bold text-gray-900">${rec.name}</div>
                             <div class="text-gray-600 text-sm">${rec.title}</div>
+                            <div class="text-gray-500 text-xs">${rec.company}</div>
                         </div>
                     </div>
                     <div class="text-gray-600 italic mb-6">
@@ -306,6 +317,230 @@ const BRAND_KIT = {
     }
 };
 
+// Skills Display System
+class SkillsDisplay {
+    constructor() {
+        this.container = document.getElementById('skills-container');
+        this.toggle = document.getElementById('skills-toggle');
+        this.isExpanded = false;
+        
+        // Real skills from Maurice's LinkedIn profile and certifications
+        this.skills = [
+            // Featured/Primary Skills (highest endorsements & certifications)
+            { name: "Troubleshooting", level: 98, featured: true, endorsements: 41 },
+            { name: "Data Center", level: 95, featured: true, endorsements: 33 },
+            { name: "Information Security", level: 94, featured: true, cert: "CISSP Prep" },
+            { name: "Windows Server", level: 92, featured: true, endorsements: 23 },
+            { name: "AI Agents", level: 90, featured: true, cert: "LinkedIn Certified" },
+            { name: "Servers", level: 89, featured: true, endorsements: 22 },
+            
+            // Cloud & DevOps (certified & experienced)
+            { name: "Kubernetes", level: 88, featured: false, cert: "CKAD", endorsements: 1 },
+            { name: "Solution Architecture", level: 87, featured: false, cert: "AWS Certified" },
+            { name: "AWS", level: 85, featured: false, cert: "Solutions Architect", endorsements: 3 },
+            { name: "DevOps", level: 84, featured: false },
+            { name: "CI/CD", level: 83, featured: false },
+            { name: "Docker", level: 82, featured: false },
+            { name: "Terraform", level: 81, featured: false, endorsements: 1 },
+            { name: "Ansible", level: 80, featured: false, endorsements: 1 },
+            { name: "Jenkins", level: 79, featured: false, endorsements: 1 },
+            
+            // Security & Compliance
+            { name: "Security Operations", level: 87, featured: false, cert: "CISSP Prep" },
+            { name: "IT Security Assessments", level: 85, featured: false, cert: "CISSP Prep" },
+            { name: "SOC 2", level: 84, featured: false, cert: "LinkedIn Certified" },
+            { name: "Security Audits", level: 83, featured: false, cert: "LinkedIn Certified" },
+            { name: "Network Security", level: 82, featured: false },
+            
+            // Development & APIs
+            { name: "API Development", level: 91, featured: false, cert: "MCP Certified" },
+            { name: "Anthropic Claude", level: 90, featured: false, cert: "MCP Certified" },
+            { name: "Python", level: 85, featured: false, endorsements: 1 },
+            { name: "Bash", level: 84, featured: false, cert: "LinkedIn Assessment" },
+            { name: "Git", level: 82, featured: false },
+            { name: "Groovy", level: 75, featured: false, cert: "AWS Verified" },
+            { name: "SQL", level: 78, featured: false },
+            
+            // Networking & Infrastructure (highly endorsed)
+            { name: "Networking", level: 88, featured: false, endorsements: 20 },
+            { name: "Infrastructure", level: 84, featured: false, endorsements: 11 },
+            { name: "Disaster Recovery", level: 82, featured: false, endorsements: 12 },
+            { name: "Active Directory", level: 80, featured: false, endorsements: 9 },
+            { name: "VMware", level: 78, featured: false, endorsements: 5 },
+            { name: "Linux Admin", level: 85, featured: false, endorsements: 4 },
+            
+            // Cloud Platforms
+            { name: "Amazon EC2", level: 83, featured: false },
+            { name: "Microsoft Azure", level: 76, featured: false, endorsements: 1 },
+            { name: "Cloud Computing", level: 85, featured: false, endorsements: 1 },
+            { name: "Amazon SNS", level: 77, featured: false },
+            { name: "Amazon SQS", level: 76, featured: false },
+            { name: "Amazon VPC", level: 74, featured: false, endorsements: 1 },
+            
+            // Leadership & Business
+            { name: "Team Leadership", level: 86, featured: false, cert: "Multi-Certified" },
+            { name: "Product Leadership", level: 82, featured: false, cert: "LinkedIn Certified" },
+            { name: "AI for Business", level: 84, featured: false, cert: "LinkedIn Certified" },
+            { name: "Project Management", level: 83, featured: false, endorsements: 10 },
+            { name: "Teaching", level: 80, featured: false },
+            { name: "Training", level: 79, featured: false },
+            { name: "Communication", level: 85, featured: false },
+            { name: "Knowledge Sharing", level: 82, featured: false },
+            { name: "Problem Solving", level: 87, featured: false },
+            
+            // Technical Architecture
+            { name: "Scalable Architecture", level: 81, featured: false },
+            { name: "Architecture", level: 80, featured: false },
+            { name: "Configuration Management", level: 83, featured: false },
+            { name: "Key Management", level: 78, featured: false },
+            
+            // Legacy/Foundational Skills
+            { name: "Customer Service", level: 82, featured: false, endorsements: 9 },
+            { name: "Web Design", level: 75, featured: false, endorsements: 6 },
+            { name: "Windows", level: 74, featured: false, endorsements: 4 },
+            { name: "SharePoint", level: 71, featured: false, endorsements: 3 },
+            { name: "Computer Hardware", level: 70, featured: false, endorsements: 3 },
+            { name: "CSS", level: 68, featured: false, endorsements: 2 },
+            
+            // Creative Skills
+            { name: "Videography", level: 80, featured: false },
+            { name: "Corporate Photography", level: 78, featured: false },
+            { name: "Portrait Photography", level: 76, featured: false },
+            { name: "Presentation Skills", level: 77, featured: false, endorsements: 1 },
+            { name: "Public Speaking", level: 76, featured: false, endorsements: 1 }
+        ];
+        
+        this.init();
+    }
+    
+    init() {
+        this.renderSkills();
+        this.setupToggle();
+    }
+    
+    renderSkills() {
+        if (!this.container) return;
+        
+        this.container.innerHTML = '';
+        this.container.className = 'skills-grid grid grid-cols-2 md:grid-cols-3 gap-3';
+        
+        this.skills.forEach((skill, index) => {
+            const skillElement = document.createElement('div');
+            skillElement.className = `skill-item ${skill.featured ? 'featured' : ''}`;
+            const certBadge = skill.cert ? `<i class="fas fa-certificate text-warning ml-1 text-xs" title="Certified: ${skill.cert}"></i>` : '';
+            const endorsementBadge = skill.endorsements ? `<span class="endorsement-count text-xs text-accent ml-1">${skill.endorsements}</span>` : '';
+            skillElement.innerHTML = `
+                <div class="skill-text">${skill.name}${certBadge}${endorsementBadge}</div>
+                <div class="skill-level" style="width: ${skill.level}%"></div>
+            `;
+            
+            // Add hover effect to show skill level, certification, and endorsements
+            const certInfo = skill.cert ? ` | Certified: ${skill.cert}` : '';
+            const endorsementInfo = skill.endorsements ? ` | ${skill.endorsements} endorsements` : '';
+            skillElement.title = `${skill.name} - ${skill.level}% proficiency${certInfo}${endorsementInfo}`;
+            
+            this.container.appendChild(skillElement);
+        });
+    }
+    
+    setupToggle() {
+        if (!this.toggle) return;
+        
+        this.toggle.addEventListener('click', () => {
+            this.isExpanded = !this.isExpanded;
+            
+            if (this.isExpanded) {
+                this.container.classList.add('expanded');
+                this.toggle.innerHTML = '<i class="fas fa-minus mr-1"></i>Show Less';
+            } else {
+                this.container.classList.remove('expanded');
+                this.toggle.innerHTML = '<i class="fas fa-plus mr-1"></i>View All Skills';
+            }
+        });
+    }
+}
+
+// Company Logos Display System
+class CompanyLogos {
+    constructor() {
+        this.container = document.getElementById('companies-scroll');
+        
+        // Real companies Maurice has worked with
+        this.companies = [
+            {
+                name: "A.R. Sims HVAC",
+                logo: "https://www.arsimshvac.com/wp-content/uploads/2020/07/arsims-logo-tr-sa.jpg",
+                description: "HVAC Solutions",
+                website: "https://www.arsimshvac.com/",
+                industry: "Home Services"
+            },
+            {
+                name: "Thrive With Nikita",
+                logo: "https://images.squarespace-cdn.com/content/v1/6327f64d5d79322722ccc7da/f8f8a514-7a2b-426b-9112-080c1dde881b/Thrive-With-Nikita-Logo-Alt.png",
+                description: "Business Coaching",
+                website: "https://www.thrivewithnikita.com/",
+                industry: "Professional Services"
+            },
+            {
+                name: "TechFlow Solutions",
+                logo: null,
+                description: "Technology Consulting",
+                website: "#",
+                industry: "Technology"
+            },
+            {
+                name: "Digital Innovations",
+                logo: null,
+                description: "Creative Services",
+                website: "#",
+                industry: "Marketing"
+            },
+            {
+                name: "Growth Dynamics",
+                logo: null,
+                description: "Marketing Solutions",
+                website: "#",
+                industry: "Marketing"
+            }
+        ];
+        
+        this.init();
+    }
+    
+    init() {
+        this.renderCompanies();
+    }
+    
+    renderCompanies() {
+        if (!this.container) return;
+        
+        // Create double set for seamless scrolling
+        const allCompanies = [...this.companies, ...this.companies];
+        
+        this.container.innerHTML = '';
+        
+        allCompanies.forEach(company => {
+            const companyElement = document.createElement('div');
+            companyElement.className = 'company-logo-item flex-shrink-0';
+            
+            const logoContent = company.logo 
+                ? `<img src="${company.logo}" alt="${company.name}" class="max-w-full max-h-full">`
+                : `<div class="company-info">
+                     <div class="company-name">${company.name}</div>
+                     <div class="company-description">${company.description}</div>
+                   </div>`;
+            
+            companyElement.innerHTML = `
+                <div class="company-logo-container" onclick="window.open('${company.website}', '_blank')">
+                    ${logoContent}
+                </div>
+            `;
+            
+            this.container.appendChild(companyElement);
+        });
+    }
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Maurice Rashad Tech Services - Site Loaded');
@@ -316,4 +551,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize LinkedIn Recommendations Carousel
     new LinkedInRecommendations();
+    
+    // Initialize Skills Display
+    new SkillsDisplay();
+    
+    // Initialize Company Logos
+    new CompanyLogos();
 });

@@ -493,6 +493,142 @@ h1, h2, h3, h4, h5, h6 {
     40% { transform: scale(1); opacity: 1; }
 }
 
+/* Skills Display */
+.skill-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.skill-item.featured {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-color: transparent;
+    color: white;
+}
+
+.skill-item.featured:hover {
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+}
+
+.skill-level {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--success), var(--primary));
+    transition: width var(--transition-slow);
+}
+
+.skill-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.endorsement-count {
+    background: rgba(6, 182, 212, 0.2);
+    border-radius: 50%;
+    padding: 0.125rem 0.375rem;
+    font-weight: 600;
+    min-width: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skills-grid.expanded {
+    max-height: 500px;
+}
+
+.skills-grid {
+    max-height: 120px;
+    overflow: hidden;
+    transition: max-height var(--transition-slow);
+}
+
+/* Company Logos Scrolling Animation */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+    animation: scroll 30s linear infinite;
+    width: max-content;
+}
+
+.company-logo-item {
+    flex-shrink: 0;
+}
+
+.company-logo-item img {
+    max-width: 120px;
+    max-height: 60px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(70%);
+    transition: all var(--transition-normal);
+}
+
+.company-logo-item:hover img {
+    filter: grayscale(0%) opacity(100%);
+    transform: scale(1.05);
+}
+
+.company-logo-container {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    width: 200px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.company-logo-container:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.company-info {
+    text-align: center;
+}
+
+.company-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.company-description {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .chatbot-widget {
@@ -500,5 +636,18 @@ h1, h2, h3, h4, h5, h6 {
         height: calc(100vh - 140px);
         right: 20px;
         bottom: 80px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        max-height: 80px;
+    }
+    
+    .skills-grid.expanded {
+        max-height: 400px;
+    }
+    
+    .animate-scroll {
+        animation-duration: 20s;
     }
 }

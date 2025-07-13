@@ -120,7 +120,7 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
-                    <div class="text-3xl font-bold text-white mb-2">50+</div>
+                    <div class="text-3xl font-bold text-white mb-2">15+</div>
                     <div class="text-gray-300">Businesses Transformed</div>
                 </div>
                 <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
@@ -249,11 +249,15 @@
                     <p class="text-lg text-gray-400 mb-8">
                         My approach combines deep technical expertise with business acumen to deliver solutions that not only work but drive measurable results for your organization.
                     </p>
-                    <div class="flex flex-wrap gap-4 mb-8">
-                        <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm">Full-Stack Development</span>
-                        <span class="bg-accent/20 text-accent px-4 py-2 rounded-full text-sm">AI & Automation</span>
-                        <span class="bg-success/20 text-success px-4 py-2 rounded-full text-sm">Cloud Solutions</span>
-                        <span class="bg-warning/20 text-warning px-4 py-2 rounded-full text-sm">Cybersecurity</span>
+                    <!-- Interactive Skills Display -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-white mb-4">Core Expertise</h3>
+                        <div id="skills-container" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <!-- Skills will be loaded by JavaScript -->
+                        </div>
+                        <button id="skills-toggle" class="mt-4 text-accent hover:text-primary transition-colors text-sm font-medium">
+                            <i class="fas fa-plus mr-1"></i>View All Skills
+                        </button>
                     </div>
                     <a href="#contact" class="cta-button text-white px-8 py-4 rounded-full text-lg font-medium inline-flex items-center">
                         <i class="fas fa-handshake mr-2"></i>
@@ -375,6 +379,50 @@
                             allowfullscreen>
                         </iframe>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Logos / Social Proof Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Trusted by <span class="gradient-text">Growing Businesses</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Partnering with companies across industries to deliver transformative technology solutions
+                </p>
+            </div>
+            
+            <div class="relative overflow-hidden">
+                <div id="companies-scroll" class="flex items-center space-x-12 animate-scroll">
+                    <!-- Company logos will be loaded here -->
+                    <div class="company-logo-item flex-shrink-0">
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 w-48 h-32 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-lg font-bold text-gray-400">Loading...</div>
+                                <div class="text-sm text-gray-500">Client Logos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Client Success Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 text-center">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-2xl font-bold text-primary mb-2">100%</div>
+                    <div class="text-gray-600">Project Success Rate</div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-2xl font-bold text-success mb-2">24hr</div>
+                    <div class="text-gray-600">Average Response Time</div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-2xl font-bold text-accent mb-2">5★</div>
+                    <div class="text-gray-600">Client Satisfaction</div>
                 </div>
             </div>
         </div>
