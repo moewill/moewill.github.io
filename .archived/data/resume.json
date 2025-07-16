@@ -1,0 +1,100 @@
+{
+    "personal": {
+        "name": "Maurice Rashad",
+        "title": "Technology Consultant & Developer",
+        "email": "mauricerashad@gmail.com",
+        "website": "https://moewill.github.io",
+        "summary": "Technology consultant with over a decade of experience helping businesses transform their operations through strategic tech solutions. Specializes in automation, web development, AI implementation, and cybersecurity."
+    },
+    "services": [
+        {
+            "name": "Strategic Consulting",
+            "price": "$100/month",
+            "description": "Personalized guidance to solve tech challenges and unlock new opportunities",
+            "includes": [
+                "2x 1-hour calls included",
+                "Strategic planning sessions",
+                "Technology roadmap development",
+                "Problem-solving workshops",
+                "Growth strategy recommendations"
+            ]
+        },
+        {
+            "name": "Technology Services",
+            "price": "$75/hour",
+            "description": "Custom automation, web development, hosting solutions, and technical problem-solving",
+            "includes": [
+                "Custom automation solutions",
+                "Website development & fixes",
+                "App development",
+                "Hosting & migration services",
+                "Certificate management",
+                "Technical troubleshooting"
+            ]
+        },
+        {
+            "name": "Expert Workshops",
+            "price": "$99/workshop",
+            "description": "Learn cutting-edge skills in AI, cybersecurity, and emerging technologies",
+            "includes": [
+                "AI Agents & Automation",
+                "Cybersecurity Fundamentals",
+                "Modern Web Development",
+                "Cloud Technologies",
+                "Hands-on practical sessions",
+                "Group discounts available"
+            ]
+        }
+    ],
+    "skills": {
+        "technical": [
+            "Full-Stack Development",
+            "JavaScript/TypeScript",
+            "Python",
+            "Node.js",
+            "React/Vue.js",
+            "Cloud Platforms (AWS, Azure, GCP)",
+            "Docker & Kubernetes",
+            "DevOps & CI/CD"
+        ],
+        "specializations": [
+            "AI & Machine Learning",
+            "Business Automation",
+            "Cybersecurity",
+            "API Development",
+            "Database Design",
+            "System Architecture",
+            "Performance Optimization",
+            "Security Auditing"
+        ]
+    },
+    "experience": {
+        "years": "10+",
+        "clients": "50+",
+        "satisfaction": "99%",
+        "availability": "24/7 support",
+        "approach": "Results-driven, innovation-first, partnership-focused"
+    },
+    "expertise": {
+        "automation": "Custom workflow automation, AI-powered business processes, integration solutions",
+        "web_development": "Modern web applications, responsive design, performance optimization, hosting solutions",
+        "consulting": "Strategic technology planning, digital transformation, problem-solving workshops",
+        "security": "Cybersecurity audits, security implementation, compliance consulting",
+        "ai": "AI agent development, machine learning solutions, chatbots, data analysis",
+        "cloud": "Cloud migration, infrastructure setup, serverless solutions, cost optimization"
+    },
+    "achievements": [
+        "Transformed 50+ businesses through technology solutions",
+        "99% client satisfaction rate",
+        "Specialized in cutting-edge AI and automation technologies",
+        "Expert in modern web development and cloud solutions",
+        "Proven track record in cybersecurity and compliance",
+        "Global remote-first service delivery"
+    ],
+    "contact": {
+        "email": "mauricerashad@gmail.com",
+        "response_time": "Within 24 hours",
+        "availability": "Global, Remote-First",
+        "consultation": "Free initial consultation available"
+    }
+}

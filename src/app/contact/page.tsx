@@ -1,0 +1,382 @@
+'use client';
+
+import React, { useState } from 'react';
+import { MainLayout } from '@/components/Layout';
+import { Container, Grid, Stack, Flex } from '@/components/Layout/Container';
+import { Button, Card } from '@/components/UI';
+import { FadeInWhenVisible } from '@/components/Animations';
+import { motion } from 'framer-motion';
+
+const contactMethods = [
+  {
+    title: 'Schedule Consultation',
+    description: 'Book a free 60-minute strategic consultation to discuss your technology needs.',
+    action: 'Schedule Call',
+    href: 'https://calendly.com/mauricerashad/consultation',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    )
+  },
+  {
+    title: 'Email Direct',
+    description: 'Send a detailed message about your project requirements and objectives.',
+    action: 'Send Email',
+    href: 'mailto:hello@mauricerashad.com',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    )
+  },
+  {
+    title: 'LinkedIn Connect',
+    description: 'Connect professionally and discuss opportunities for collaboration.',
+    action: 'Connect',
+    href: 'https://linkedin.com/in/mauricerashad',
+    icon: (
+      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    )
+  }
+];
+
+const consultationTypes = [
+  {
+    type: 'Strategic Assessment',
+    duration: '60 minutes',
+    description: 'Comprehensive evaluation of your current technology landscape and strategic roadmap development.',
+    includes: [
+      'Technology audit and gap analysis',
+      'Strategic roadmap development',
+      'ROI projections and priorities',
+      'Implementation timeline',
+    ]
+  },
+  {
+    type: 'Technical Deep Dive',
+    duration: '90 minutes',
+    description: 'Detailed technical consultation for specific implementation challenges or architecture decisions.',
+    includes: [
+      'Technical architecture review',
+      'Implementation strategy',
+      'Technology recommendations',
+      'Risk assessment and mitigation',
+    ]
+  },
+  {
+    type: 'Training & Development',
+    duration: '45 minutes',
+    description: 'Discussion of training needs and custom program development for your team.',
+    includes: [
+      'Skills assessment and gaps',
+      'Custom curriculum design',
+      'Training format recommendations',
+      'Learning objectives and outcomes',
+    ]
+  }
+];
+
+export default function ContactPage() {
+  const [selectedConsultationType, setSelectedConsultationType] = useState(consultationTypes[0]);
+
+  return (
+    <MainLayout>
+      <div className="relative">
+        {/* Hero Section */}
+        <section className="relative min-h-screen flex items-center bg-nagara-black overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-nagara-gold/10 via-transparent to-nagara-silver/10" />
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-nagara-gold/20 blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-nagara-silver/20 blur-3xl transform translate-x-1/2 translate-y-1/2" />
+          </div>
+
+          <Container className="relative z-10">
+            <div className="text-center">
+              <FadeInWhenVisible>
+                <Stack spacing="xl" className="items-center">
+                  {/* Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="inline-block"
+                  >
+                    <span className="px-4 py-2 rounded-nagara-lg bg-nagara-gold/10 border border-nagara-gold/30 text-nagara-gold nagara-caption font-semibold">
+                      Get In Touch
+                    </span>
+                  </motion.div>
+
+                  {/* Headline */}
+                  <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold nagara-headline text-nagara-white leading-tight max-w-5xl"
+                  >
+                    Ready to Transform Your
+                    <span className="block text-nagara-gold">
+                      Business Through Technology?
+                    </span>
+                  </motion.h1>
+
+                  {/* Subtitle */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="text-xl md:text-2xl text-nagara-white/80 nagara-body-large max-w-4xl"
+                  >
+                    Schedule a free consultation to discuss your technology challenges and discover how strategic solutions can accelerate your growth.
+                  </motion.p>
+
+                  {/* CTA Highlight */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    className="p-6 rounded-nagara-xl bg-nagara-charcoal/30 border border-nagara-white/10 max-w-md"
+                  >
+                    <div className="text-center">
+                      <div className="text-2xl font-bold nagara-subheadline text-nagara-gold mb-2">
+                        Free Strategic Consultation
+                      </div>
+                      <div className="text-nagara-white/80 nagara-body">
+                        Usually $299 - Limited Time
+                      </div>
+                    </div>
+                  </motion.div>
+                </Stack>
+              </FadeInWhenVisible>
+            </div>
+          </Container>
+        </section>
+
+        {/* Contact Methods Section */}
+        <section className="relative py-20 lg:py-32 bg-nagara-dark">
+          <Container className="relative">
+            <FadeInWhenVisible>
+              <div className="text-center mb-16 lg:mb-20">
+                <motion.h2
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold nagara-headline text-nagara-white mb-6"
+                >
+                  Choose Your Preferred
+                  <span className="block text-nagara-gold">Contact Method</span>
+                </motion.h2>
+              </div>
+            </FadeInWhenVisible>
+
+            <Grid cols={3} gap="lg" className="lg:grid-cols-3">
+              {contactMethods.map((method, index) => (
+                <motion.div
+                  key={method.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card className="h-full p-8 text-center hover:border-nagara-gold/30 transition-all duration-300 group">
+                    <Stack spacing="lg">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-nagara-xl bg-nagara-gold/10 border border-nagara-gold/30 text-nagara-gold mx-auto group-hover:bg-nagara-gold/20 transition-colors duration-300">
+                        {method.icon}
+                      </div>
+                      
+                      <h3 className="text-xl font-bold nagara-subheadline text-nagara-white">
+                        {method.title}
+                      </h3>
+                      
+                      <p className="text-nagara-white/80 nagara-body">
+                        {method.description}
+                      </p>
+
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={() => window.open(method.href, '_blank')}
+                        className="w-full group-hover:border-nagara-gold/50 group-hover:text-nagara-gold transition-colors duration-300"
+                      >
+                        {method.action}
+                      </Button>
+                    </Stack>
+                  </Card>
+                </motion.div>
+              ))}
+            </Grid>
+          </Container>
+        </section>
+
+        {/* Consultation Types Section */}
+        <section className="relative py-20 lg:py-32 bg-nagara-black">
+          <Container className="relative">
+            <FadeInWhenVisible>
+              <div className="text-center mb-16 lg:mb-20">
+                <motion.h2
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold nagara-headline text-nagara-white mb-6"
+                >
+                  Consultation Options
+                </motion.h2>
+                
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-xl text-nagara-white/80 nagara-body-large max-w-3xl mx-auto"
+                >
+                  Choose the consultation format that best matches your needs and objectives.
+                </motion.p>
+              </div>
+            </FadeInWhenVisible>
+
+            <Grid cols={1} gap="lg" className="lg:grid-cols-1 max-w-4xl mx-auto">
+              {consultationTypes.map((consultation, index) => (
+                <motion.div
+                  key={consultation.type}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card 
+                    className={`p-8 cursor-pointer transition-all duration-300 ${
+                      selectedConsultationType.type === consultation.type 
+                        ? 'border-nagara-gold/50 bg-nagara-charcoal/50' 
+                        : 'hover:border-nagara-gold/30'
+                    }`}
+                    onClick={() => setSelectedConsultationType(consultation)}
+                  >
+                    <Grid cols={4} gap="xl" className="lg:grid-cols-4 items-center">
+                      <div className="lg:col-span-1">
+                        <div className="text-center lg:text-left">
+                          <div className="text-xl font-bold nagara-subheadline text-nagara-gold mb-2">
+                            {consultation.type}
+                          </div>
+                          <div className="text-nagara-white/70 nagara-body">
+                            {consultation.duration}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="lg:col-span-2">
+                        <p className="text-nagara-white/80 nagara-body mb-4">
+                          {consultation.description}
+                        </p>
+                        <div className="space-y-2">
+                          {consultation.includes.map((item, itemIndex) => (
+                            <div key={itemIndex} className="flex items-center gap-3">
+                              <div className="w-1.5 h-1.5 rounded-full bg-nagara-gold" />
+                              <span className="text-nagara-white/70 nagara-body">
+                                {item}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="lg:col-span-1 text-center lg:text-right">
+                        <Button
+                          variant={selectedConsultationType.type === consultation.type ? "primary" : "outline"}
+                          size="lg"
+                          onClick={() => window.open('https://calendly.com/mauricerashad/consultation', '_blank')}
+                          className="w-full lg:w-auto"
+                        >
+                          Book Now
+                        </Button>
+                      </div>
+                    </Grid>
+                  </Card>
+                </motion.div>
+              ))}
+            </Grid>
+          </Container>
+        </section>
+
+        {/* Final CTA Section */}
+        <section className="relative py-20 lg:py-32 bg-nagara-charcoal">
+          <div className="absolute inset-0 bg-gradient-to-br from-nagara-gold/5 to-nagara-silver/5" />
+          
+          <Container className="relative">
+            <FadeInWhenVisible>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center p-8 lg:p-12 rounded-nagara-xl bg-nagara-dark border border-nagara-white/10"
+              >
+                <Stack spacing="xl" className="items-center">
+                  <motion.h2
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold nagara-headline text-nagara-white max-w-4xl"
+                  >
+                    Questions? Let&rsquo;s Talk
+                  </motion.h2>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="text-xl text-nagara-white/80 nagara-body-large max-w-3xl"
+                  >
+                    Every business has unique technology challenges. Let&rsquo;s discuss your specific situation and explore how strategic technology solutions can drive your growth.
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    <Flex gap="md" className="flex-col sm:flex-row">
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        onClick={() => window.open('https://calendly.com/mauricerashad/consultation', '_blank')}
+                        className="w-full sm:w-auto"
+                      >
+                        Schedule Free Consultation
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={() => window.open('mailto:hello@mauricerashad.com', '_blank')}
+                        className="w-full sm:w-auto"
+                      >
+                        Send Email
+                      </Button>
+                    </Flex>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    className="text-nagara-white/60 nagara-body text-center"
+                  >
+                    <div>Available within 48 hours • No commitment required</div>
+                    <div className="mt-2">All consultations are confidential and secure</div>
+                  </motion.div>
+                </Stack>
+              </motion.div>
+            </FadeInWhenVisible>
+          </Container>
+        </section>
+      </div>
+    </MainLayout>
+  );
+}

@@ -1,0 +1,89 @@
+/* Nagara-inspired animations and transitions */
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+/* Parallax effects */
+.parallax-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.parallax-element {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Text reveal animations */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal-line {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-reveal.animate .text-reveal-line {
+  transform: translateY(0);
+}
+
+/* Image reveal effects */
+.image-reveal {
+  overflow: hidden;
+}
+
+.image-reveal img {
+  transform: scale(1.1);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-reveal.animate img {
+  transform: scale(1);
+}
+
+/* Smooth hover transitions */
+.smooth-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* Loading animations */
+@keyframes nagara-shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: nagara-shimmer 1.5s infinite;
+}

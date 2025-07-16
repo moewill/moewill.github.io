@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Kit Showcase - Maurice Rashad</title>
+    
+    <!-- External CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+    
+    <style>
+        .color-swatch {
+            width: 100px;
+            height: 100px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: end;
+            padding: 0.75rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            margin-bottom: 0.5rem;
+        }
+        
+        .font-preview {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-primary);
+        }
+        
+        .spacing-demo {
+            background: var(--primary);
+            color: white;
+            display: inline-block;
+            margin: 0.25rem;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+        }
+        
+        .shadow-demo {
+            width: 100px;
+            height: 100px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            margin: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .component-demo {
+            margin: 2rem 0;
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            background: var(--bg-secondary);
+        }
+        
+        .theme-preview {
+            width: 200px;
+            height: 120px;
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            margin: 0.5rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-preview:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+        
+        .theme-preview.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50" data-theme="light">
+    
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">← Back to Site</a>
+                </div>
+                <div class="text-xl font-semibold">Brand Kit Showcase</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <div class="theme-option theme-light active" data-theme="light" title="Light Theme"></div>
+        <div class="theme-option theme-dark" data-theme="dark" title="Dark Theme"></div>
+        <div class="theme-option theme-ocean" data-theme="ocean" title="Ocean Theme"></div>
+        <div class="theme-option theme-sunset" data-theme="sunset" title="Sunset Theme"></div>
+        <div class="theme-option theme-forest" data-theme="forest" title="Forest Theme"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-bold text-gray-900 mb-4">
+                <span class="gradient-text">Brand Kit</span> Showcase
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Complete visual identity system for Maurice Rashad Tech Solutions
+            </p>
+        </div>
+
+        <!-- Color Palette Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Color Palette</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Primary Colors -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Primary Colors</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <div class="color-swatch" style="background: #0EA5E9;">Primary</div>
+                            <div class="text-sm">
+                                <div class="font-mono">#0EA5E9</div>
+                                <div class="text-gray-600">Sky Blue - Innovation</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #0F172A;">Secondary</div>
+                            <div class="text-sm">
+                                <div class="font-mono">#0F172A</div>
+                                <div class="text-gray-600">Slate Dark - Professional</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #06B6D4;">Accent</div>
+                            <div class="text-sm">
+                                <div class="font-mono">#06B6D4</div>
+                                <div class="text-gray-600">Cyan - Technology</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Supporting Colors -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Supporting Colors</h3>
+                    <div class="grid grid-cols-4 gap-2">
+                        <div>
+                            <div class="color-swatch" style="background: #10B981; height: 60px;">Success</div>
+                            <div class="text-xs font-mono">#10B981</div>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #F59E0B; height: 60px;">Warning</div>
+                            <div class="text-xs font-mono">#F59E0B</div>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #EF4444; height: 60px;">Error</div>
+                            <div class="text-xs font-mono">#EF4444</div>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #3B82F6; height: 60px;">Info</div>
+                            <div class="text-xs font-mono">#3B82F6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theme Variations -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Theme Variations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                
+                <!-- Light Theme -->
+                <div class="theme-preview active" data-theme="light" style="background: linear-gradient(135deg, #ffffff, #f8fafc);">
+                    <div style="color: #0f172a;">
+                        <div class="font-bold text-lg">Light</div>
+                        <div class="text-sm opacity-75">Clean & Professional</div>
+                        <div class="mt-2">
+                            <div class="w-6 h-6 rounded" style="background: #0EA5E9; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #06B6D4; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #10B981; display: inline-block;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dark Theme -->
+                <div class="theme-preview" data-theme="dark" style="background: linear-gradient(135deg, #0f172a, #1e293b);">
+                    <div style="color: #f8fafc;">
+                        <div class="font-bold text-lg">Dark</div>
+                        <div class="text-sm opacity-75">Sophisticated & Tech</div>
+                        <div class="mt-2">
+                            <div class="w-6 h-6 rounded" style="background: #0EA5E9; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #06B6D4; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #10B981; display: inline-block;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ocean Theme -->
+                <div class="theme-preview" data-theme="ocean" style="background: linear-gradient(135deg, #0891b2, #0e7490);">
+                    <div style="color: white;">
+                        <div class="font-bold text-lg">Ocean</div>
+                        <div class="text-sm opacity-75">Deep & Oceanic</div>
+                        <div class="mt-2">
+                            <div class="w-6 h-6 rounded" style="background: #0891b2; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #0e7490; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #059669; display: inline-block;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sunset Theme -->
+                <div class="theme-preview" data-theme="sunset" style="background: linear-gradient(135deg, #ea580c, #dc2626);">
+                    <div style="color: white;">
+                        <div class="font-bold text-lg">Sunset</div>
+                        <div class="text-sm opacity-75">Warm & Energetic</div>
+                        <div class="mt-2">
+                            <div class="w-6 h-6 rounded" style="background: #ea580c; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #dc2626; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #ca8a04; display: inline-block;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Forest Theme -->
+                <div class="theme-preview" data-theme="forest" style="background: linear-gradient(135deg, #059669, #047857);">
+                    <div style="color: white;">
+                        <div class="font-bold text-lg">Forest</div>
+                        <div class="text-sm opacity-75">Natural & Growth</div>
+                        <div class="mt-2">
+                            <div class="w-6 h-6 rounded" style="background: #059669; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #047857; display: inline-block; margin-right: 4px;"></div>
+                            <div class="w-6 h-6 rounded" style="background: #65a30d; display: inline-block;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Typography System</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Font Families -->
+                <div class="font-preview">
+                    <h3 class="text-lg font-semibold mb-4">Inter - Primary Font</h3>
+                    <div style="font-family: Inter, sans-serif;">
+                        <div class="text-2xl font-normal mb-2">The quick brown fox</div>
+                        <div class="text-lg font-medium mb-2">jumps over the lazy dog</div>
+                        <div class="text-base font-semibold mb-2">ABCDEFGHIJKLMNOP</div>
+                        <div class="text-sm font-bold">abcdefghijklmnop</div>
+                    </div>
+                </div>
+                
+                <div class="font-preview">
+                    <h3 class="text-lg font-semibold mb-4">Poppins - Headings</h3>
+                    <div style="font-family: Poppins, sans-serif;">
+                        <div class="text-2xl font-normal mb-2">The quick brown fox</div>
+                        <div class="text-lg font-medium mb-2">jumps over the lazy dog</div>
+                        <div class="text-base font-semibold mb-2">ABCDEFGHIJKLMNOP</div>
+                        <div class="text-sm font-bold">abcdefghijklmnop</div>
+                    </div>
+                </div>
+                
+                <div class="font-preview">
+                    <h3 class="text-lg font-semibold mb-4">JetBrains Mono - Code</h3>
+                    <div style="font-family: 'JetBrains Mono', monospace;">
+                        <div class="text-lg font-normal mb-2">const hello = "world";</div>
+                        <div class="text-base font-medium mb-2">function greeting() {</div>
+                        <div class="text-sm font-semibold mb-2">  return "Hello!";</div>
+                        <div class="text-xs font-bold">}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type Scale -->
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Type Scale</h3>
+                <div class="space-y-4">
+                    <div class="text-6xl font-bold gradient-text">Display - 64px</div>
+                    <div class="text-5xl font-bold">H1 Heading - 48px</div>
+                    <div class="text-4xl font-semibold">H2 Heading - 32px</div>
+                    <div class="text-3xl font-semibold">H3 Heading - 24px</div>
+                    <div class="text-2xl font-medium">H4 Heading - 20px</div>
+                    <div class="text-xl">Body Large - 20px</div>
+                    <div class="text-base">Body Text - 16px</div>
+                    <div class="text-sm">Small Text - 14px</div>
+                    <div class="text-xs">Caption - 12px</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spacing System -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Spacing System</h2>
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+                <div class="text-center">
+                    <div class="spacing-demo" style="padding: 0.25rem;">XS</div>
+                    <div class="text-sm mt-2">0.25rem (4px)</div>
+                </div>
+                <div class="text-center">
+                    <div class="spacing-demo" style="padding: 0.5rem;">SM</div>
+                    <div class="text-sm mt-2">0.5rem (8px)</div>
+                </div>
+                <div class="text-center">
+                    <div class="spacing-demo" style="padding: 1rem;">MD</div>
+                    <div class="text-sm mt-2">1rem (16px)</div>
+                </div>
+                <div class="text-center">
+                    <div class="spacing-demo" style="padding: 1.5rem;">LG</div>
+                    <div class="text-sm mt-2">1.5rem (24px)</div>
+                </div>
+                <div class="text-center">
+                    <div class="spacing-demo" style="padding: 2rem;">XL</div>
+                    <div class="text-sm mt-2">2rem (32px)</div>
+                </div>
+                <div class="text-center">
+                    <div class="spacing-demo" style="padding: 3rem;">2XL</div>
+                    <div class="text-sm mt-2">3rem (48px)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shadow System -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Shadow Elevation</h2>
+            <div class="flex flex-wrap justify-center">
+                <div class="text-center">
+                    <div class="shadow-demo" style="box-shadow: var(--shadow-sm);">SM</div>
+                    <div class="text-sm">Subtle</div>
+                </div>
+                <div class="text-center">
+                    <div class="shadow-demo" style="box-shadow: var(--shadow-md);">MD</div>
+                    <div class="text-sm">Default</div>
+                </div>
+                <div class="text-center">
+                    <div class="shadow-demo" style="box-shadow: var(--shadow-lg);">LG</div>
+                    <div class="text-sm">Elevated</div>
+                </div>
+                <div class="text-center">
+                    <div class="shadow-demo" style="box-shadow: var(--shadow-xl);">XL</div>
+                    <div class="text-sm">Floating</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component Examples -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Component Showcase</h2>
+            
+            <!-- Buttons -->
+            <div class="component-demo">
+                <h3 class="text-xl font-semibold mb-4">Buttons</h3>
+                <div class="flex flex-wrap gap-4">
+                    <button class="cta-button text-white px-6 py-3 rounded-full font-medium">
+                        <i class="fas fa-rocket mr-2"></i>Primary CTA
+                    </button>
+                    <button class="bg-white border-2 border-primary text-primary px-6 py-3 rounded-full font-medium hover:bg-primary hover:text-white transition-all">
+                        Secondary Button
+                    </button>
+                    <button class="bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-medium hover:bg-gray-200 transition-all">
+                        Tertiary Button
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cards -->
+            <div class="component-demo">
+                <h3 class="text-xl font-semibold mb-4">Cards</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card p-6">
+                        <div class="brand-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Development</h4>
+                        <p class="text-gray-600">Full-stack development services with modern technologies.</p>
+                    </div>
+                    <div class="glass p-6 rounded-xl">
+                        <div class="brand-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2">AI Solutions</h4>
+                        <p class="text-gray-600">Intelligent automation and AI-powered tools.</p>
+                    </div>
+                    <div class="card p-6 status-online">
+                        <div class="brand-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Security</h4>
+                        <p class="text-gray-600">Cybersecurity consulting and implementation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forms -->
+            <div class="component-demo">
+                <h3 class="text-xl font-semibold mb-4">Form Elements</h3>
+                <div class="max-w-md">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-2">Email Address</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="your@email.com">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-2">Service Interest</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>Tech Chat</option>
+                            <option>Done For You Tech Services</option>
+                            <option>Expert Workshops</option>
+                        </select>
+                    </div>
+                    <button class="w-full cta-button text-white py-3 px-6 rounded-full font-medium">
+                        Submit Form
+                    </button>
+                </div>
+            </div>
+
+            <!-- Icons & Brand Elements -->
+            <div class="component-demo">
+                <h3 class="text-xl font-semibold mb-4">Icons & Brand Elements</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="brand-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="text-sm">Development</div>
+                    </div>
+                    <div>
+                        <div class="brand-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="text-sm">AI & Automation</div>
+                    </div>
+                    <div>
+                        <div class="brand-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="text-sm">Database</div>
+                    </div>
+                    <div>
+                        <div class="brand-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="text-sm">Security</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Guidelines -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Brand Guidelines</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="component-demo">
+                    <h3 class="text-xl font-semibold mb-4">Logo Usage</h3>
+                    <div class="space-y-4">
+                        <div class="text-3xl font-bold gradient-text">Maurice Rashad</div>
+                        <div class="text-lg text-gray-600">Primary logo with gradient text</div>
+                        <div class="bg-gray-900 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-white">Maurice Rashad</div>
+                            <div class="text-sm text-gray-300">On dark backgrounds</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <h3 class="text-xl font-semibold mb-4">Brand Voice</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i><strong>Professional</strong> yet approachable</li>
+                        <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i><strong>Innovative</strong> and forward-thinking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i><strong>Reliable</strong> and trustworthy</li>
+                        <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i><strong>Expert</strong> but not intimidating</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Enhanced theme management for showcase
+        document.querySelectorAll('.theme-preview').forEach(preview => {
+            preview.addEventListener('click', () => {
+                const theme = preview.getAttribute('data-theme');
+                
+                // Update active state
+                document.querySelectorAll('.theme-preview').forEach(p => p.classList.remove('active'));
+                preview.classList.add('active');
+                
+                // Apply theme
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                
+                // Update theme toggle
+                document.querySelectorAll('.theme-option').forEach(option => {
+                    option.classList.remove('active');
+                    if (option.getAttribute('data-theme') === theme) {
+                        option.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

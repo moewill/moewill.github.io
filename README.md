@@ -1,113 +1,77 @@
-# Maurice Rashad - Tech Services Website
+# Nagara-Inspired Website Redesign
 
-A modern, interactive website for Maurice Rashad's technology consulting business, featuring an AI-powered chatbot connected to resume data.
+A sophisticated, luxury-themed website redesign for Maurice Rashad's tech services, inspired by the Nagara Watches aesthetic.
 
-## 🚀 Features
+## Features
 
-- **Modern Design**: Responsive design with Tailwind CSS, gradient backgrounds, and smooth animations
-- **Interactive Elements**: Hover effects, floating animations, and dynamic content
-- **AI Chatbot**: Claude-powered assistant that can answer questions about services and experience
-- **Modular Structure**: Separated CSS, JavaScript, and data files following best practices
-- **Mobile-First**: Fully responsive design optimized for all devices
+- **Next.js 15** with App Router for optimal performance
+- **TypeScript** for type safety
+- **Tailwind CSS** with custom Nagara-inspired design system
+- **Framer Motion** for smooth animations and transitions
+- **Optimized Images** with WebP/AVIF support
+- **Mobile-first** responsive design
 
-## 📁 File Structure
+## Design Philosophy
+
+This website mirrors the luxury heritage aesthetic of Nagara Watches:
+- Dark color scheme with selective accent lighting
+- High-contrast artistic photography
+- Smooth parallax scrolling and transitions
+- Bold serif headlines with clean sans-serif body text
+- Premium user experience with performance optimization
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Lint code
+npm run lint
+
+# Format code
+npm run format
+
+# Type check
+npm run type-check
+```
+
+## Project Structure
 
 ```
-moewill.github.io/
-├── index.html              # Main HTML file
-├── css/
-│   └── styles.css          # Custom styles and animations
-├── js/
-│   ├── main.js            # Main website functionality
-│   └── claude-chatbot.js  # Enhanced Claude AI chatbot
-├── data/
-│   └── resume.json        # Structured resume/service data
-└── README.md              # This file
+src/
+├── app/                 # Next.js App Router pages
+├── components/
+│   ├── Layout/         # Navigation, Footer, Layout components
+│   ├── UI/             # Reusable UI components
+│   └── Animations/     # Animation components
+├── lib/                # Utilities and constants
+├── styles/             # Global styles and animations
+└── types/              # TypeScript type definitions
+
+public/
+└── images/             # Static images and assets
 ```
 
-## 🤖 Chatbot Setup
+## Services
 
-The website includes an AI-powered chatbot that uses Claude API to answer questions about Maurice's services and experience.
+1. **Strategic Technical Consulting** - $99/month
+2. **Complete Implementation Services** - $75/hour
+3. **Executive Technology Training** - $99/workshop
+4. **Revenue Acceleration Systems** - $149/month
 
-### To use the chatbot:
+## Performance Targets
 
-1. **Get a Claude API Key**:
-   - Visit [Anthropic's website](https://www.anthropic.com/)
-   - Sign up and obtain an API key (starts with `sk-ant-`)
-
-2. **Configure the Chatbot**:
-   - Click the chat icon in the bottom-right corner
-   - Enter your Claude API key when prompted
-   - The key is stored locally in your browser
-
-3. **Features**:
-   - Answers questions about services, pricing, and experience
-   - Connected to structured resume data
-   - Fallback responses when API is unavailable
-   - Professional, context-aware responses
-
-## 🎨 Services Offered
-
-### Strategic Consulting
-- **Price**: $100/month
-- **Includes**: 2x 1-hour calls, strategic planning, technology roadmaps
-
-### Technology Services
-- **Price**: $75/hour
-- **Includes**: Custom automation, web development, hosting solutions
-
-### Expert Workshops
-- **Price**: $99/workshop
-- **Topics**: AI agents, cybersecurity, web development, cloud technologies
-
-## 🛠️ Technologies Used
-
-- **Frontend**: HTML5, Tailwind CSS, Vanilla JavaScript
-- **Icons**: Font Awesome
-- **AI**: Claude API (Anthropic)
-- **Animation**: Custom CSS animations and transitions
-- **Design**: Modern gradient designs, glassmorphism effects
-
-## 📱 Responsive Design
-
-The website is fully responsive and optimized for:
-- Desktop (1200px+)
-- Tablet (768px-1199px)
-- Mobile (320px-767px)
-
-## 🔧 Customization
-
-### Updating Services
-Edit `data/resume.json` to modify service information, pricing, and experience details.
-
-### Styling Changes
-Modify `css/styles.css` for custom styles. The design uses CSS custom properties for easy color scheme updates.
-
-### Chatbot Responses
-The chatbot uses the data in `resume.json` to provide accurate responses. Update this file to improve chatbot knowledge.
-
-## 📈 Performance Features
-
-- **Fast Loading**: Optimized assets and minimal dependencies
-- **SEO Friendly**: Semantic HTML and proper meta tags
-- **Accessibility**: ARIA labels and keyboard navigation support
-- **Progressive Enhancement**: Works with JavaScript disabled
-
-## 🚀 Deployment
-
-This is a static website that can be deployed to:
-- GitHub Pages (recommended for github.io domain)
-- Netlify
-- Vercel
-- Any static hosting service
-
-## 📞 Contact
-
-**Maurice Rashad**
-- Email: mauricerashad@gmail.com
-- Response Time: Within 24 hours
-- Availability: Global, Remote-First
-
-## 📄 License
-
-© 2024 Maurice Rashad. All rights reserved.
+- Lighthouse score >90 across all metrics
+- First Contentful Paint <1.5 seconds
+- Largest Contentful Paint <2.5 seconds
+- Smooth 60fps animations
