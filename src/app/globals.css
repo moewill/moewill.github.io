@@ -50,6 +50,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Ensure content is visible by default for static export */
+* {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* Typography classes */
 .nagara-headline {
   font-family: var(--font-serif);
