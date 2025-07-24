@@ -1,63 +1,9 @@
 # Email Setup for Contact Form
 
-## ✅ Current Implementation
-Your contact form is now **fully functional** with Resend email integration! The form automatically sends emails to mauricerashad@gmail.com and confirmation emails to users.
+## Overview
+Your contact form is currently set up with client-side validation and a success message. To enable actual email sending, you'll need to implement a backend service.
 
-## 🚀 How It Works
-The contact form uses the Railway-deployed maurice-chat backend with Resend integration:
-
-- **Backend**: `https://maurice-chat-production.up.railway.app/api/contact`
-- **Email Service**: Resend API (professional email delivery)
-- **Confirmation**: Automatic confirmation emails sent to users
-- **Rate Limiting**: 5 requests per 15 minutes per IP
-- **Validation**: Server-side input sanitization and validation
-
-## 🔧 Technical Details
-
-### API Endpoint
-```
-POST https://maurice-chat-production.up.railway.app/api/contact
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com", 
-  "service": "Tech Chat",
-  "message": "I need help with my website"
-}
-```
-
-### Email Features
-- **Professional formatting** with branded HTML templates
-- **Reply-to** set to user's email for easy responses
-- **Confirmation emails** with next steps and contact info
-- **Email tagging** for organization (contact-form, service type, etc.)
-- **Error handling** with user-friendly messages
-
-### Security Features
-- **Input sanitization** removes HTML/scripts
-- **Rate limiting** prevents spam (5 requests per 15 min)
-- **CORS protection** only allows requests from your domain
-- **Email validation** ensures proper email format
-- **Content length limits** prevent abuse
-
-## 📧 Email Templates
-
-### User Confirmation Email
-- Welcome message with branding
-- Clear next steps (24hr response time)
-- Direct contact information
-- Professional signature
-
-### Admin Notification Email
-- Complete contact details with formatting
-- Service interest highlighted
-- Quick action buttons
-- Timestamp and source tracking
-
-## 🛠️ Alternative Options (If Needed)
-
-### Option 1: Netlify Forms
+## Option 1: Netlify Forms (Recommended for GitHub Pages)
 If you deploy to Netlify instead of GitHub Pages:
 
 1. **Add form attributes to your contact form:**

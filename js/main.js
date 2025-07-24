@@ -48,67 +48,12 @@ document.querySelectorAll('.service-card').forEach(card => {
     observer.observe(card);
 });
 
-// Form submission handling with Resend backend
+// Form submission handling
 const form = document.querySelector('form');
 if (form) {
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(form);
-        const data = {
-            name: formData.get('name') || form.querySelector('input[placeholder*="Name"]')?.value,
-            email: formData.get('email') || form.querySelector('input[placeholder*="email"]')?.value,
-            service: formData.get('service') || form.querySelector('select')?.value || 'General Inquiry',
-            message: formData.get('message') || form.querySelector('textarea')?.value
-        };
-        
-        // Basic validation
-        if (!data.name || !data.email || !data.message) {
-            alert('Please fill in all required fields (Name, Email, and Message).');
-            return;
-        }
-        
-        // Disable form and show loading
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.textContent;
-        submitButton.disabled = true;
-        submitButton.textContent = 'Sending...';
-        
-        try {
-            // Send to Railway backend (maurice-chat)
-            const response = await fetch('https://maurice-chat-production.up.railway.app/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-            
-            const result = await response.json();
-            
-            if (response.ok && result.success) {
-                // Success
-                alert('✅ Thank you for your message! You should receive a confirmation email shortly. I\'ll get back to you within 24 hours.');
-                form.reset();
-            } else {
-                // Error from backend
-                throw new Error(result.detail || result.error || 'Failed to send message');
-            }
-        } catch (error) {
-            console.error('Contact form error:', error);
-            
-            // Show user-friendly error message
-            const errorMessage = error.message.includes('fetch') 
-                ? 'Connection error. Please try again or email me directly at mauricerashad@gmail.com'
-                : error.message || 'Failed to send message. Please try again or email me directly at mauricerashad@gmail.com';
-                
-            alert(`❌ ${errorMessage}`);
-        } finally {
-            // Re-enable form
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
-        }
+        alert('Thank you for your message! I\'ll get back to you within 24 hours.');
     });
 }
 
