@@ -1,21 +1,27 @@
 # Email Setup Instructions
 
+## ⚠️ SECURITY WARNING
+**NEVER put API keys or form IDs directly in client-side JavaScript!** Hackers can easily steal them from your source code and abuse your email service.
+
 ## Current Status
-The contact form currently uses a **mailto fallback** which opens the user's email client. This works but isn't ideal for user experience.
+The contact form uses a **secure serverless approach** with mailto fallback. API keys are hidden server-side.
 
-## Option 1: Formspree (Recommended - Free)
+## SECURE Option 1: Netlify Functions (Recommended)
 
+**Already implemented!** Just need to:
 1. Go to https://formspree.io
-2. Sign up with your email
+2. Sign up with your email  
 3. Create a new form
-4. Get your form endpoint (looks like: `https://formspree.io/f/YOUR_ID`)
-5. Replace `YOUR_FORMSPREE_ID` in `js/main.js` line 174 with your actual ID
+4. Get your form endpoint ID
+5. Replace `YOUR_ACTUAL_FORMSPREE_ID` in `netlify/functions/contact.js` line 37
+6. Deploy to Netlify (automatically handles serverless functions)
 
-**Pros:** 
-- Free tier (50 submissions/month)
-- No backend required
-- Spam protection
-- Email notifications
+**Security Benefits:**
+- ✅ API keys hidden on server
+- ✅ Rate limiting possible
+- ✅ Input validation
+- ✅ CORS protection
+- ✅ No client-side exposure
 
 ## Option 2: EmailJS (More features)
 

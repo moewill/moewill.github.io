@@ -167,25 +167,35 @@ if (contactForm) {
             console.log('EmailJS not available or failed:', emailjsError);
         }
         
-        // Method 2: Try Formspree (if you set up a real endpoint)
+        // Method 2: Try secure serverless function (recommended)
         if (!emailSent) {
             try {
-                // Replace with your actual Formspree endpoint when you set it up
-                const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
-                
-                const response = await fetch(formspreeEndpoint, {
+                const response = await fetch('/.netlify/functions/contact', {
                     method: 'POST',
-                    body: formData,
                     headers: {
-                        'Accept': 'application/json'
-                    }
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        service,
+                        message
+                    })
                 });
                 
-                if (response.ok) {
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
                     emailSent = true;
+                    successMessage.innerHTML = `
+                        <i class="fas fa-check-circle mr-2"></i>
+                        Message sent successfully! I'll get back to you within 24 hours.
+                    `;
+                } else {
+                    console.log('Serverless function failed:', result.error);
                 }
-            } catch (formspreeError) {
-                console.log('Formspree failed:', formspreeError);
+            } catch (serverlessError) {
+                console.log('Serverless function not available:', serverlessError);
             }
         }
         
