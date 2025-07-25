@@ -103,7 +103,7 @@ exports.handler = async (event, _context) => {
 
         // Send email using server-side Formspree (API key hidden from client)
         // Environment variable should be set in Netlify dashboard
-        const formspreeEndpoint = process?.env?.FORMSPREE_ENDPOINT || 'https://formspree.io/f/xkgzrolg';
+        const formspreeEndpoint = process?.env?.FORMSPREE_ENDPOINT || 'https://formspree.io/f/value';
         
         const formspreeResponse = await fetch(formspreeEndpoint, {
             method: 'POST',
