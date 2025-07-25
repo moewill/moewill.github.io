@@ -121,7 +121,7 @@ document.querySelectorAll('.service-card').forEach(card => {
     observer.observe(card);
 });
 
-// Enhanced Form submission handling
+// Enhanced Form submission handling with multiple options
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
@@ -134,55 +134,104 @@ if (contactForm) {
         const successMessage = document.getElementById('success-message');
         const errorMessage = document.getElementById('error-message');
         
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const service = formData.get('service');
+        const message = formData.get('message');
+        
         // Show loading state
         submitButton.disabled = true;
         submitText.textContent = 'Sending...';
         loadingSpinner.classList.remove('hidden');
         formStatus.classList.add('hidden');
         
+        // Try multiple email methods
+        let emailSent = false;
+        
+        // Method 1: Try modern email services
         try {
-            const formData = new FormData(contactForm);
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                // Success
-                formStatus.classList.remove('hidden');
-                successMessage.classList.remove('hidden');
-                errorMessage.classList.add('hidden');
-                contactForm.reset();
-                
-                // Track successful submission
-                console.log('Contact form submitted successfully');
-                
-                // Optional: Send to analytics or other tracking
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'form_submit', {
-                        'event_category': 'Contact',
-                        'event_label': 'Contact Form'
-                    });
-                }
-            } else {
-                throw new Error('Form submission failed');
+            // First try EmailJS (if configured)
+            if (typeof emailjs !== 'undefined') {
+                await emailjs.send('service_id', 'template_id', {
+                    from_name: name,
+                    from_email: email,
+                    service_interest: service,
+                    message: message,
+                    to_email: 'mauricerashad@gmail.com'
+                });
+                emailSent = true;
             }
-        } catch (error) {
-            console.error('Contact form error:', error);
+        } catch (emailjsError) {
+            console.log('EmailJS not available or failed:', emailjsError);
+        }
+        
+        // Method 2: Try Formspree (if you set up a real endpoint)
+        if (!emailSent) {
+            try {
+                // Replace with your actual Formspree endpoint when you set it up
+                const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
+                
+                const response = await fetch(formspreeEndpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    emailSent = true;
+                }
+            } catch (formspreeError) {
+                console.log('Formspree failed:', formspreeError);
+            }
+        }
+        
+        // Method 3: Fallback to mailto (opens email client)
+        if (!emailSent) {
+            const subject = `Contact Form: ${service || 'General Inquiry'}`;
+            const body = `Name: ${name}\nEmail: ${email}\nService Interest: ${service}\n\nMessage:\n${message}`;
+            const mailtoUrl = `mailto:mauricerashad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             
-            // Show error message
+            // Open email client
+            window.location.href = mailtoUrl;
+            emailSent = true;
+        }
+        
+        // Show result
+        if (emailSent) {
+            formStatus.classList.remove('hidden');
+            successMessage.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+            successMessage.innerHTML = `
+                <i class="fas fa-check-circle mr-2"></i>
+                Email opened in your default email client! Please send it to complete your message.
+            `;
+            contactForm.reset();
+            
+            // Track successful submission
+            console.log('Contact form submitted successfully via mailto');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'Contact',
+                    'event_label': 'Mailto Fallback'
+                });
+            }
+        } else {
             formStatus.classList.remove('hidden');
             errorMessage.classList.remove('hidden');
             successMessage.classList.add('hidden');
-        } finally {
-            // Reset button state
+        }
+        
+        // Reset button state
+        setTimeout(() => {
             submitButton.disabled = false;
             submitText.textContent = 'Send Message';
             loadingSpinner.classList.add('hidden');
-        }
+        }, 1000);
     });
 }
 

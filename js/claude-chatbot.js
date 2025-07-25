@@ -163,7 +163,31 @@ class ClaudeChatbot {
         } else {
             if (widget) widget.classList.remove('active');
             if (toggle) toggle.innerHTML = '<i class="fas fa-comments"></i>';
+            
+            // CRITICAL FIX: Stop all audio/speech when closing
+            this.stopAllAudio();
         }
+    }
+    
+    stopAllAudio() {
+        // Stop speech synthesis
+        if (this.speechSynthesis) {
+            this.speechSynthesis.cancel();
+            this.isSpeaking = false;
+        }
+        
+        // Stop voice recording if active
+        if (this.isRecording) {
+            this.stopVoiceChat();
+        }
+        
+        // Clear any typing indicators
+        this.hideTypingIndicator();
+        
+        // Clear transcription
+        this.clearTranscription();
+        
+        console.log('All audio stopped due to chatbot close');
     }
 
     addWelcomeMessage() {
@@ -260,7 +284,137 @@ class ClaudeChatbot {
         if (this.isRecording) {
             this.stopVoiceChat();
         } else {
-            this.startVoiceChat();
+            this.startRealtimeVoiceChat();
+        }
+    }
+    
+    async startRealtimeVoiceChat() {
+        try {
+            this.isRecording = true;
+            this.updateVoiceButton();
+            this.addMessage('🎤 Starting realtime voice chat...', 'system');
+            
+            // Connect to Railway backend WebSocket for voice chat
+            this.wsConnection = new WebSocket(this.wsUrl);
+            
+            this.wsConnection.onopen = () => {
+                this.addMessage('🎤 Voice chat connected! Start speaking - I\'ll respond automatically when you pause.', 'system');
+                // Initialize continuous voice recording
+                this.initializeContinuousVoiceRecording();
+            };
+            
+            this.wsConnection.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                console.log('WebSocket message received:', data);
+                
+                if (data.type === 'connected') {
+                    this.addMessage('🎤 ' + data.message, 'system');
+                } else if (data.type === 'response') {
+                    this.addMessage(data.content, 'bot');
+                    this.speakResponse(data.content);
+                } else if (data.type === 'transcript') {
+                    // Show live transcription
+                    this.updateTranscription(data.content);
+                } else if (data.type === 'final_transcript') {
+                    this.addMessage(`🎤 You said: "${data.content}"`, 'user');
+                    this.clearTranscription();
+                } else if (data.type === 'silence_detected') {
+                    // Automatically process when user stops speaking
+                    this.addMessage('🤔 Processing your message...', 'system');
+                }
+            };
+            
+            this.wsConnection.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                this.addMessage('❌ Voice chat connection failed. Please check your internet connection and try again.', 'system');
+                this.stopVoiceChat();
+            };
+            
+            this.wsConnection.onclose = (event) => {
+                if (event.code !== 1000) {
+                    // Abnormal closure
+                    this.addMessage('❌ Voice chat disconnected unexpectedly. Please try again.', 'system');
+                } else {
+                    this.addMessage('Voice chat disconnected.', 'system');
+                }
+                this.stopVoiceChat();
+            };
+            
+        } catch (error) {
+            console.error('Voice chat error:', error);
+            this.addMessage('Failed to start voice chat. Please try again.', 'system');
+            this.stopVoiceChat();
+        }
+    }
+    
+    async initializeContinuousVoiceRecording() {
+        try {
+            this.mediaStream = await navigator.mediaDevices.getUserMedia({ 
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    sampleRate: 16000
+                } 
+            });
+            
+            // Use shorter chunks for more responsive streaming
+            this.mediaRecorder = new MediaRecorder(this.mediaStream, {
+                mimeType: 'audio/webm;codecs=opus'
+            });
+            
+            this.mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0 && this.wsConnection && this.wsConnection.readyState === WebSocket.OPEN) {
+                    // Stop current speech if user starts speaking (interruption)
+                    if (this.isSpeaking) {
+                        this.stopSpeech();
+                        this.addMessage('🎤 Interrupted! Listening...', 'system');
+                    }
+                    
+                    // Send audio chunk immediately for real-time processing
+                    this.sendVoiceDataRealtime(event.data);
+                }
+            };
+            
+            this.mediaRecorder.onstop = () => {
+                console.log('Continuous recording stopped');
+            };
+            
+            // Record in very small chunks for real-time streaming (250ms)
+            this.mediaRecorder.start(250);
+            
+        } catch (error) {
+            console.error('Microphone access error:', error);
+            
+            let errorMessage = 'Microphone access denied. ';
+            if (error.name === 'NotAllowedError') {
+                errorMessage += 'Please allow microphone access in your browser settings and try again.';
+            } else if (error.name === 'NotFoundError') {
+                errorMessage += 'No microphone found. Please connect a microphone and try again.';
+            } else if (error.name === 'NotSupportedError') {
+                errorMessage += 'Your browser does not support voice recording.';
+            } else {
+                errorMessage += 'Please check your microphone settings and try again.';
+            }
+            
+            this.addMessage(`❌ ${errorMessage}`, 'system');
+            this.stopVoiceChat();
+        }
+    }
+    
+    sendVoiceDataRealtime(audioBlob) {
+        if (this.wsConnection && this.wsConnection.readyState === WebSocket.OPEN) {
+            // Convert blob to base64 for WebSocket transmission
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64Audio = reader.result.split(',')[1];
+                this.wsConnection.send(JSON.stringify({
+                    type: 'audio_stream',
+                    data: base64Audio,
+                    timestamp: Date.now(),
+                    realtime: true
+                }));
+            };
+            reader.readAsDataURL(audioBlob);
         }
     }
 
