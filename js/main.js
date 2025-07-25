@@ -167,39 +167,7 @@ if (contactForm) {
             console.log('EmailJS not available or failed:', emailjsError);
         }
         
-        // Method 2: Try secure serverless function (recommended)
-        if (!emailSent) {
-            try {
-                const response = await fetch('/.netlify/functions/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name,
-                        email,
-                        service,
-                        message
-                    })
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok && result.success) {
-                    emailSent = true;
-                    successMessage.innerHTML = `
-                        <i class="fas fa-check-circle mr-2"></i>
-                        Message sent successfully! I'll get back to you within 24 hours.
-                    `;
-                } else {
-                    console.log('Serverless function failed:', result.error);
-                }
-            } catch (serverlessError) {
-                console.log('Serverless function not available:', serverlessError);
-            }
-        }
-        
-        // Method 3: Fallback to mailto (opens email client)
+        // Method 2: Direct mailto (GitHub Pages compatible)
         if (!emailSent) {
             const subject = `Contact Form: ${service || 'General Inquiry'}`;
             const body = `Name: ${name}\nEmail: ${email}\nService Interest: ${service}\n\nMessage:\n${message}`;
@@ -208,6 +176,11 @@ if (contactForm) {
             // Open email client
             window.location.href = mailtoUrl;
             emailSent = true;
+            
+            successMessage.innerHTML = `
+                <i class="fas fa-check-circle mr-2"></i>
+                Email client opened! Please send the message to complete your inquiry.
+            `;
         }
         
         // Show result
@@ -215,10 +188,6 @@ if (contactForm) {
             formStatus.classList.remove('hidden');
             successMessage.classList.remove('hidden');
             errorMessage.classList.add('hidden');
-            successMessage.innerHTML = `
-                <i class="fas fa-check-circle mr-2"></i>
-                Email opened in your default email client! Please send it to complete your message.
-            `;
             contactForm.reset();
             
             // Track successful submission
@@ -227,7 +196,7 @@ if (contactForm) {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'form_submit', {
                     'event_category': 'Contact',
-                    'event_label': 'Mailto Fallback'
+                    'event_label': 'Mailto Direct'
                 });
             }
         } else {
