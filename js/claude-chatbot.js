@@ -20,7 +20,41 @@ class ClaudeChatbot {
         this.initializeSpeechRecognition();
         this.createChatbotHTML();
         this.bindEvents();
+        this.checkBackendConnection();
         this.addWelcomeMessage();
+    }
+    
+    async checkBackendConnection() {
+        try {
+            const response = await fetch(`${this.backendUrl}/health`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            const statusEl = document.getElementById('connection-status');
+            if (response.ok) {
+                if (statusEl) {
+                    statusEl.innerHTML = `
+                        <span style="color: var(--success);">✓ Connected to Maurice's AI Backend</span>
+                        <p style="margin-top: 5px; font-size: 11px;">Secure voice chat via Deepgram • Text chat via Claude Haiku</p>
+                    `;
+                }
+                console.log('Backend connection successful');
+            } else {
+                throw new Error('Backend unavailable');
+            }
+        } catch (error) {
+            console.warn('Backend connection failed, using fallback mode:', error);
+            const statusEl = document.getElementById('connection-status');
+            if (statusEl) {
+                statusEl.innerHTML = `
+                    <span style="color: var(--warning);">⚠ Offline Mode - Using Basic Responses</span>
+                    <p style="margin-top: 5px; font-size: 11px;">Advanced AI features temporarily unavailable</p>
+                `;
+            }
+        }
     }
 
     async loadResumeData() {
@@ -285,12 +319,17 @@ class ClaudeChatbot {
             
             this.wsConnection.onerror = (error) => {
                 console.error('WebSocket error:', error);
-                this.addMessage('Voice chat connection error. Please try again.', 'system');
+                this.addMessage('❌ Voice chat connection failed. Please check your internet connection and try again.', 'system');
                 this.stopVoiceChat();
             };
             
-            this.wsConnection.onclose = () => {
-                this.addMessage('Voice chat disconnected.', 'system');
+            this.wsConnection.onclose = (event) => {
+                if (event.code !== 1000) {
+                    // Abnormal closure
+                    this.addMessage('❌ Voice chat disconnected unexpectedly. Please try again.', 'system');
+                } else {
+                    this.addMessage('Voice chat disconnected.', 'system');
+                }
                 this.stopVoiceChat();
             };
             
@@ -358,7 +397,19 @@ class ClaudeChatbot {
             
         } catch (error) {
             console.error('Microphone access error:', error);
-            this.addMessage('Microphone access denied. Please allow microphone access for voice chat.', 'system');
+            
+            let errorMessage = 'Microphone access denied. ';
+            if (error.name === 'NotAllowedError') {
+                errorMessage += 'Please allow microphone access in your browser settings and try again.';
+            } else if (error.name === 'NotFoundError') {
+                errorMessage += 'No microphone found. Please connect a microphone and try again.';
+            } else if (error.name === 'NotSupportedError') {
+                errorMessage += 'Your browser does not support voice recording.';
+            } else {
+                errorMessage += 'Please check your microphone settings and try again.';
+            }
+            
+            this.addMessage(`❌ ${errorMessage}`, 'system');
             this.stopVoiceChat();
         }
     }

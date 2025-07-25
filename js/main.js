@@ -4,6 +4,79 @@
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 
+if (mobileMenuButton && mobileMenu) {
+    let isMenuOpen = false;
+    
+    function toggleMobileMenu() {
+        isMenuOpen = !isMenuOpen;
+        
+        if (isMenuOpen) {
+            mobileMenu.classList.remove('hidden');
+            mobileMenuButton.innerHTML = '<i class="fas fa-times text-xl"></i>';
+            mobileMenuButton.setAttribute('aria-expanded', 'true');
+            mobileMenuButton.setAttribute('aria-label', 'Close mobile menu');
+            
+            // Focus first menu item for accessibility
+            const firstLink = mobileMenu.querySelector('a');
+            if (firstLink) firstLink.focus();
+        } else {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            mobileMenuButton.setAttribute('aria-label', 'Open mobile menu');
+        }
+    }
+    
+    function closeMobileMenu() {
+        if (isMenuOpen) {
+            isMenuOpen = false;
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            mobileMenuButton.setAttribute('aria-label', 'Open mobile menu');
+        }
+    }
+    
+    // Toggle menu on button click
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    
+    // Handle keyboard navigation
+    mobileMenuButton.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMobileMenu();
+        }
+    });
+    
+    // Close mobile menu when clicking on links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+        
+        // Handle keyboard navigation within menu
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+                mobileMenuButton.focus();
+            }
+        });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Close menu on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMobileMenu();
+            mobileMenuButton.focus();
+        }
+    });
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -48,12 +121,68 @@ document.querySelectorAll('.service-card').forEach(card => {
     observer.observe(card);
 });
 
-// Form submission handling
-const form = document.querySelector('form');
-if (form) {
-    form.addEventListener('submit', function(e) {
+// Enhanced Form submission handling
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        alert('Thank you for your message! I\'ll get back to you within 24 hours.');
+        
+        const submitButton = document.getElementById('contact-submit');
+        const submitText = submitButton.querySelector('.submit-text');
+        const loadingSpinner = submitButton.querySelector('.loading-spinner');
+        const formStatus = document.getElementById('form-status');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+        
+        // Show loading state
+        submitButton.disabled = true;
+        submitText.textContent = 'Sending...';
+        loadingSpinner.classList.remove('hidden');
+        formStatus.classList.add('hidden');
+        
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success
+                formStatus.classList.remove('hidden');
+                successMessage.classList.remove('hidden');
+                errorMessage.classList.add('hidden');
+                contactForm.reset();
+                
+                // Track successful submission
+                console.log('Contact form submitted successfully');
+                
+                // Optional: Send to analytics or other tracking
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submit', {
+                        'event_category': 'Contact',
+                        'event_label': 'Contact Form'
+                    });
+                }
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Contact form error:', error);
+            
+            // Show error message
+            formStatus.classList.remove('hidden');
+            errorMessage.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+        } finally {
+            // Reset button state
+            submitButton.disabled = false;
+            submitText.textContent = 'Send Message';
+            loadingSpinner.classList.add('hidden');
+        }
     });
 }
 
