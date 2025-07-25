@@ -453,60 +453,7 @@ class ClaudeChatbot {
         }
     }
 
-    async startVoiceChat() {
-        try {
-            this.isRecording = true;
-            this.updateVoiceButton();
-            this.addMessage('🎤 Connecting to voice chat...', 'system');
-            
-            // Connect to Railway backend WebSocket for voice chat
-            this.wsConnection = new WebSocket(this.wsUrl);
-            
-            this.wsConnection.onopen = () => {
-                this.addMessage('🎤 Voice chat connected! Speak now...', 'system');
-                // Initialize voice recording via WebSocket
-                this.initializeVoiceRecording();
-            };
-            
-            this.wsConnection.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                console.log('WebSocket message received:', data);
-                
-                if (data.type === 'connected') {
-                    this.addMessage('🎤 ' + data.message, 'system');
-                } else if (data.type === 'response') {
-                    this.addMessage(data.content, 'bot');
-                    this.speakResponse(data.content);
-                } else if (data.type === 'transcript') {
-                    // Show live transcription
-                    this.updateTranscription(data.content);
-                } else if (data.type === 'final_transcript') {
-                    this.addMessage(`🎤 You said: "${data.content}"`, 'user');
-                }
-            };
-            
-            this.wsConnection.onerror = (error) => {
-                console.error('WebSocket error:', error);
-                this.addMessage('❌ Voice chat connection failed. Please check your internet connection and try again.', 'system');
-                this.stopVoiceChat();
-            };
-            
-            this.wsConnection.onclose = (event) => {
-                if (event.code !== 1000) {
-                    // Abnormal closure
-                    this.addMessage('❌ Voice chat disconnected unexpectedly. Please try again.', 'system');
-                } else {
-                    this.addMessage('Voice chat disconnected.', 'system');
-                }
-                this.stopVoiceChat();
-            };
-            
-        } catch (error) {
-            console.error('Voice chat error:', error);
-            this.addMessage('Failed to start voice chat. Please try again.', 'system');
-            this.stopVoiceChat();
-        }
-    }
+    // Removed old startVoiceChat method - replaced with startRealtimeVoiceChat
     
     stopVoiceChat() {
         this.isRecording = false;
@@ -530,73 +477,9 @@ class ClaudeChatbot {
             this.mediaStream = null;
         }
     }
+    // Removed old initializeVoiceRecording method - replaced with initializeContinuousVoiceRecording
     
-    async initializeVoiceRecording() {
-        try {
-            this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            
-            this.mediaRecorder = new MediaRecorder(this.mediaStream, {
-                mimeType: 'audio/webm;codecs=opus'
-            });
-            
-            const audioChunks = [];
-            
-            this.mediaRecorder.ondataavailable = (event) => {
-                if (event.data.size > 0) {
-                    audioChunks.push(event.data);
-                    
-                    // Stop current speech if user starts speaking (interruption)
-                    if (this.isSpeaking) {
-                        this.stopSpeech();
-                        this.addMessage('🎤 Interrupted! Listening...', 'system');
-                    }
-                    
-                    // Send audio chunk for real-time processing
-                    this.sendVoiceData(event.data);
-                }
-            };
-            
-            this.mediaRecorder.onstop = () => {
-                console.log('Recording stopped');
-            };
-            
-            // Record in small chunks for real-time processing
-            this.mediaRecorder.start(500); // 500ms chunks for better real-time response
-            
-        } catch (error) {
-            console.error('Microphone access error:', error);
-            
-            let errorMessage = 'Microphone access denied. ';
-            if (error.name === 'NotAllowedError') {
-                errorMessage += 'Please allow microphone access in your browser settings and try again.';
-            } else if (error.name === 'NotFoundError') {
-                errorMessage += 'No microphone found. Please connect a microphone and try again.';
-            } else if (error.name === 'NotSupportedError') {
-                errorMessage += 'Your browser does not support voice recording.';
-            } else {
-                errorMessage += 'Please check your microphone settings and try again.';
-            }
-            
-            this.addMessage(`❌ ${errorMessage}`, 'system');
-            this.stopVoiceChat();
-        }
-    }
-    
-    sendVoiceData(audioBlob) {
-        if (this.wsConnection && this.wsConnection.readyState === WebSocket.OPEN) {
-            // Convert blob to base64 for WebSocket transmission
-            const reader = new FileReader();
-            reader.onload = () => {
-                const base64Audio = reader.result.split(',')[1];
-                this.wsConnection.send(JSON.stringify({
-                    type: 'audio',
-                    data: base64Audio,
-                    timestamp: Date.now()
-                }));
-            };
-            reader.readAsDataURL(audioBlob);
-        }
-    }
+    // Removed old sendVoiceData method - replaced with sendVoiceDataRealtime
     
     updateTranscription(text) {
         // Show live transcription in a special message that updates
