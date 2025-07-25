@@ -26,12 +26,19 @@ class ClaudeChatbot {
     
     async checkBackendConnection() {
         try {
+            // Add timeout to prevent hanging requests
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+            
             const response = await fetch(`${this.backendUrl}/health`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json'
-                }
+                },
+                signal: controller.signal
             });
+            
+            clearTimeout(timeoutId);
             
             const statusEl = document.getElementById('connection-status');
             if (response.ok) {
@@ -42,18 +49,25 @@ class ClaudeChatbot {
                     `;
                 }
                 console.log('Backend connection successful');
+                this.backendAvailable = true;
             } else {
-                throw new Error('Backend unavailable');
+                throw new Error(`Backend returned ${response.status}`);
             }
         } catch (error) {
-            console.warn('Backend connection failed, using fallback mode:', error);
+            console.warn('Backend connection failed, using fallback mode:', error.message);
+            this.backendAvailable = false;
+            
             const statusEl = document.getElementById('connection-status');
             if (statusEl) {
                 statusEl.innerHTML = `
                     <span style="color: var(--warning);">⚠ Offline Mode - Using Basic Responses</span>
-                    <p style="margin-top: 5px; font-size: 11px;">Advanced AI features temporarily unavailable</p>
+                    <p style="margin-top: 5px; font-size: 11px;">Voice chat unavailable • Text chat uses fallback responses</p>
                 `;
             }
+            
+            // Disable voice features if backend is unavailable
+            this.isVoiceEnabled = false;
+            this.updateVoiceButton();
         }
     }
 
