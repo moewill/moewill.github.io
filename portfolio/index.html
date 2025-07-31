@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Maurice Rashad</title>
+    
+    <!-- External CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0EA5E9',
+                        secondary: '#0F172A',
+                        accent: '#06B6D4',
+                        success: '#10B981',
+                        warning: '#F59E0B',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .cta-button {
+            background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+        }
+        .cta-button:hover {
+            background: linear-gradient(135deg, #0284C7, #0891B2);
+        }
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold gradient-text">Maurice Rashad</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="/#services" class="text-gray-700 hover:text-primary transition-colors duration-300">Services</a>
+                        <a href="/#about" class="text-gray-700 hover:text-primary transition-colors duration-300">About</a>
+                        <a href="/portfolio/" class="text-primary font-medium">Portfolio</a>
+                        <a href="/#contact" class="text-gray-700 hover:text-primary transition-colors duration-300">Contact</a>
+                        <a href="/#contact" class="cta-button text-white px-6 py-2 rounded-full text-sm font-medium">Get Started</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" 
+                            class="text-gray-700 hover:text-primary" 
+                            aria-label="Toggle mobile menu"
+                            aria-expanded="false"
+                            aria-controls="mobile-menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md border-t border-gray-200">
+            <div class="px-4 py-4 space-y-4">
+                <a href="/#services" class="block text-gray-700 hover:text-primary transition-colors duration-300 py-2">Services</a>
+                <a href="/#about" class="block text-gray-700 hover:text-primary transition-colors duration-300 py-2">About</a>
+                <a href="/portfolio/" class="block text-primary font-medium py-2">Portfolio</a>
+                <a href="/#contact" class="block text-gray-700 hover:text-primary transition-colors duration-300 py-2">Contact</a>
+                <a href="/#contact" class="block cta-button text-white px-6 py-3 rounded-full text-sm font-medium text-center mt-4">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Header Section -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Featured <span class="gradient-text">Projects</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore a showcase of technical projects, enterprise solutions, and innovative applications that demonstrate expertise in modern development practices and cutting-edge technologies.
+                </p>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-indicator" class="text-center py-12">
+                <div class="inline-flex items-center px-4 py-2 text-gray-600">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Loading projects...
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="hidden bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                    <div>
+                        <h3 class="text-red-800 font-medium">Unable to load projects</h3>
+                        <p class="text-red-600 mt-1">Please try refreshing the page or contact support if the problem persists.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-8 hidden">
+                <!-- Project cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
+        <!-- Backdrop -->
+        <div class="modal-backdrop bg-black/50 absolute inset-0" id="modal-backdrop"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
+            <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-4xl" id="modal-content">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                    <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
+                    <button id="modal-close" class="text-gray-400 hover:text-gray-600 transition-colors" aria-label="Close modal">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Modal Body -->
+                <div id="modal-body" class="p-6">
+                    <!-- Content will be dynamically inserted -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Board Modal (Special handling) -->
+    <div id="job-board-modal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
+        <!-- Backdrop -->
+        <div class="modal-backdrop bg-black/50 absolute inset-0" id="job-board-backdrop"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-7xl h-[90vh]" id="job-board-content">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900">Active Job Board</h2>
+                    <button id="job-board-close" class="text-gray-400 hover:text-gray-600 transition-colors" aria-label="Close job board">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Job Board iframe -->
+                <div class="h-full">
+                    <iframe id="job-board-iframe" src="" class="w-full h-full rounded-b-2xl" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Portfolio Application
+        class Portfolio {
+            constructor() {
+                this.projects = [];
+                this.modalState = {
+                    isOpen: false,
+                    currentProject: null,
+                    element: null
+                };
+                this.init();
+            }
+
+            async init() {
+                try {
+                    await this.loadProjects();
+                    this.renderProjectGrid();
+                    this.initializeModals();
+                    this.initializeMobileMenu();
+                } catch (error) {
+                    this.showError();
+                    console.error('Portfolio initialization failed:', error);
+                } finally {
+                    this.hideLoading();
+                }
+            }
+
+            async loadProjects() {
+                const response = await fetch('./projects.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load projects data');
+                }
+                this.projects = await response.json();
+            }
+
+            renderProjectGrid() {
+                const grid = document.getElementById('projects-grid');
+                grid.innerHTML = '';
+
+                this.projects.forEach(project => {
+                    const card = this.createProjectCard(project);
+                    grid.appendChild(card);
+                });
+
+                grid.classList.remove('hidden');
+            }
+
+            createProjectCard(project) {
+                const card = document.createElement('div');
+                card.className = 'project-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer';
+                card.setAttribute('data-project-id', project.id);
+
+                const tagsHTML = project.tags.map(tag => 
+                    `<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">${tag}</span>`
+                ).join('');
+
+                card.innerHTML = `
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br ${project.iconGradient} rounded-full flex items-center justify-center mr-4">
+                            <i class="${project.icon} text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">${project.title}</h3>
+                            <p class="text-gray-600">${project.subtitle}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">${project.description}</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        ${tagsHTML}
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">
+                            <i class="${project.statusIcon} mr-1"></i>${project.status}
+                        </div>
+                        <div class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors inline-flex items-center">
+                            <i class="fas fa-eye mr-2"></i>View Details
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => this.openProjectModal(project.id));
+                return card;
+            }
+
+            openProjectModal(projectId) {
+                const project = this.projects.find(p => p.id === projectId);
+                if (!project) return;
+
+                if (project.actionButton.isJobBoard) {
+                    this.openJobBoardModal();
+                    return;
+                }
+
+                this.modalState.currentProject = project;
+                this.populateModal(project);
+                this.showModal();
+            }
+
+            openJobBoardModal() {
+                const modal = document.getElementById('job-board-modal');
+                const iframe = document.getElementById('job-board-iframe');
+                
+                iframe.src = '/job-board/';
+                modal.classList.remove('hidden');
+                modal.setAttribute('aria-hidden', 'false');
+                
+                // Focus management
+                document.getElementById('job-board-close').focus();
+                document.body.style.overflow = 'hidden';
+            }
+
+            populateModal(project) {
+                const modal = document.getElementById('project-modal');
+                const title = document.getElementById('modal-title');
+                const body = document.getElementById('modal-body');
+
+                title.textContent = project.title;
+
+                const tagsHTML = project.tags.map(tag => 
+                    `<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">${tag}</span>`
+                ).join('');
+
+                const featuresHTML = project.modalContent.features.map(feature => 
+                    `<li class="flex items-start"><i class="fas fa-check text-success mr-3 mt-1"></i><span>${feature}</span></li>`
+                ).join('');
+
+                const technologiesHTML = project.modalContent.technologies.map(tech => 
+                    `<span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">${tech}</span>`
+                ).join('');
+
+                const outcomesHTML = project.modalContent.outcomes ? project.modalContent.outcomes.map(outcome => 
+                    `<li class="flex items-start"><i class="fas fa-star text-warning mr-3 mt-1"></i><span>${outcome}</span></li>`
+                ).join('') : '';
+
+                body.innerHTML = `
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br ${project.iconGradient} rounded-full flex items-center justify-center mr-4">
+                                <i class="${project.icon} text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">${project.title}</h3>
+                                <p class="text-gray-600">${project.subtitle}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 text-lg leading-relaxed">${project.modalContent.detailedDescription}</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Key Features</h4>
+                            <ul class="space-y-3">
+                                ${featuresHTML}
+                            </ul>
+                        </div>
+                        ${outcomesHTML ? `
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Key Outcomes</h4>
+                            <ul class="space-y-3">
+                                ${outcomesHTML}
+                            </ul>
+                        </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Technologies</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${technologiesHTML}
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 pt-6 border-t border-gray-200">
+                        <a href="${project.actionButton.url}" 
+                           target="${project.actionButton.target || '_self'}"
+                           class="bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors inline-flex items-center">
+                            <i class="${project.actionButton.icon} mr-2"></i>${project.actionButton.text}
+                        </a>
+                        <button onclick="portfolio.closeProjectModal()" 
+                                class="bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-medium hover:bg-gray-300 transition-colors">
+                            Close
+                        </button>
+                    </div>
+                `;
+            }
+
+            showModal() {
+                const modal = document.getElementById('project-modal');
+                modal.classList.remove('hidden');
+                modal.setAttribute('aria-hidden', 'false');
+                
+                // Focus management
+                document.getElementById('modal-close').focus();
+                document.body.style.overflow = 'hidden';
+                
+                this.modalState.isOpen = true;
+                this.modalState.element = modal;
+            }
+
+            closeProjectModal() {
+                const modal = document.getElementById('project-modal');
+                modal.classList.add('hidden');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                
+                this.modalState.isOpen = false;
+                this.modalState.currentProject = null;
+                this.modalState.element = null;
+            }
+
+            closeJobBoardModal() {
+                const modal = document.getElementById('job-board-modal');
+                const iframe = document.getElementById('job-board-iframe');
+                
+                modal.classList.add('hidden');
+                modal.setAttribute('aria-hidden', 'true');
+                iframe.src = '';
+                document.body.style.overflow = '';
+            }
+
+            initializeModals() {
+                // Project modal close handlers
+                document.getElementById('modal-close').addEventListener('click', () => this.closeProjectModal());
+                document.getElementById('modal-backdrop').addEventListener('click', () => this.closeProjectModal());
+                
+                // Job board modal close handlers
+                document.getElementById('job-board-close').addEventListener('click', () => this.closeJobBoardModal());
+                document.getElementById('job-board-backdrop').addEventListener('click', () => this.closeJobBoardModal());
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => this.handleKeyboardNav(e));
+            }
+
+            handleKeyboardNav(event) {
+                if (event.key === 'Escape') {
+                    if (document.getElementById('job-board-modal').classList.contains('hidden') === false) {
+                        this.closeJobBoardModal();
+                    } else if (this.modalState.isOpen) {
+                        this.closeProjectModal();
+                    }
+                }
+            }
+
+            initializeMobileMenu() {
+                const button = document.getElementById('mobile-menu-button');
+                const menu = document.getElementById('mobile-menu');
+                
+                button.addEventListener('click', () => {
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    menu.classList.toggle('hidden');
+                    button.setAttribute('aria-expanded', !isExpanded);
+                });
+            }
+
+            showError() {
+                document.getElementById('error-message').classList.remove('hidden');
+            }
+
+            hideLoading() {
+                document.getElementById('loading-indicator').classList.add('hidden');
+            }
+        }
+
+        // Initialize portfolio when DOM is loaded
+        let portfolio;
+        document.addEventListener('DOMContentLoaded', () => {
+            portfolio = new Portfolio();
+        });
+    </script>
+</body>
+</html>
