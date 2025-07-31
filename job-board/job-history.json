@@ -1,0 +1,182 @@
+{
+  "jobs": {
+    "senior-engineer-example-tech": {
+      "title": "Senior Software Engineer",
+      "url": "https://example-tech.com/careers/senior-engineer",
+      "company": "Example Tech",
+      "firstSeen": "2025-06-30",
+      "lastSeen": "2025-07-31",
+      "daysActive": 31,
+      "status": "active"
+    },
+    "data-science-manager-innovate": {
+      "title": "Data Science Manager", 
+      "url": "https://innovate-corp.io/jobs/data-manager",
+      "company": "Innovate Corp",
+      "firstSeen": "2025-06-30",
+      "lastSeen": "2025-07-31", 
+      "daysActive": 31,
+      "status": "active"
+    },
+    "devops-engineer-cloudtech": {
+      "title": "DevOps Engineer",
+      "url": "https://cloudtech-solutions.com/jobs/devops",
+      "company": "CloudTech Solutions", 
+      "firstSeen": "2025-07-01",
+      "lastSeen": "2025-07-30",
+      "daysActive": 30,
+      "status": "active"
+    },
+    "frontend-dev-webdev": {
+      "title": "Frontend Developer",
+      "url": "https://webdev-company.net/careers/frontend", 
+      "company": "WebDev Company",
+      "firstSeen": "2025-07-02",
+      "lastSeen": "2025-07-31",
+      "daysActive": 29,
+      "status": "active"
+    },
+    "product-manager-product-inc": {
+      "title": "Product Manager",
+      "url": "https://product-inc.com/jobs/pm",
+      "company": "Product Inc",
+      "firstSeen": "2025-07-03",
+      "lastSeen": "2025-07-29",
+      "daysActive": 28,
+      "status": "active"
+    },
+    "ux-designer-design-hub": {
+      "title": "UX Designer",
+      "url": "https://design-hub.co/positions/ux-designer",
+      "company": "Design Hub",
+      "firstSeen": "2025-07-05",
+      "lastSeen": "2025-07-31",
+      "daysActive": 26,
+      "status": "active"
+    },
+    "backend-dev-servertech": {
+      "title": "Backend Developer", 
+      "url": "https://servertech.io/careers/backend",
+      "company": "ServerTech",
+      "firstSeen": "2025-07-07",
+      "lastSeen": "2025-07-28",
+      "daysActive": 24,
+      "status": "active"
+    },
+    "marketing-specialist-marketing-pro": {
+      "title": "Marketing Specialist",
+      "url": "https://marketing-pro.com/jobs/specialist", 
+      "company": "Marketing Pro",
+      "firstSeen": "2025-07-10",
+      "lastSeen": "2025-07-27",
+      "daysActive": 21,
+      "status": "active"
+    },
+    "sales-rep-sales-force": {
+      "title": "Sales Representative",
+      "url": "https://sales-force.net/careers/rep",
+      "company": "Sales Force",
+      "firstSeen": "2025-07-12", 
+      "lastSeen": "2025-07-26",
+      "daysActive": 19,
+      "status": "active"
+    },
+    "qa-engineer-qa-testing": {
+      "title": "Quality Assurance Engineer",
+      "url": "https://qa-testing.com/jobs/engineer",
+      "company": "QA Testing Co",
+      "firstSeen": "2025-07-15",
+      "lastSeen": "2025-07-25",
+      "daysActive": 16,
+      "status": "active"
+    },
+    "tech-writer-docs-company": {
+      "title": "Technical Writer", 
+      "url": "https://docs-company.io/careers/writer",
+      "company": "Docs Company",
+      "firstSeen": "2025-07-17",
+      "lastSeen": "2025-07-24",
+      "daysActive": 14,
+      "status": "active"
+    },
+    "business-analyst-biz-analytics": {
+      "title": "Business Analyst",
+      "url": "https://biz-analytics.com/jobs/analyst",
+      "company": "Biz Analytics", 
+      "firstSeen": "2025-07-20",
+      "lastSeen": "2025-07-31",
+      "daysActive": 11,
+      "status": "active"
+    },
+    "cybersec-specialist-security-first": {
+      "title": "Cybersecurity Specialist",
+      "url": "https://security-first.net/careers/specialist",
+      "company": "Security First",
+      "firstSeen": "2025-07-22", 
+      "lastSeen": "2025-07-30",
+      "daysActive": 9,
+      "status": "active"
+    },
+    "dba-data-systems": {
+      "title": "Database Administrator",
+      "url": "https://data-systems.com/jobs/dba",
+      "company": "Data Systems",
+      "firstSeen": "2025-07-25",
+      "lastSeen": "2025-07-31",
+      "daysActive": 6,
+      "status": "active"
+    },
+    "mobile-dev-mobile-apps": {
+      "title": "Mobile Developer",
+      "url": "https://mobile-apps.io/careers/developer", 
+      "company": "Mobile Apps Inc",
+      "firstSeen": "2025-07-27",
+      "lastSeen": "2025-07-31",
+      "daysActive": 4,
+      "status": "active"
+    },
+    "project-manager-project-solutions": {
+      "title": "Project Manager",
+      "url": "https://project-solutions.net/jobs/manager",
+      "company": "Project Solutions",
+      "firstSeen": "2025-07-28",
+      "lastSeen": "2025-07-31",
+      "daysActive": 3,
+      "status": "active"
+    },
+    "fullstack-dev-fullstack-dev": {
+      "title": "Full Stack Developer", 
+      "url": "https://fullstack-dev.com/careers/developer",
+      "company": "FullStack Dev Co",
+      "firstSeen": "2025-07-29",
+      "lastSeen": "2025-07-31",
+      "daysActive": 2,
+      "status": "active"
+    },
+    "product-marketing-lead-startup": {
+      "title": "Product Marketing Lead",
+      "url": "https://startup-solutions.net/openings/marketing-lead",
+      "company": "Startup Solutions", 
+      "firstSeen": "2025-07-30",
+      "lastSeen": "2025-07-31",
+      "daysActive": 1,
+      "status": "active"
+    },
+    "ai-engineer-ai-company": {
+      "title": "AI Engineer",
+      "url": "https://ai-company.tech/jobs/ai-engineer",
+      "company": "AI Company",
+      "firstSeen": "2025-07-31", 
+      "lastSeen": "2025-07-31",
+      "daysActive": 0,
+      "status": "active"  
+    }
+  },
+  "lastUpdated": "2025-07-31T12:00:00Z",
+  "totalActiveJobs": 19,
+  "metadata": {
+    "dataSource": "Automated job scraper",
+    "updateFrequency": "daily",
+    "version": "1.0"
+  }
+}

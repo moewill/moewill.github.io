@@ -189,49 +189,49 @@
             }
 
             async loadJobs() {
-                const response = await fetch('./fake_jobs.csv');
+                const response = await fetch('./job-history.json');
                 if (!response.ok) {
-                    throw new Error('Failed to load CSV file');
+                    throw new Error('Failed to load job history file');
                 }
-                const csvText = await response.text();
-                this.jobs = this.parseCSV(csvText);
+                const jobData = await response.json();
+                this.jobs = this.parseJobHistory(jobData);
             }
 
-            parseCSV(csvText) {
-                const lines = csvText.trim().split('\n');
-                if (lines.length < 2) return [];
-                
-                const headers = lines[0].split(',').map(h => h.trim());
+            parseJobHistory(jobData) {
                 const jobs = [];
                 
-                for (let i = 1; i < lines.length; i++) {
-                    const values = lines[i].split(',').map(v => v.trim());
-                    const job = {};
-                    
-                    headers.forEach((header, index) => {
-                        job[header] = values[index] || '';
-                    });
-                    
-                    jobs.push(job);
+                for (const [jobId, jobInfo] of Object.entries(jobData.jobs)) {
+                    // Only include active jobs
+                    if (jobInfo.status === 'active') {
+                        jobs.push({
+                            id: jobId,
+                            title: jobInfo.title,
+                            url: jobInfo.url,
+                            company: jobInfo.company || '',
+                            firstSeen: jobInfo.firstSeen,
+                            lastSeen: jobInfo.lastSeen,
+                            daysActive: jobInfo.daysActive,
+                            status: jobInfo.status
+                        });
+                    }
                 }
                 
                 return jobs;
             }
 
             processAndDisplayJobs() {
-                // Filter active jobs (matching current date)
-                const activeJobs = this.filterActiveJobs(this.jobs);
+                // Jobs are already filtered to active status
+                const activeJobs = this.jobs;
                 
                 if (activeJobs.length === 0) {
                     this.showNoJobs();
                     return;
                 }
 
-                // Calculate days active and add metadata
+                // Add age category metadata (daysActive already calculated in JSON)
                 const jobsWithMetadata = activeJobs.map(job => ({
                     ...job,
-                    daysActive: this.calculateDaysActive(job.date),
-                    ageCategory: this.getAgeCategory(this.calculateDaysActive(job.date))
+                    ageCategory: this.getAgeCategory(job.daysActive)
                 }));
 
                 // Sort by days active (newest first - 0 days at top)
@@ -242,11 +242,12 @@
                 this.showJobCount(sortedJobs.length);
             }
 
+            // No longer needed - keeping for backward compatibility
             filterActiveJobs(jobs) {
-                const today = this.formatDate(this.currentDate);
-                return jobs.filter(job => job.date === today);
+                return jobs.filter(job => job.status === 'active');
             }
 
+            // No longer needed - daysActive comes from JSON
             calculateDaysActive(firstSeenDate) {
                 const firstDate = new Date(firstSeenDate);
                 const diffTime = this.currentDate - firstDate;
@@ -300,26 +301,17 @@
                 
                 card.className = `border-2 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 ${cardStyles}`;
                 
-                // Build job fields HTML
-                const fieldsHTML = Object.entries(job)
-                    .filter(([key]) => !['daysActive', 'ageCategory'].includes(key))
-                    .map(([key, value]) => {
-                        if (key === 'title') {
-                            return `<h3 class="text-xl font-semibold mb-3 ${textStyles}">
-                                <a href="${job.url || '#'}" class="hover:text-primary transition-colors duration-200" target="_self">
-                                    ${value}
-                                </a>
-                            </h3>`;
-                        } else if (key === 'url') {
-                            return ''; // URL is handled in title
-                        } else {
-                            const fieldLabel = key.charAt(0).toUpperCase() + key.slice(1);
-                            return `<p class="text-sm ${textStyles} mb-2">
-                                <span class="font-medium">${fieldLabel}:</span> ${value}
-                            </p>`;
-                        }
-                    })
-                    .join('');
+                // Build job fields HTML with proper structure
+                const fieldsHTML = `
+                    <h3 class="text-xl font-semibold mb-3 ${textStyles}">
+                        <a href="${job.url || '#'}" class="hover:text-primary transition-colors duration-200" target="_self">
+                            ${job.title}
+                        </a>
+                    </h3>
+                    ${job.company ? `<p class="text-sm ${textStyles} mb-2"><span class="font-medium">Company:</span> ${job.company}</p>` : ''}
+                    <p class="text-sm ${textStyles} mb-2"><span class="font-medium">First Seen:</span> ${job.firstSeen}</p>
+                    <p class="text-sm ${textStyles} mb-2"><span class="font-medium">Last Seen:</span> ${job.lastSeen}</p>
+                `;
 
                 // Days active badge
                 const daysText = job.daysActive === 0 ? 'New today!' : 
