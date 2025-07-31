@@ -205,12 +205,14 @@ class ClaudeChatbot {
     }
 
     addWelcomeMessage() {
-        const voiceStatus = this.isVoiceEnabled ? ' Click the 🎤 button for voice chat!' : '';
-        const welcomeMessage = `Hi! I'm Maurice's AI assistant. I can answer detailed questions about his background, experience, and services.${voiceStatus} I'm ready to help!`;
+        const voiceStatus = this.isVoiceEnabled ? ' You can also click the 🎤 button for voice chat!' : '';
+        const welcomeMessage = `Hi! I'm Maurice's AI assistant, here to help answer any questions about his technology consulting services, experience, and expertise.${voiceStatus}
+
+What brings you to Maurice's website today? Are you looking for help with a specific technology challenge or project?`;
         this.addMessage(welcomeMessage, 'bot');
         
         if (this.isVoiceEnabled) {
-            this.addMessage('🎤 Voice chat enabled! Click the microphone to start a voice conversation with Deepgram + Claude.', 'system');
+            this.addMessage('💡 Pro tip: Try voice chat for a more natural conversation experience!', 'system');
         }
     }
 
@@ -531,12 +533,18 @@ class ClaudeChatbot {
             utterance.pitch = 1;
             utterance.volume = 0.8;
             
-            // Try to use a natural voice
+            // Try to use a more natural, human-like voice
             const voices = this.speechSynthesis.getVoices();
             const preferredVoice = voices.find(voice => 
                 voice.lang.startsWith('en') && 
-                (voice.name.includes('Google') || voice.name.includes('Natural') || voice.name.includes('Premium'))
-            ) || voices.find(voice => voice.lang.startsWith('en')) || voices[0];
+                (voice.name.includes('Samantha') || 
+                 voice.name.includes('Ava') || 
+                 voice.name.includes('Google US English') ||
+                 voice.name.includes('Microsoft') ||
+                 voice.name.includes('Natural') || 
+                 voice.name.includes('Premium'))
+            ) || voices.find(voice => voice.lang.startsWith('en') && voice.name.includes('Female')) || 
+               voices.find(voice => voice.lang.startsWith('en')) || voices[0];
             
             if (preferredVoice) {
                 utterance.voice = preferredVoice;
@@ -591,70 +599,95 @@ class ClaudeChatbot {
         }
     }
 
-    buildSystemPrompt() {
-        let systemPrompt = `You are Maurice Rashad's AI assistant. You help potential clients learn about Maurice's background, services, and expertise. Be professional, helpful, and encouraging about contacting Maurice for consultations.
-
-Maurice Rashad is a technology consultant with 10+ years of experience. He offers:
-
-1. Strategic Consulting ($100/month, 2x 1-hour calls)
-   - Strategic planning sessions
-   - Technology roadmap development
-   - Problem-solving workshops
-   - Growth strategy recommendations
-
-2. Technology Services ($75/hour)
-   - Custom automation solutions
-   - Website development & fixes
-   - App development
-   - Hosting & migration services
-
-3. Expert Workshops ($99 each)
-   - AI Agents & Automation
-   - Cybersecurity Fundamentals
-   - Modern Web Development
-   - Cloud Technologies
-
-Contact: mauricerashad@gmail.com
-Response time: Within 24 hours
-Availability: Global, Remote-First`;
-
-        if (this.resumeData) {
-            systemPrompt += `\n\nDetailed Background:\n${JSON.stringify(this.resumeData, null, 2)}`;
+    async buildSystemPrompt() {
+        let knowledgeBase = '';
+        
+        // Load the comprehensive knowledge base
+        try {
+            const response = await fetch('data/chatbot-knowledge-base.md');
+            if (response.ok) {
+                knowledgeBase = await response.text();
+            } else {
+                throw new Error('Could not fetch knowledge base');
+            }
+        } catch (error) {
+            console.warn('Could not load knowledge base, using fallback');
+            knowledgeBase = this.getFallbackKnowledgeBase();
         }
 
-        systemPrompt += `\n\nKey stats: 50+ businesses transformed, 99% client satisfaction, 24/7 support available.
+        let systemPrompt = `You are Maurice Rashad's helpful AI assistant. Your primary goal is to answer questions thoroughly and naturally discover what brought the user to the website.
 
-When answering questions:
-- Be specific about Maurice's experience and expertise
-- Include relevant pricing when discussing services
-- Encourage users to contact Maurice for consultations
-- Keep responses concise but informative
-- Always maintain a professional and friendly tone`;
+KNOWLEDGE BASE:
+${knowledgeBase}
+
+CONVERSATION STYLE:
+- Be genuinely helpful and knowledgeable first
+- Answer questions thoroughly using the knowledge base
+- Naturally weave in discovery questions during conversation
+- Only suggest consultations when genuinely relevant (not pushy)
+- Maintain a professional yet approachable tone
+- Keep responses concise but comprehensive
+
+DISCOVERY APPROACH:
+1. Answer their immediate questions fully
+2. Naturally ask follow-up questions like:
+   - "What specific challenge brought you here today?"
+   - "Are you working on a particular technology project?"
+   - "What caught your attention about Maurice's services?"
+3. When appropriate, mention: "Maurice offers a complimentary 30-minute consultation if you'd like to discuss your specific needs"
+
+IMPORTANT:
+- Never be pushy or sales-focused
+- Let conversation flow naturally
+- Always prioritize being helpful over promoting services
+- Provide specific examples and details from the knowledge base
+- If someone seems interested in services, offer the free consultation naturally`;
+
+        if (this.resumeData) {
+            systemPrompt += `\n\nADDITIONAL RESUME DATA:\n${JSON.stringify(this.resumeData, null, 2)}`;
+        }
 
         return systemPrompt;
+    }
+
+    getFallbackKnowledgeBase() {
+        return `Maurice Rashad - Senior Technology Consultant
+        
+10+ years enterprise experience, 50+ businesses transformed, 99% satisfaction rate.
+
+Services:
+- Tech Chat Consultation ($100/month) - 2x 1-hour calls, 30min free initial
+- Done-For-You Services ($75/hour) - Full development & implementation  
+- Expert Workshops ($99/workshop) - Cybersecurity, AI, DevOps, Cloud
+
+Expertise: AWS Certified Solutions Architect, Kubernetes (CKAD), AI/Automation specialist, CISSP preparation, Full-stack development
+
+Major Project: Enterprise Infrastructure at NTT Data/SHI - 40% efficiency improvement, 75% deployment time reduction
+
+Contact: mauricerashad@gmail.com, Global remote-first, 24/7 support`;
     }
 
     getFallbackResponse(userMessage) {
         const lowerMessage = userMessage.toLowerCase();
         
         const responses = {
-            'experience': "Maurice has over 10 years of experience in technology consulting and development. He's helped 50+ businesses transform their operations through strategic tech solutions, with a 99% client satisfaction rate.",
+            'experience': "Maurice has 10+ years of enterprise technology experience, including leading major infrastructure transformations at NTT Data/SHI International with 40% efficiency improvements. He's helped 50+ businesses with 99% satisfaction rate.\n\nWhat type of technology challenge are you working on? I can share more specific examples of his relevant experience.",
             
-            'skills': "Maurice specializes in Full-Stack Development, AI & Automation, Cloud Solutions, and Cybersecurity. He works with modern technologies to deliver cutting-edge solutions for businesses.",
+            'skills': "Maurice is AWS Solutions Architect certified and specializes in Full-Stack Development, AI & Automation (Anthropic Claude certified), Cloud Solutions, DevOps (Kubernetes CKAD), and Cybersecurity (CISSP prep).\n\nWhich area caught your attention? Are you looking to modernize infrastructure, implement AI, or something else?",
             
-            'services': "Maurice offers three main services:\n\n1. Strategic Consulting - $100/month for 2x 1-hour calls\n2. Technology Services - $75/hour for custom development\n3. Expert Workshops - $99 each for AI, cybersecurity, and web development training",
+            'services': "Maurice offers three main services:\n\n1. Tech Chat Consultation - $100/month (2x 1-hour calls + free 30-min initial)\n2. Done-For-You Services - $75/hour (full development & implementation)\n3. Expert Workshops - $99 each (AI, cybersecurity, DevOps, cloud)\n\nWhat type of support are you looking for - ongoing guidance or hands-on development?",
             
-            'pricing': "Pricing: Strategic Consulting ($100/month), Technology Services ($75/hour), and Workshops ($99 each). Contact mauricerashad@gmail.com for detailed quotes.",
+            'pricing': "Here's Maurice's pricing: Tech Chat Consultation ($100/month with free initial consultation), Done-For-You Services ($75/hour), and Expert Workshops ($99 each).\n\nWhat kind of project scope are you considering? I can help you figure out the best approach.",
             
-            'contact': "You can reach Maurice at mauricerashad@gmail.com. He responds within 24 hours and offers global, remote-first services.",
+            'contact': "You can reach Maurice at mauricerashad@gmail.com - he responds within 24 hours and offers global, remote-first services.\n\nWould you like me to help you prepare for that conversation? What specific challenge brought you here?",
             
-            'automation': "Maurice creates custom automation solutions that streamline business processes, from simple task automation to complex AI-powered workflow systems.",
+            'automation': "Maurice specializes in practical automation that saves real time and reduces errors. He's built everything from simple task automation to complex AI-powered workflows for 50+ businesses.\n\nWhat processes are you looking to automate? Data entry, customer communications, reporting, or something else?",
             
-            'ai': "Maurice helps businesses implement AI solutions including chatbots, automation agents, data analysis tools, and custom AI applications tailored to specific business needs.",
+            'ai': "Maurice helps businesses implement AI that actually works - chatbots like this one, automation agents, data analysis tools, and custom applications. He's Anthropic Claude certified and focuses on practical business value.\n\nWhat caught your interest about AI? Customer service, task automation, data analysis, or another use case?",
             
-            'consulting': "Maurice's consulting combines technical expertise with business strategy. He helps identify opportunities, create roadmaps, and solve complex technical challenges.",
+            'consulting': "Maurice's Tech Chat service combines deep technical expertise with business strategy. You get 2 monthly calls for planning, problem-solving, and implementation guidance, plus a free initial consultation.\n\nWhat's the main challenge you're trying to solve? Technical roadmap, system architecture, or implementation strategy?",
             
-            'web': "Maurice provides comprehensive web development including website creation, fixes, hosting, migration, and modern web applications using the latest technologies."
+            'web': "Maurice provides full-stack web development including modern websites, web applications, hosting, migrations, and custom functionality. He's worked on everything from small business sites to enterprise applications.\n\nAre you starting from scratch, updating an existing site, or looking to add specific functionality?"
         };
 
         // Find matching response
@@ -664,7 +697,7 @@ When answering questions:
             }
         }
 
-        return "I'd be happy to help you learn more about Maurice! You can ask about his experience, services, pricing, or expertise in areas like automation, AI, web development, and consulting. For detailed discussions, contact Maurice directly at mauricerashad@gmail.com.";
+        return "I'd love to help you learn more about Maurice and his technology consulting services! You can ask about his experience, services, pricing, or specific expertise in areas like automation, AI, web development, cloud computing, and cybersecurity.\n\nWhat brought you to Maurice's website today? Are you working on a specific technology project or challenge I can help you with?";
     }
 }
 

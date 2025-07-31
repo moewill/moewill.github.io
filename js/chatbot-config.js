@@ -22,7 +22,19 @@ const CHATBOT_CONFIG = {
         ENABLED: true,
         RATE: 0.9,
         PITCH: 1.0,
-        VOLUME: 0.8
+        VOLUME: 0.8,
+        // Deepgram voice model for more human-like speech
+        DEEPGRAM_MODEL: 'aura-asteria-en', // Natural, conversational female voice
+        // Alternative options: 'aura-luna-en' (warm female), 'aura-stella-en' (friendly female)
+        // 'aura-athena-en' (professional female), 'aura-hera-en' (mature female)
+        DEEPGRAM_SETTINGS: {
+            model: 'nova-2',
+            language: 'en-US',
+            smart_format: true,
+            punctuate: true,
+            utterance_end_ms: 1000,
+            vad_turnoff: 500
+        }
     }
 };
 
