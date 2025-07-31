@@ -737,13 +737,121 @@ class CompanyLogos {
     }
 }
 
+// Featured Projects Display System
+class FeaturedProjects {
+    constructor() {
+        this.projects = [];
+        this.container = document.getElementById('featured-projects-grid');
+        this.loading = document.getElementById('featured-loading');
+        this.init();
+    }
+
+    async init() {
+        try {
+            await this.loadProjects();
+            this.renderProjects();
+        } catch (error) {
+            console.error('Failed to load featured projects:', error);
+            this.showError();
+        } finally {
+            this.hideLoading();
+        }
+    }
+
+    async loadProjects() {
+        const response = await fetch('./portfolio/projects.json');
+        if (!response.ok) {
+            throw new Error('Failed to load projects data');
+        }
+        this.projects = await response.json();
+    }
+
+    renderProjects() {
+        if (!this.container) return;
+
+        this.container.innerHTML = '';
+
+        this.projects.forEach(project => {
+            const card = this.createProjectCard(project);
+            this.container.appendChild(card);
+        });
+
+        this.container.classList.remove('hidden');
+    }
+
+    createProjectCard(project) {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 cursor-pointer';
+
+        const tagsHTML = project.tags.map(tag => 
+            `<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">${tag}</span>`
+        ).join('');
+
+        // Handle job board special case - direct link instead of modal
+        const isJobBoard = project.actionButton.isJobBoard;
+        const clickAction = isJobBoard ? 
+            `window.open('${project.actionButton.url}', '_self')` : 
+            `window.open('/portfolio/', '_self')`;
+
+        card.innerHTML = `
+            <div class="flex items-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br ${project.iconGradient} rounded-full flex items-center justify-center mr-4">
+                    <i class="${project.icon} text-white text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">${project.title}</h3>
+                    <p class="text-gray-600">${project.subtitle}</p>
+                </div>
+            </div>
+            <p class="text-gray-700 mb-6">${project.description}</p>
+            <div class="flex flex-wrap gap-2 mb-6">
+                ${tagsHTML}
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="text-sm text-gray-500">
+                    <i class="${project.statusIcon} mr-1"></i>${project.status}
+                </div>
+                <div class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors inline-flex items-center">
+                    <i class="fas fa-eye mr-2"></i>View Details
+                </div>
+            </div>
+        `;
+
+        card.addEventListener('click', () => {
+            window.open('/portfolio/', '_self');
+        });
+
+        return card;
+    }
+
+    showError() {
+        if (this.container) {
+            this.container.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <div class="text-gray-500">
+                        <i class="fas fa-exclamation-triangle text-4xl mb-4"></i>
+                        <p>Unable to load projects. Please try again later.</p>
+                    </div>
+                </div>
+            `;
+            this.container.classList.remove('hidden');
+        }
+    }
+
+    hideLoading() {
+        if (this.loading) {
+            this.loading.classList.add('hidden');
+        }
+    }
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Maurice Rashad Tech Services - Site Loaded');
     console.log('Brand Kit:', BRAND_KIT);
     
-    // Initialize Theme Manager
-    new ThemeManager();
+    // Initialize Featured Projects
+    new FeaturedProjects();
     
     // Initialize LinkedIn Recommendations Carousel
     new LinkedInRecommendations();
