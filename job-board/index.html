@@ -77,7 +77,7 @@
                         <a href="/#about" class="text-gray-700 hover:text-primary transition-colors duration-300">About</a>
                         <a href="/job-board/" class="text-primary font-medium">Job Board</a>
                         <a href="/#contact" class="text-gray-700 hover:text-primary transition-colors duration-300">Contact</a>
-                        <a href="/#contact" class="cta-button text-white px-6 py-2 rounded-full text-sm font-medium">Get Started</a>
+                        <a href="/#contact" class="cta-button text-white px-4 sm:px-6 py-2 rounded-full text-sm font-medium">Get Started</a>
                     </div>
                 </div>
                 <div class="md:hidden">
@@ -99,7 +99,7 @@
                 <a href="/#about" class="block text-gray-700 hover:text-primary transition-colors duration-300 py-2">About</a>
                 <a href="/job-board/" class="block text-primary font-medium py-2">Job Board</a>
                 <a href="/#contact" class="block text-gray-700 hover:text-primary transition-colors duration-300 py-2">Contact</a>
-                <a href="/#contact" class="block cta-button text-white px-6 py-3 rounded-full text-sm font-medium text-center mt-4">Get Started</a>
+                <a href="/#contact" class="block cta-button text-white px-4 sm:px-6 py-3 rounded-full text-sm font-medium text-center mt-4">Get Started</a>
             </div>
         </div>
     </nav>
@@ -152,7 +152,7 @@
             </div>
 
             <!-- Jobs Container -->
-            <div id="jobs-container" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div id="jobs-container" class="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 <!-- Job cards will be dynamically inserted here -->
             </div>
         </div>
@@ -299,7 +299,7 @@
                 const cardStyles = this.getJobAgeStyles(job.ageCategory);
                 const textStyles = this.getJobAgeTextStyles(job.ageCategory);
                 
-                card.className = `border-2 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 ${cardStyles}`;
+                card.className = `border-2 rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 ${cardStyles}`;
                 
                 // Build job fields HTML with proper structure
                 const fieldsHTML = `

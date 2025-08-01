@@ -67,6 +67,12 @@
             max-height: 90vh;
             overflow-y: auto;
         }
+        @media (max-width: 640px) {
+            .modal-content {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+            }
+        }
         .project-card {
             transition: all 0.3s ease;
         }
@@ -90,7 +96,7 @@
                         <a href="/#about" class="text-gray-700 hover:text-primary transition-colors duration-300">About</a>
                         <a href="/portfolio/" class="text-primary font-medium">Portfolio</a>
                         <a href="/#contact" class="text-gray-700 hover:text-primary transition-colors duration-300">Contact</a>
-                        <a href="/#contact" class="cta-button text-white px-6 py-2 rounded-full text-sm font-medium">Get Started</a>
+                        <a href="/#contact" class="cta-button text-white px-4 sm:px-6 py-2 rounded-full text-sm font-medium">Get Started</a>
                     </div>
                 </div>
                 <div class="md:hidden">
@@ -112,7 +118,7 @@
                 <a href="/#about" class="block text-gray-700 hover:text-primary transition-colors duration-300 py-2">About</a>
                 <a href="/portfolio/" class="block text-primary font-medium py-2">Portfolio</a>
                 <a href="/#contact" class="block text-gray-700 hover:text-primary transition-colors duration-300 py-2">Contact</a>
-                <a href="/#contact" class="block cta-button text-white px-6 py-3 rounded-full text-sm font-medium text-center mt-4">Get Started</a>
+                <a href="/#contact" class="block cta-button text-white px-4 sm:px-6 py-3 rounded-full text-sm font-medium text-center mt-4">Get Started</a>
             </div>
         </div>
     </nav>
@@ -153,7 +159,7 @@
             </div>
 
             <!-- Projects Grid -->
-            <div id="projects-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-8 hidden">
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 hidden">
                 <!-- Project cards will be dynamically inserted here -->
             </div>
         </div>
@@ -321,7 +327,7 @@
                         <p class="text-gray-700 text-lg leading-relaxed">${project.modalContent.detailedDescription}</p>
                     </div>
 
-                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
                         <div>
                             <h4 class="text-lg font-semibold text-gray-900 mb-4">Key Features</h4>
                             <ul class="space-y-3">
@@ -345,10 +351,10 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap gap-4 pt-6 border-t border-gray-200">
+                    <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
                         <a href="${project.actionButton.url}" 
                            target="${project.actionButton.target || '_blank'}"
-                           class="bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors inline-flex items-center">
+                           class="bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors inline-flex items-center justify-center">
                             <i class="${project.actionButton.icon} mr-2"></i>${project.actionButton.text}
                         </a>
                         <button onclick="portfolio.closeProjectModal()" 
