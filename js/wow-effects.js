@@ -22,62 +22,10 @@ class WowEffects {
         console.log('🚀 WOW Effects initialized! Site is now AWESOME!');
     }
 
-    // 1. Particle System Background
+    // 1. Luxury Background Effects (No Particles)
     createParticleSystem() {
-        const canvas = document.createElement('canvas');
-        canvas.id = 'particle-canvas';
-        canvas.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.6;
-        `;
-        document.body.appendChild(canvas);
-
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Create particles
-        for (let i = 0; i < 100; i++) {
-            this.particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 3 + 1,
-                color: `hsl(${180 + Math.random() * 60}, 70%, 60%)`
-            });
-        }
-
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            this.particles.forEach(particle => {
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-
-                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fillStyle = particle.color;
-                ctx.fill();
-            });
-
-            requestAnimationFrame(animate);
-        };
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+        // Removed particle system for cleaner luxury aesthetic
+        console.log('✨ Luxury background initialized - clean and minimal');
     }
 
     // 2. Sound Effects System
