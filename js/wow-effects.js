@@ -224,33 +224,10 @@ class WowEffects {
         });
     }
 
-    // 7. Interactive Cursor Effects
+    // 7. Interactive Cursor Effects (Disabled for Apple-style experience)
     initCursorEffects() {
-        const cursor = document.createElement('div');
-        cursor.style.cssText = `
-            position: fixed; width: 20px; height: 20px; border-radius: 50%;
-            background: radial-gradient(circle, #0EA5E9, transparent);
-            pointer-events: none; z-index: 9999; mix-blend-mode: difference;
-            transition: transform 0.1s ease;
-        `;
-        document.body.appendChild(cursor);
-
-        let mouseX = 0, mouseY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = mouseX - 10 + 'px';
-            cursor.style.top = mouseY - 10 + 'px';
-        });
-
-        document.addEventListener('mousedown', () => {
-            cursor.style.transform = 'scale(1.5)';
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.style.transform = 'scale(1)';
-        });
+        // Disabled custom cursor effects for cleaner Apple-style experience
+        console.log('✨ Cursor effects disabled for Apple-style clean experience');
     }
 
     // 8. Notification System
