@@ -1,0 +1,189 @@
+{
+  "assessmentFramework": {
+    "categories": [
+      {
+        "id": "security",
+        "name": "Security & Compliance",
+        "weight": 30,
+        "questions": [
+          {
+            "id": "sec_001",
+            "question": "Do you have documented security policies and procedures?",
+            "type": "boolean",
+            "weight": 5,
+            "category": "documentation"
+          },
+          {
+            "id": "sec_002", 
+            "question": "Are you currently SOC 2 compliant or working towards certification?",
+            "type": "multiple_choice",
+            "options": ["Compliant", "In progress", "Planning", "Not applicable"],
+            "weight": 8,
+            "category": "compliance"
+          },
+          {
+            "id": "sec_003",
+            "question": "How do you currently manage access controls and user permissions?",
+            "type": "multiple_choice", 
+            "options": ["Automated IAM", "Manual processes", "Mix of both", "No formal process"],
+            "weight": 7,
+            "category": "access_control"
+          },
+          {
+            "id": "sec_004",
+            "question": "Do you have incident response procedures in place?",
+            "type": "boolean",
+            "weight": 6,
+            "category": "incident_response"
+          }
+        ]
+      },
+      {
+        "id": "infrastructure",
+        "name": "Infrastructure & Architecture",
+        "weight": 25,
+        "questions": [
+          {
+            "id": "inf_001",
+            "question": "What percentage of your infrastructure is cloud-based?",
+            "type": "multiple_choice",
+            "options": ["0-25%", "26-50%", "51-75%", "76-100%"],
+            "weight": 6,
+            "category": "cloud_adoption"
+          },
+          {
+            "id": "inf_002",
+            "question": "Do you use Infrastructure as Code (IaC) tools?",
+            "type": "multiple_choice",
+            "options": ["Extensively", "Some automation", "Manual setup", "Planning to implement"],
+            "weight": 8,
+            "category": "automation"
+          },
+          {
+            "id": "inf_003",
+            "question": "How do you handle environment consistency (dev/staging/prod)?",
+            "type": "multiple_choice",
+            "options": ["Fully automated", "Partially automated", "Manual processes", "Inconsistent environments"],
+            "weight": 7,
+            "category": "consistency"
+          }
+        ]
+      },
+      {
+        "id": "deployment",
+        "name": "Deployment & CI/CD",
+        "weight": 20,
+        "questions": [
+          {
+            "id": "dep_001",
+            "question": "How often do you deploy to production?",
+            "type": "multiple_choice",
+            "options": ["Multiple times per day", "Daily", "Weekly", "Monthly or less"],
+            "weight": 6,
+            "category": "frequency"
+          },
+          {
+            "id": "dep_002",
+            "question": "What is your current deployment process?",
+            "type": "multiple_choice",
+            "options": ["Fully automated CI/CD", "Semi-automated", "Manual with scripts", "Completely manual"],
+            "weight": 8,
+            "category": "automation"
+          },
+          {
+            "id": "dep_003",
+            "question": "Do you have automated testing in your deployment pipeline?",
+            "type": "multiple_choice",
+            "options": ["Comprehensive", "Basic tests", "Manual testing only", "No testing"],
+            "weight": 7,
+            "category": "testing"
+          }
+        ]
+      },
+      {
+        "id": "monitoring",
+        "name": "Monitoring & Observability",
+        "weight": 15,
+        "questions": [
+          {
+            "id": "mon_001",
+            "question": "How quickly can you identify and resolve production issues?",
+            "type": "multiple_choice",
+            "options": ["< 15 minutes", "15-60 minutes", "1-4 hours", "> 4 hours"],
+            "weight": 8,
+            "category": "response_time"
+          },
+          {
+            "id": "mon_002",
+            "question": "Do you have comprehensive logging and monitoring?",
+            "type": "multiple_choice",
+            "options": ["Advanced observability", "Basic monitoring", "Limited logging", "Minimal visibility"],
+            "weight": 7,
+            "category": "visibility"
+          }
+        ]
+      },
+      {
+        "id": "team",
+        "name": "Team & Processes",
+        "weight": 10,
+        "questions": [
+          {
+            "id": "team_001",
+            "question": "What is your team's DevSecOps maturity level?",
+            "type": "multiple_choice",
+            "options": ["Advanced", "Intermediate", "Beginner", "No DevSecOps practices"],
+            "weight": 6,
+            "category": "maturity"
+          },
+          {
+            "id": "team_002",
+            "question": "How much time does your team spend on manual, repetitive tasks?",
+            "type": "multiple_choice",
+            "options": ["< 10%", "10-25%", "25-50%", "> 50%"],
+            "weight": 7,
+            "category": "efficiency"
+          }
+        ]
+      }
+    ],
+    "scoring": {
+      "excellent": {"min": 85, "max": 100, "description": "Advanced DevSecOps practices"},
+      "good": {"min": 70, "max": 84, "description": "Solid foundation with room for optimization"},
+      "needs_improvement": {"min": 50, "max": 69, "description": "Moderate gaps requiring attention"},
+      "critical": {"min": 0, "max": 49, "description": "Significant risks and improvement opportunities"}
+    },
+    "recommendations": {
+      "security": [
+        "Implement comprehensive security policy documentation",
+        "Establish SOC 2 compliance program",
+        "Automate access control management",
+        "Develop incident response procedures"
+      ],
+      "infrastructure": [
+        "Migrate to cloud-native architecture", 
+        "Implement Infrastructure as Code",
+        "Establish environment consistency",
+        "Automate infrastructure provisioning"
+      ],
+      "deployment": [
+        "Implement automated CI/CD pipelines",
+        "Increase deployment frequency",
+        "Add comprehensive automated testing",
+        "Establish deployment best practices"
+      ],
+      "monitoring": [
+        "Implement advanced observability tools",
+        "Establish comprehensive logging",
+        "Create automated alerting",
+        "Improve incident response time"
+      ],
+      "team": [
+        "Provide DevSecOps training",
+        "Establish automation practices",
+        "Implement self-service capabilities",
+        "Create centers of excellence"
+      ]
+    }
+  }
+}
