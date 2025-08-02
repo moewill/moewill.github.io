@@ -3,321 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maurice Rashad - Elite Technology Solutions</title>
+    <title>Maurice Rashad - Think Different. Build Better.</title>
     
-    <!-- Luxury Theme CSS -->
+    <!-- Apple + Luxury Theme CSS -->
     <link href="css/luxury-theme.css" rel="stylesheet">
+    <link href="css/apple-style.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Custom luxury enhancements */
-        .hero-section {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(192, 192, 192, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 40% 90%, rgba(37, 99, 235, 0.05) 0%, transparent 40%);
-            pointer-events: none;
-        }
-        
-        .floating-card {
-            transform: translateY(0);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        
-        .floating-card:hover {
-            transform: translateY(-12px) rotateX(5deg);
-        }
-        
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-metallic);
-            border-radius: var(--radius-2xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            margin: 0 auto var(--spacing-lg);
-            box-shadow: var(--shadow-large);
-            transition: all var(--transition-normal);
-        }
-        
-        .service-icon:hover {
-            transform: scale(1.1) rotateY(10deg);
-            box-shadow: var(--shadow-extra-large);
-        }
-        
-        .stats-counter {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-        
-        .testimonial-card {
-            background: var(--white-pure);
-            border-radius: var(--radius-2xl);
-            padding: var(--spacing-2xl);
-            box-shadow: var(--shadow-medium);
-            position: relative;
-            overflow: hidden;
-            transition: all var(--transition-normal);
-        }
-        
-        .testimonial-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-metallic);
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-extra-large);
-        }
-        
-        .luxury-input {
-            background: var(--white-pure);
-            border: 2px solid var(--gray-200);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
-            font-size: 1rem;
-            transition: all var(--transition-normal);
-            width: 100%;
-        }
-        
-        .luxury-input:focus {
-            outline: none;
-            border-color: var(--gold-medium);
-            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
-            transform: translateY(-2px);
-        }
-    </style>
 </head>
 <body>
     
-    <!-- Luxury Navigation -->
-    <nav class="nav-luxury fixed top-0 w-full z-50">
-        <div class="container">
-            <div class="flex justify-between items-center py-6">
-                <div class="display-2" style="font-size: 2rem; background: var(--gradient-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    Maurice.
-                </div>
-                <div class="hidden md:flex gap-2xl">
-                    <a href="#services" class="nav-item">Services</a>
-                    <a href="#about" class="nav-item">About</a>
-                    <a href="#portfolio" class="nav-item">Portfolio</a>
-                    <a href="#contact" class="nav-item">Contact</a>
-                </div>
-                <a href="#contact" class="btn btn-gold">
-                    <i class="fas fa-calendar-check"></i>
-                    Book Consultation
-                </a>
-                <button class="md:hidden" id="mobile-menu-toggle">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
+    <!-- Apple-Inspired Navigation -->
+    <nav class="apple-nav">
+        <div class="apple-nav-container">
+            <a href="#" class="apple-logo">Maurice</a>
+            <ul class="apple-nav-menu">
+                <li><a href="#services" class="apple-nav-item">Services</a></li>
+                <li><a href="#about" class="apple-nav-item">About</a></li>
+                <li><a href="#portfolio" class="apple-nav-item">Portfolio</a></li>
+                <li><a href="#contact" class="apple-nav-item">Contact</a></li>
+            </ul>
+            <a href="#contact" class="apple-nav-cta">Book Consultation</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section flex items-center">
-        <div class="container">
-            <div class="grid grid-2 items-center gap-4xl">
-                <div class="animate-fade-in-left">
-                    <div class="body-small" style="color: var(--gold-medium); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-lg);">
-                        Elite Technology Consulting
-                    </div>
-                    <h1 class="display-1 mb-xl">
-                        Transform Your Business With 
-                        <span style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Premium</span> 
-                        Tech Solutions
-                    </h1>
-                    <p class="body-large mb-2xl" style="max-width: 600px;">
-                        Leveraging 10+ years of enterprise expertise to deliver world-class technology solutions that drive exceptional results and competitive advantage.
-                    </p>
-                    <div class="flex gap-lg">
-                        <a href="#contact" class="btn btn-primary">
-                            <i class="fas fa-rocket"></i>
-                            Start Your Transformation
-                        </a>
-                        <a href="#services" class="btn btn-ghost">
-                            <i class="fas fa-play"></i>
-                            Explore Services
-                        </a>
-                    </div>
-                </div>
-                <div class="animate-fade-in-right">
-                    <div class="card-premium p-2xl text-center">
-                        <div class="service-icon" style="background: var(--gradient-gold);">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <h3 class="heading-2 mb-lg">Premium Excellence</h3>
-                        <p class="body-normal mb-xl">
-                            Join 50+ businesses that have achieved extraordinary results through our elite consulting services.
-                        </p>
-                        <div class="grid grid-3 gap-lg">
-                            <div>
-                                <div class="stats-counter">99%</div>
-                                <div class="body-small">Success Rate</div>
-                            </div>
-                            <div>
-                                <div class="stats-counter">24/7</div>
-                                <div class="body-small">Support</div>
-                            </div>
-                            <div>
-                                <div class="stats-counter">10+</div>
-                                <div class="body-small">Years Exp</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Apple-Style Hero Section -->
+    <section class="apple-hero">
+        <div class="apple-hero-content apple-reveal">
+            <div class="apple-hero-eyebrow">Elite Technology Solutions</div>
+            <h1 class="apple-display-xl apple-hero-headline apple-text-reveal">
+                Think Different.
+                <br>Build Better.
+            </h1>
+            <p class="apple-subhead apple-hero-subhead">
+                Transforming businesses through innovative technology solutions that deliver exceptional results and sustainable competitive advantage.
+            </p>
+            <div class="apple-hero-actions">
+                <a href="#contact" class="apple-btn apple-btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Start Your Journey
+                </a>
+                <a href="#services" class="apple-btn apple-btn-secondary">
+                    <i class="fas fa-play"></i>
+                    Explore Services
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-5xl">
-        <div class="container">
-            <div class="text-center mb-4xl">
-                <div class="body-small" style="color: var(--gold-medium); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-lg);">
-                    Elite Services
-                </div>
-                <h2 class="display-2 mb-xl">
-                    Premium Solutions That 
-                    <span style="background: var(--gradient-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Deliver Results</span>
-                </h2>
-                <p class="body-large" style="max-width: 800px; margin: 0 auto; color: var(--gray-600);">
-                    Comprehensive technology consulting services designed for businesses that demand excellence and measurable outcomes.
-                </p>
-            </div>
-            
-            <div class="grid grid-3 gap-2xl">
-                <!-- Tech Chat Service -->
-                <div class="card-premium p-2xl text-center floating-card">
-                    <div class="service-icon">
+    <!-- Apple-Style Services Section -->
+    <section id="services" class="apple-section apple-section-centered">
+        <div class="apple-section-header apple-reveal">
+            <div class="apple-hero-eyebrow">Services</div>
+            <h2 class="apple-display-lg apple-mb-lg">
+                Solutions that 
+                <span style="background: linear-gradient(135deg, #007AFF, #F6E05E); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">inspire</span>
+            </h2>
+            <p class="apple-subhead apple-max-w-2xl apple-mx-auto">
+                Comprehensive technology consulting designed for businesses that demand excellence and measurable outcomes.
+            </p>
+        </div>
+        
+        <div class="apple-grid-3 stagger-parent">
+            <!-- Tech Chat Service -->
+            <div class="apple-card apple-card-premium">
+                <div class="apple-card-content apple-text-center">
+                    <div class="apple-feature-icon apple-mb-lg">
                         <i class="fas fa-comments"></i>
                     </div>
-                    <h3 class="heading-2 mb-lg">Tech Chat Elite</h3>
-                    <p class="body-normal mb-xl" style="color: var(--gray-600);">
+                    <h3 class="apple-headline apple-mb-md">Tech Chat Elite</h3>
+                    <p class="apple-body apple-mb-xl">
                         Strategic technology guidance from a certified expert. Get answers to complex challenges and implementation roadmaps.
                     </p>
-                    <div class="mb-xl">
-                        <div class="stats-counter" style="font-size: 2.5rem;">$100</div>
-                        <div class="body-small" style="color: var(--gray-500);">per month • 2 hours included</div>
+                    <div class="apple-mb-xl">
+                        <div class="apple-counter" data-target="100" data-suffix="" style="font-size: 2.5rem; font-weight: 800; color: var(--apple-blue);">$100</div>
+                        <div class="apple-caption">per month • 2 hours included</div>
                     </div>
-                    <ul class="text-left mb-2xl" style="list-style: none; padding: 0;">
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-check" style="color: var(--accent-emerald);"></i>
-                            <span class="body-normal">Expert technical guidance</span>
-                        </li>
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-check" style="color: var(--accent-emerald);"></i>
-                            <span class="body-normal">Implementation planning</span>
-                        </li>
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-check" style="color: var(--accent-emerald);"></i>
-                            <span class="body-normal">Priority support access</span>
-                        </li>
-                        <li class="flex items-center gap-sm">
-                            <i class="fas fa-check" style="color: var(--accent-emerald);"></i>
-                            <span class="body-normal">Free 30-min consultation</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary w-full">
+                    <div class="apple-mb-2xl">
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-check" style="color: #10B981; margin-right: 8px;"></i>
+                            <span class="apple-body">Expert technical guidance</span>
+                        </div>
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-check" style="color: #10B981; margin-right: 8px;"></i>
+                            <span class="apple-body">Implementation planning</span>
+                        </div>
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-check" style="color: #10B981; margin-right: 8px;"></i>
+                            <span class="apple-body">Priority support access</span>
+                        </div>
+                        <div class="apple-flex apple-items-center">
+                            <i class="fas fa-check" style="color: #10B981; margin-right: 8px;"></i>
+                            <span class="apple-body">Free 30-min consultation</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="apple-btn apple-btn-primary apple-w-full">
                         Get Started
                     </a>
                 </div>
+            </div>
 
-                <!-- Done For You Services -->
-                <div class="card-gold p-2xl text-center floating-card">
-                    <div class="service-icon" style="background: var(--gradient-gold);">
+            <!-- Done For You Services -->
+            <div class="apple-card apple-card-premium" style="background: linear-gradient(135deg, #FFF8DC 0%, #FFFFFF 100%); border: 1px solid #F6E05E;">
+                <div class="apple-card-content apple-text-center">
+                    <div class="apple-feature-icon apple-mb-lg" style="background: linear-gradient(135deg, #F6E05E, #D97706);">
                         <i class="fas fa-magic"></i>
                     </div>
-                    <h3 class="heading-2 mb-lg">Elite Implementation</h3>
-                    <p class="body-normal mb-xl" style="color: var(--gray-600);">
+                    <h3 class="apple-headline apple-mb-md">Elite Implementation</h3>
+                    <p class="apple-body apple-mb-xl">
                         Complete end-to-end development and implementation. From concept to deployment, we handle everything.
                     </p>
-                    <div class="mb-xl">
-                        <div class="stats-counter" style="font-size: 2.5rem;">$150</div>
-                        <div class="body-small" style="color: var(--gray-500);">per hour • Premium tier</div>
+                    <div class="apple-mb-xl">
+                        <div class="apple-counter" data-target="150" data-suffix="" style="font-size: 2.5rem; font-weight: 800; color: #D97706;">$150</div>
+                        <div class="apple-caption">per hour • Premium tier</div>
                     </div>
-                    <ul class="text-left mb-2xl" style="list-style: none; padding: 0;">
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-crown" style="color: var(--gold-medium);"></i>
-                            <span class="body-normal">Full-stack development</span>
-                        </li>
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-crown" style="color: var(--gold-medium);"></i>
-                            <span class="body-normal">AI & automation systems</span>
-                        </li>
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-crown" style="color: var(--gold-medium);"></i>
-                            <span class="body-normal">Cloud infrastructure</span>
-                        </li>
-                        <li class="flex items-center gap-sm">
-                            <i class="fas fa-crown" style="color: var(--gold-medium);"></i>
-                            <span class="body-normal">White-glove service</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="btn btn-gold w-full">
+                    <div class="apple-mb-2xl">
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-crown" style="color: #F6E05E; margin-right: 8px;"></i>
+                            <span class="apple-body">Full-stack development</span>
+                        </div>
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-crown" style="color: #F6E05E; margin-right: 8px;"></i>
+                            <span class="apple-body">AI & automation systems</span>
+                        </div>
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-crown" style="color: #F6E05E; margin-right: 8px;"></i>
+                            <span class="apple-body">Cloud infrastructure</span>
+                        </div>
+                        <div class="apple-flex apple-items-center">
+                            <i class="fas fa-crown" style="color: #F6E05E; margin-right: 8px;"></i>
+                            <span class="apple-body">White-glove service</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="apple-btn apple-btn-primary apple-w-full" style="background: linear-gradient(135deg, #F6E05E, #D97706);">
                         Start Project
                     </a>
                 </div>
+            </div>
 
-                <!-- Workshops -->
-                <div class="card-silver p-2xl text-center floating-card">
-                    <div class="service-icon" style="background: var(--gradient-silver);">
+            <!-- Workshops -->
+            <div class="apple-card apple-card-premium" style="background: linear-gradient(135deg, #E5E5E7 0%, #FFFFFF 100%); border: 1px solid #C0C0C0;">
+                <div class="apple-card-content apple-text-center">
+                    <div class="apple-feature-icon apple-mb-lg" style="background: linear-gradient(135deg, #C0C0C0, #808080);">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 class="heading-2 mb-lg">Master Classes</h3>
-                    <p class="body-normal mb-xl" style="color: var(--gray-600);">
+                    <h3 class="apple-headline apple-mb-md">Master Classes</h3>
+                    <p class="apple-body apple-mb-xl">
                         Intensive workshops on cutting-edge technologies. Learn from industry expertise and hands-on experience.
                     </p>
-                    <div class="mb-xl">
-                        <div class="stats-counter" style="font-size: 2.5rem;">$199</div>
-                        <div class="body-small" style="color: var(--gray-500);">per workshop • Premium content</div>
+                    <div class="apple-mb-xl">
+                        <div class="apple-counter" data-target="199" data-suffix="" style="font-size: 2.5rem; font-weight: 800; color: #808080;">$199</div>
+                        <div class="apple-caption">per workshop • Premium content</div>
                     </div>
-                    <ul class="text-left mb-2xl" style="list-style: none; padding: 0;">
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-star" style="color: var(--silver-medium);"></i>
-                            <span class="body-normal">Advanced cybersecurity</span>
-                        </li>
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-star" style="color: var(--silver-medium);"></i>
-                            <span class="body-normal">AI implementation</span>
-                        </li>
-                        <li class="flex items-center gap-sm mb-sm">
-                            <i class="fas fa-star" style="color: var(--silver-medium);"></i>
-                            <span class="body-normal">Cloud architecture</span>
-                        </li>
-                        <li class="flex items-center gap-sm">
-                            <i class="fas fa-star" style="color: var(--silver-medium);"></i>
-                            <span class="body-normal">DevOps mastery</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="btn btn-silver w-full">
+                    <div class="apple-mb-2xl">
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-star" style="color: #C0C0C0; margin-right: 8px;"></i>
+                            <span class="apple-body">Advanced cybersecurity</span>
+                        </div>
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-star" style="color: #C0C0C0; margin-right: 8px;"></i>
+                            <span class="apple-body">AI implementation</span>
+                        </div>
+                        <div class="apple-flex apple-items-center apple-mb-sm">
+                            <i class="fas fa-star" style="color: #C0C0C0; margin-right: 8px;"></i>
+                            <span class="apple-body">Cloud architecture</span>
+                        </div>
+                        <div class="apple-flex apple-items-center">
+                            <i class="fas fa-star" style="color: #C0C0C0; margin-right: 8px;"></i>
+                            <span class="apple-body">DevOps mastery</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="apple-btn apple-btn-primary apple-w-full" style="background: linear-gradient(135deg, #C0C0C0, #808080);">
                         Join Workshop
                     </a>
                 </div>
@@ -325,89 +181,100 @@
         </div>
     </section>
 
-    <div class="section-divider-gold"></div>
-
-    <!-- About Section -->
-    <section id="about" class="py-5xl">
-        <div class="container">
-            <div class="grid grid-2 items-center gap-4xl">
-                <div class="animate-fade-in-left">
-                    <div class="body-small" style="color: var(--gold-medium); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-lg);">
-                        Meet Your Expert
+    <!-- Apple Product Showcase -->
+    <section class="apple-showcase">
+        <div class="apple-showcase-bg"></div>
+        <div class="apple-showcase-content apple-reveal">
+            <div class="apple-hero-eyebrow" style="color: var(--apple-blue);">Proven Excellence</div>
+            <h2 class="apple-display-lg apple-mb-lg" style="color: white;">
+                Transforming businesses with 
+                <span style="background: linear-gradient(135deg, #F6E05E, #007AFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">innovation</span>
+            </h2>
+            <p class="apple-subhead apple-mb-2xl" style="color: var(--apple-gray-3);">
+                Real-world results that speak for themselves. Enterprise-grade solutions that drive measurable success.
+            </p>
+            
+            <div class="apple-feature-grid stagger-parent">
+                <div class="apple-feature">
+                    <div class="apple-feature-icon">
+                        <i class="fas fa-building"></i>
                     </div>
-                    <h2 class="display-2 mb-xl">
-                        <span style="background: var(--gradient-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Maurice Rashad</span>
-                        <br>Elite Technology Architect
-                    </h2>
-                    <p class="body-large mb-lg" style="color: var(--gray-600);">
-                        A decade of enterprise excellence, transforming businesses through strategic technology implementation and innovative solutions.
+                    <h3 class="apple-headline apple-mb-md" style="color: white;">Enterprise Infrastructure</h3>
+                    <p class="apple-body" style="color: var(--apple-gray-3);">
+                        40% efficiency improvement and 75% deployment time reduction for NTT Data through complete cloud transformation.
                     </p>
-                    <p class="body-normal mb-2xl" style="color: var(--gray-600);">
-                        Certified in AWS Solutions Architecture, Kubernetes Administration, and AI Systems. Maurice has led digital transformations for Fortune 500 companies and cutting-edge startups alike.
-                    </p>
-                    
-                    <div class="grid grid-2 gap-lg mb-2xl">
-                        <div class="text-center p-lg">
-                            <div class="stats-counter">50+</div>
-                            <div class="body-small" style="color: var(--gray-500);">Businesses Transformed</div>
-                        </div>
-                        <div class="text-center p-lg">
-                            <div class="stats-counter">$2M+</div>
-                            <div class="body-small" style="color: var(--gray-500);">Cost Savings Delivered</div>
-                        </div>
-                        <div class="text-center p-lg">
-                            <div class="stats-counter">40%</div>
-                            <div class="body-small" style="color: var(--gray-500);">Avg Efficiency Gain</div>
-                        </div>
-                        <div class="text-center p-lg">
-                            <div class="stats-counter">99%</div>
-                            <div class="body-small" style="color: var(--gray-500);">Client Satisfaction</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex gap-lg">
-                        <a href="#contact" class="btn btn-primary">
-                            <i class="fas fa-handshake"></i>
-                            Work Together
-                        </a>
-                        <a href="#portfolio" class="btn btn-ghost">
-                            <i class="fas fa-briefcase"></i>
-                            View Portfolio
-                        </a>
-                    </div>
                 </div>
                 
-                <div class="animate-fade-in-right">
-                    <div class="card-premium p-2xl">
-                        <h3 class="heading-2 mb-xl text-center">Why Choose Excellence?</h3>
-                        <div class="space-y-lg">
-                            <div class="flex gap-lg">
-                                <div class="service-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
-                                    <i class="fas fa-rocket"></i>
-                                </div>
-                                <div>
-                                    <h4 class="heading-2" style="font-size: 1.25rem; margin-bottom: var(--spacing-sm);">Results-Driven</h4>
-                                    <p class="body-normal" style="color: var(--gray-600);">Every solution is designed to deliver measurable business impact and ROI.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-lg">
-                                <div class="service-icon" style="width: 60px; height: 60px; font-size: 1.5rem; background: var(--gradient-gold);">
-                                    <i class="fas fa-brain"></i>
-                                </div>
-                                <div>
-                                    <h4 class="heading-2" style="font-size: 1.25rem; margin-bottom: var(--spacing-sm);">Innovation First</h4>
-                                    <p class="body-normal" style="color: var(--gray-600);">Cutting-edge technologies and methodologies to keep you ahead of competition.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-lg">
-                                <div class="service-icon" style="width: 60px; height: 60px; font-size: 1.5rem; background: var(--gradient-silver);">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="heading-2" style="font-size: 1.25rem; margin-bottom: var(--spacing-sm);">Enterprise Grade</h4>
-                                    <p class="body-normal" style="color: var(--gray-600);">Security, scalability, and reliability built into every solution.</p>
-                                </div>
-                            </div>
+                <div class="apple-feature">
+                    <div class="apple-feature-icon" style="background: linear-gradient(135deg, #F6E05E, #D97706);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="apple-headline apple-mb-md" style="color: white;">AI Chat Systems</h3>
+                    <p class="apple-body" style="color: var(--apple-gray-3);">
+                        Advanced conversational AI with voice capabilities, real-time transcription, and intelligent context management.
+                    </p>
+                </div>
+                
+                <div class="apple-feature">
+                    <div class="apple-feature-icon" style="background: linear-gradient(135deg, #C0C0C0, #808080);">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="apple-headline apple-mb-md" style="color: white;">Smart Applications</h3>
+                    <p class="apple-body" style="color: var(--apple-gray-3);">
+                        Intelligent job tracking with automated freshness detection and visual age indicators for optimized workflows.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Apple Style -->
+    <section id="about" class="apple-section">
+        <div class="apple-grid-2 apple-items-center apple-gap-xl">
+            <div class="apple-reveal">
+                <div class="apple-hero-eyebrow apple-mb-lg">Meet Your Expert</div>
+                <h2 class="apple-display-lg apple-mb-lg">
+                    <span style="background: linear-gradient(135deg, #007AFF, #C0C0C0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Maurice Rashad</span>
+                </h2>
+                <h3 class="apple-headline apple-mb-lg" style="color: var(--apple-gray-5);">Elite Technology Architect</h3>
+                <p class="apple-body-lg apple-mb-lg">
+                    A decade of enterprise excellence, transforming businesses through strategic technology implementation and innovative solutions.
+                </p>
+                <p class="apple-body apple-mb-2xl" style="color: var(--apple-gray-5);">
+                    Certified in AWS Solutions Architecture, Kubernetes Administration, and AI Systems. Maurice has led digital transformations for Fortune 500 companies and cutting-edge startups alike.
+                </p>
+                
+                <div class="apple-flex apple-gap-xl apple-mb-2xl">
+                    <a href="#contact" class="apple-btn apple-btn-primary">
+                        <i class="fas fa-handshake"></i>
+                        Work Together
+                    </a>
+                    <a href="#portfolio" class="apple-btn apple-btn-ghost">
+                        <i class="fas fa-briefcase"></i>
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+            
+            <div class="apple-reveal">
+                <div class="apple-card apple-card-premium apple-p-2xl">
+                    <h3 class="apple-headline apple-mb-xl apple-text-center">Excellence by Numbers</h3>
+                    <div class="apple-grid-2 apple-gap-lg apple-text-center">
+                        <div>
+                            <div class="apple-counter" data-target="50" data-suffix="+" style="font-size: 2.5rem; font-weight: 800; color: var(--apple-blue);">50+</div>
+                            <div class="apple-caption">Businesses Transformed</div>
+                        </div>
+                        <div>
+                            <div class="apple-counter" data-target="2" data-suffix="M+" style="font-size: 2.5rem; font-weight: 800; color: var(--apple-blue);">$2M+</div>
+                            <div class="apple-caption">Cost Savings Delivered</div>
+                        </div>
+                        <div>
+                            <div class="apple-counter" data-target="40" data-suffix="%" style="font-size: 2.5rem; font-weight: 800; color: var(--apple-blue);">40%</div>
+                            <div class="apple-caption">Avg Efficiency Gain</div>
+                        </div>
+                        <div>
+                            <div class="apple-counter" data-target="99" data-suffix="%" style="font-size: 2.5rem; font-weight: 800; color: var(--apple-blue);">99%</div>
+                            <div class="apple-caption">Client Satisfaction</div>
                         </div>
                     </div>
                 </div>
@@ -415,77 +282,77 @@
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-5xl" style="background: var(--gray-50);">
-        <div class="container">
-            <div class="text-center mb-4xl">
-                <div class="body-small" style="color: var(--gold-medium); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-lg);">
-                    Portfolio Showcase
-                </div>
-                <h2 class="display-2 mb-xl">
-                    Proven 
-                    <span style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Excellence</span>
-                </h2>
-                <p class="body-large" style="max-width: 800px; margin: 0 auto; color: var(--gray-600);">
-                    Real-world implementations that showcase enterprise-grade solutions and innovative technology applications.
-                </p>
-            </div>
-            
-            <div class="grid grid-3 gap-2xl">
-                <div class="card-premium p-2xl floating-card">
-                    <div class="service-icon" style="background: var(--gradient-metallic);">
+    <section id="portfolio" class="apple-section" style="background: var(--apple-gray-1);">
+        <div class="apple-section-header apple-section-centered apple-reveal">
+            <div class="apple-hero-eyebrow">Portfolio</div>
+            <h2 class="apple-display-lg apple-mb-lg">
+                Built for 
+                <span style="background: linear-gradient(135deg, #F6E05E, #007AFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">impact</span>
+            </h2>
+            <p class="apple-subhead apple-max-w-2xl apple-mx-auto">
+                Real-world implementations that showcase enterprise-grade solutions and innovative technology applications.
+            </p>
+        </div>
+        
+        <div class="apple-grid-3 stagger-parent">
+            <div class="apple-card">
+                <div class="apple-card-content apple-text-center">
+                    <div class="apple-feature-icon apple-mb-lg">
                         <i class="fas fa-building"></i>
                     </div>
-                    <h3 class="heading-2 mb-lg">Enterprise Infrastructure</h3>
-                    <p class="body-normal mb-xl" style="color: var(--gray-600);">
-                        Complete cloud transformation for NTT Data, achieving 40% efficiency improvement and 75% deployment time reduction.
+                    <h3 class="apple-headline apple-mb-md">Enterprise Infrastructure</h3>
+                    <p class="apple-body apple-mb-lg">
+                        Complete cloud transformation achieving 40% efficiency improvement and 75% deployment time reduction.
                     </p>
-                    <div class="flex gap-sm mb-lg flex-wrap">
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">AWS</span>
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">Kubernetes</span>
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">Terraform</span>
+                    <div class="apple-flex apple-gap-sm apple-mb-lg" style="flex-wrap: wrap; justify-content: center;">
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">AWS</span>
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Kubernetes</span>
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Terraform</span>
                     </div>
-                    <a href="/portfolio/" class="btn btn-ghost w-full">
+                    <a href="/portfolio/" class="apple-btn apple-btn-ghost apple-w-full">
                         <i class="fas fa-external-link-alt"></i>
                         View Details
                     </a>
                 </div>
+            </div>
 
-                <div class="card-premium p-2xl floating-card">
-                    <div class="service-icon" style="background: var(--gradient-gold);">
+            <div class="apple-card">
+                <div class="apple-card-content apple-text-center">
+                    <div class="apple-feature-icon apple-mb-lg" style="background: linear-gradient(135deg, #F6E05E, #D97706);">
                         <i class="fas fa-robot"></i>
                     </div>
-                    <h3 class="heading-2 mb-lg">AI Chat System</h3>
-                    <p class="body-normal mb-xl" style="color: var(--gray-600);">
-                        Advanced conversational AI with voice capabilities, real-time transcription, and intelligent context management.
+                    <h3 class="apple-headline apple-mb-md">AI Chat System</h3>
+                    <p class="apple-body apple-mb-lg">
+                        Advanced conversational AI with voice capabilities and intelligent context management.
                     </p>
-                    <div class="flex gap-sm mb-lg flex-wrap">
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">Claude AI</span>
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">Deepgram</span>
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">WebRTC</span>
+                    <div class="apple-flex apple-gap-sm apple-mb-lg" style="flex-wrap: wrap; justify-content: center;">
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Claude AI</span>
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Deepgram</span>
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">WebRTC</span>
                     </div>
-                    <a href="/portfolio/" class="btn btn-ghost w-full">
+                    <a href="/portfolio/" class="apple-btn apple-btn-ghost apple-w-full">
                         <i class="fas fa-external-link-alt"></i>
                         View Details
                     </a>
                 </div>
+            </div>
 
-                <div class="card-premium p-2xl floating-card">
-                    <div class="service-icon" style="background: var(--gradient-silver);">
+            <div class="apple-card">
+                <div class="apple-card-content apple-text-center">
+                    <div class="apple-feature-icon apple-mb-lg" style="background: linear-gradient(135deg, #C0C0C0, #808080);">
                         <i class="fas fa-briefcase"></i>
                     </div>
-                    <h3 class="heading-2 mb-lg">Smart Job Board</h3>
-                    <p class="body-normal mb-xl" style="color: var(--gray-600);">
-                        Intelligent job tracking application with age indicators and automated freshness detection for optimized job hunting.
+                    <h3 class="apple-headline apple-mb-md">Smart Job Board</h3>
+                    <p class="apple-body apple-mb-lg">
+                        Intelligent job tracking with automated freshness detection for optimized job hunting.
                     </p>
-                    <div class="flex gap-sm mb-lg flex-wrap">
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">JavaScript</span>
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">JSON</span>
-                        <span class="px-sm py-xs rounded-full" style="background: var(--gray-100); color: var(--gray-700); font-size: 0.75rem;">Responsive</span>
+                    <div class="apple-flex apple-gap-sm apple-mb-lg" style="flex-wrap: wrap; justify-content: center;">
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">JavaScript</span>
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">JSON</span>
+                        <span style="background: var(--apple-gray-2); color: var(--apple-gray-6); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Responsive</span>
                     </div>
-                    <a href="/job-board/" class="btn btn-ghost w-full">
+                    <a href="/job-board/" class="apple-btn apple-btn-ghost apple-w-full">
                         <i class="fas fa-external-link-alt"></i>
                         Launch App
                     </a>
@@ -495,36 +362,34 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-5xl" style="background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%); color: white;">
-        <div class="container">
-            <div class="text-center mb-4xl">
-                <div class="body-small" style="color: var(--gold-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-lg);">
-                    Ready to Transform?
-                </div>
-                <h2 class="display-2 mb-xl" style="color: white;">
-                    Start Your 
-                    <span style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Elite Journey</span>
-                </h2>
-                <p class="body-large" style="max-width: 800px; margin: 0 auto; color: var(--gray-300);">
-                    Let's discuss how we can leverage cutting-edge technology to accelerate your business growth and competitive advantage.
-                </p>
-            </div>
-            
-            <div class="grid grid-2 gap-4xl">
-                <div class="glass p-2xl">
-                    <h3 class="heading-2 mb-xl" style="color: white;">Get In Touch</h3>
-                    <form class="space-y-lg" id="luxury-contact-form">
-                        <div>
-                            <label class="body-normal" style="color: var(--gray-300); display: block; margin-bottom: var(--spacing-sm);">Full Name</label>
-                            <input type="text" name="name" required class="luxury-input" placeholder="Your name">
+    <section id="contact" class="apple-section" style="background: var(--apple-black); color: white;">
+        <div class="apple-section-header apple-section-centered apple-reveal">
+            <div class="apple-hero-eyebrow" style="color: var(--apple-blue);">Ready to Transform?</div>
+            <h2 class="apple-display-lg apple-mb-lg" style="color: white;">
+                Start your 
+                <span style="background: linear-gradient(135deg, #F6E05E, #007AFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">journey</span>
+            </h2>
+            <p class="apple-subhead apple-max-w-2xl apple-mx-auto" style="color: var(--apple-gray-3);">
+                Let's discuss how we can leverage cutting-edge technology to accelerate your business growth.
+            </p>
+        </div>
+        
+        <div class="apple-grid-2 apple-gap-xl">
+            <div class="apple-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                <div class="apple-card-content">
+                    <h3 class="apple-headline apple-mb-xl" style="color: white;">Get In Touch</h3>
+                    <form class="apple-form" id="apple-contact-form">
+                        <div class="apple-form-group">
+                            <label class="apple-label" style="color: var(--apple-gray-3);">Full Name</label>
+                            <input type="text" name="name" required class="apple-input" placeholder="Your name">
                         </div>
-                        <div>
-                            <label class="body-normal" style="color: var(--gray-300); display: block; margin-bottom: var(--spacing-sm);">Email Address</label>
-                            <input type="email" name="email" required class="luxury-input" placeholder="your@email.com">
+                        <div class="apple-form-group">
+                            <label class="apple-label" style="color: var(--apple-gray-3);">Email Address</label>
+                            <input type="email" name="email" required class="apple-input" placeholder="your@email.com">
                         </div>
-                        <div>
-                            <label class="body-normal" style="color: var(--gray-300); display: block; margin-bottom: var(--spacing-sm);">Service Interest</label>
-                            <select name="service" class="luxury-input">
+                        <div class="apple-form-group">
+                            <label class="apple-label" style="color: var(--apple-gray-3);">Service Interest</label>
+                            <select name="service" class="apple-input">
                                 <option value="">Select a service</option>
                                 <option value="tech-chat">Tech Chat Elite ($100/month)</option>
                                 <option value="implementation">Elite Implementation ($150/hour)</option>
@@ -532,48 +397,50 @@
                                 <option value="custom">Custom Project</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="body-normal" style="color: var(--gray-300); display: block; margin-bottom: var(--spacing-sm);">Project Details</label>
-                            <textarea name="message" required class="luxury-input" rows="4" placeholder="Tell us about your project or challenge..."></textarea>
+                        <div class="apple-form-group">
+                            <label class="apple-label" style="color: var(--apple-gray-3);">Project Details</label>
+                            <textarea name="message" required class="apple-input apple-textarea" placeholder="Tell us about your project or challenge..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-gold w-full">
+                        <button type="submit" class="apple-btn apple-btn-primary apple-w-full">
                             <i class="fas fa-paper-plane"></i>
                             Send Message
                         </button>
                     </form>
                 </div>
-                
-                <div class="space-y-xl">
-                    <div class="glass p-xl">
-                        <h3 class="heading-2 mb-lg" style="color: white;">Contact Information</h3>
-                        <div class="space-y-lg">
-                            <div class="flex gap-lg items-center">
-                                <div class="service-icon" style="width: 50px; height: 50px; font-size: 1.25rem;">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <div class="body-normal" style="color: white; font-weight: 600;">Email</div>
-                                    <div class="body-small" style="color: var(--gray-300);">mauricerashad@gmail.com</div>
-                                </div>
+            </div>
+            
+            <div class="apple-flex apple-flex-col apple-gap-xl">
+                <div class="apple-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div class="apple-card-content">
+                        <h3 class="apple-headline apple-mb-lg" style="color: white;">Contact Information</h3>
+                        <div class="apple-flex apple-items-center apple-gap-lg apple-mb-lg">
+                            <div class="apple-feature-icon" style="width: 40px; height: 40px; font-size: 1rem;">
+                                <i class="fas fa-envelope"></i>
                             </div>
-                            <div class="flex gap-lg items-center">
-                                <div class="service-icon" style="width: 50px; height: 50px; font-size: 1.25rem; background: var(--gradient-gold);">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div>
-                                    <div class="body-normal" style="color: white; font-weight: 600;">Response Time</div>
-                                    <div class="body-small" style="color: var(--gray-300);">Within 24 hours guaranteed</div>
-                                </div>
+                            <div>
+                                <div class="apple-body" style="color: white; font-weight: 600;">Email</div>
+                                <div class="apple-caption" style="color: var(--apple-gray-3);">mauricerashad@gmail.com</div>
+                            </div>
+                        </div>
+                        <div class="apple-flex apple-items-center apple-gap-lg">
+                            <div class="apple-feature-icon" style="width: 40px; height: 40px; font-size: 1rem; background: linear-gradient(135deg, #F6E05E, #D97706);">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="apple-body" style="color: white; font-weight: 600;">Response Time</div>
+                                <div class="apple-caption" style="color: var(--apple-gray-3);">Within 24 hours guaranteed</div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="glass-gold p-xl">
-                        <h3 class="heading-2 mb-lg" style="color: white;">Free Consultation</h3>
-                        <p class="body-normal mb-lg" style="color: var(--gray-300);">
+                </div>
+                
+                <div class="apple-card" style="background: rgba(246, 224, 94, 0.1); backdrop-filter: blur(20px); border: 1px solid rgba(246, 224, 94, 0.2);">
+                    <div class="apple-card-content">
+                        <h3 class="apple-headline apple-mb-lg" style="color: white;">Free Consultation</h3>
+                        <p class="apple-body apple-mb-lg" style="color: var(--apple-gray-3);">
                             Start with a complimentary 30-minute strategy session to discuss your challenges and explore solutions.
                         </p>
-                        <a href="#contact" class="btn btn-gold w-full">
+                        <a href="#contact" class="apple-btn apple-btn-primary apple-w-full" style="background: linear-gradient(135deg, #F6E05E, #D97706);">
                             <i class="fas fa-calendar-check"></i>
                             Book Free Session
                         </a>
@@ -584,28 +451,22 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-2xl" style="background: var(--gray-900); color: var(--gray-400);">
-        <div class="container">
-            <div class="text-center">
-                <div class="display-2 mb-lg" style="font-size: 2rem; background: var(--gradient-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    Maurice.
-                </div>
-                <p class="body-normal mb-xl">Elite technology solutions for exceptional businesses</p>
-                <div class="flex justify-center gap-lg mb-xl">
-                    <a href="https://linkedin.com/in/mauricerashad" target="_blank" style="color: var(--gray-400); font-size: 1.5rem; transition: color var(--transition-fast);">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/moewill" target="_blank" style="color: var(--gray-400); font-size: 1.5rem; transition: color var(--transition-fast);">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:mauricerashad@gmail.com" style="color: var(--gray-400); font-size: 1.5rem; transition: color var(--transition-fast);">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-                <div class="body-small" style="color: var(--gray-500);">
-                    © 2024 Maurice Rashad. All rights reserved.
-                </div>
-            </div>
+    <footer class="apple-section" style="background: var(--apple-black); color: var(--apple-gray-4); text-align: center; padding: var(--space-3xl) var(--space-lg);">
+        <div class="apple-logo apple-mb-lg" style="font-size: 1.5rem; color: white;">Maurice</div>
+        <p class="apple-body apple-mb-xl">Elite technology solutions for exceptional businesses</p>
+        <div class="apple-flex apple-justify-center apple-gap-xl apple-mb-xl">
+            <a href="https://linkedin.com/in/mauricerashad" target="_blank" style="color: var(--apple-gray-4); font-size: 1.25rem; transition: color 0.2s;">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/moewill" target="_blank" style="color: var(--apple-gray-4); font-size: 1.25rem; transition: color 0.2s;">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:mauricerashad@gmail.com" style="color: var(--apple-gray-4); font-size: 1.25rem; transition: color 0.2s;">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <div class="apple-caption">
+            © 2024 Maurice Rashad. All rights reserved.
         </div>
     </footer>
 
@@ -616,42 +477,28 @@
     <script src="js/wow-effects.js?v=2.0"></script>
     <script src="js/easter-eggs.js?v=1.0"></script>
     <script src="js/interactive-elements.js?v=1.0"></script>
+    <script src="js/apple-effects.js?v=1.0"></script>
     
     <script>
-        // Luxury enhancements
+        // Apple-style enhancements
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile menu toggle
-            const mobileToggle = document.getElementById('mobile-menu-toggle');
-            if (mobileToggle) {
-                mobileToggle.addEventListener('click', () => {
-                    // Add mobile menu functionality
-                    console.log('Mobile menu clicked');
-                });
-            }
-            
-            // Form submission with luxury feedback
-            const luxuryForm = document.getElementById('luxury-contact-form');
-            if (luxuryForm) {
-                luxuryForm.addEventListener('submit', (e) => {
+            // Form submission with Apple-style feedback
+            const appleForm = document.getElementById('apple-contact-form');
+            if (appleForm) {
+                appleForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     
-                    // Luxury form submission effect
-                    const submitBtn = luxuryForm.querySelector('button[type="submit"]');
+                    const submitBtn = appleForm.querySelector('button[type="submit"]');
                     const originalText = submitBtn.innerHTML;
                     
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                    submitBtn.disabled = true;
+                    // Apple-style loading state
+                    const resetLoading = appleEffects.showLoadingState(submitBtn, 'Sending...');
                     
-                    // Simulate submission (replace with actual form handling)
+                    // Simulate submission
                     setTimeout(() => {
+                        resetLoading();
                         submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                        submitBtn.style.background = 'var(--gradient-silver)';
-                        
-                        // Create confetti effect
-                        if (window.createConfetti) {
-                            const rect = submitBtn.getBoundingClientRect();
-                            window.createConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
-                        }
+                        submitBtn.style.background = 'linear-gradient(135deg, #10B981, #059669)';
                         
                         // Show success notification
                         if (window.wowEffects) {
@@ -660,37 +507,13 @@
                         
                         // Reset form after delay
                         setTimeout(() => {
-                            luxuryForm.reset();
+                            appleForm.reset();
                             submitBtn.innerHTML = originalText;
                             submitBtn.style.background = '';
-                            submitBtn.disabled = false;
                         }, 3000);
                     }, 2000);
                 });
             }
-            
-            // Add scroll animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all cards for animation
-            document.querySelectorAll('.floating-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'all 0.6s ease-out';
-                observer.observe(card);
-            });
         });
     </script>
 </body>
