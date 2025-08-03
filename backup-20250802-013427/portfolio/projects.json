@@ -1,0 +1,107 @@
+[
+  {
+    "id": "enterprise-infrastructure",
+    "title": "Enterprise Infrastructure Transformation",
+    "subtitle": "NTT Data & SHI International",
+    "description": "Led comprehensive IT infrastructure modernization for enterprise client, delivering scalable cloud solutions and robust security frameworks that improved operational efficiency by 40%.",
+    "icon": "fas fa-building",
+    "iconGradient": "from-primary to-accent",
+    "tags": ["Cloud Migration", "Infrastructure", "Security", "DevOps"],
+    "status": "Enterprise Project",
+    "statusIcon": "fas fa-calendar",
+    "actionButton": {
+      "text": "View Case Study",
+      "url": "https://us.nttdata.com/en/case-studies/shi-international-client-story?utm_source=linkedIn&utm_medium=paidsocial&utm_campaign=q2fy22_ptnr_awareness&utm_content=case_studies",
+      "icon": "fas fa-external-link-alt",
+      "target": "_blank"
+    },
+    "modalContent": {
+      "detailedDescription": "Spearheaded a comprehensive digital transformation initiative for a major enterprise client, modernizing legacy infrastructure and implementing cutting-edge cloud solutions. The project involved migrating critical workloads to AWS, implementing robust security frameworks, and establishing DevOps practices that dramatically improved deployment efficiency.",
+      "features": [
+        "Complete cloud migration from on-premises infrastructure",
+        "Implementation of zero-trust security architecture",
+        "Automated CI/CD pipelines reducing deployment time by 75%",
+        "24/7 monitoring and alerting systems",
+        "Disaster recovery and business continuity planning"
+      ],
+      "technologies": ["AWS", "Terraform", "Kubernetes", "Docker", "Jenkins", "Ansible", "CloudFormation"],
+      "outcomes": [
+        "40% improvement in operational efficiency",
+        "75% reduction in deployment time",
+        "99.9% uptime achievement",
+        "Significant cost savings through cloud optimization"
+      ]
+    }
+  },
+  {
+    "id": "maurice-chat-ai",
+    "title": "Maurice Chat AI Agent",
+    "subtitle": "Open Source AI Assistant",
+    "description": "Custom AI agent built with Anthropic's Claude, featuring voice interaction, real-time transcription, and advanced conversation management. Showcases cutting-edge AI integration capabilities.",
+    "icon": "fas fa-robot",
+    "iconGradient": "from-accent to-success",
+    "tags": ["AI/ML", "Voice AI", "Real-time", "Open Source"],
+    "status": "Active Development",
+    "statusIcon": "fab fa-github",
+    "actionButton": {
+      "text": "View on GitHub",
+      "url": "https://github.com/moewill/maurice-chat",
+      "icon": "fab fa-github",
+      "target": "_blank"
+    },
+    "modalContent": {
+      "detailedDescription": "An innovative AI-powered chat assistant that demonstrates advanced conversational AI capabilities. Built with Anthropic's Claude API, the system features real-time voice interaction, intelligent conversation management, and a modern web interface. The project showcases expertise in AI integration, real-time processing, and user experience design.",
+      "features": [
+        "Real-time voice-to-text transcription",
+        "Natural language processing with Claude AI",
+        "Conversation history and context management",
+        "Modern, responsive web interface",
+        "Real-time streaming responses",
+        "Voice synthesis for AI responses"
+      ],
+      "technologies": ["JavaScript", "Node.js", "Anthropic Claude API", "Web Speech API", "WebRTC", "HTML5", "CSS3"],
+      "outcomes": [
+        "Open source contribution to AI community",
+        "Demonstrates advanced AI integration skills",
+        "Real-time processing capabilities",
+        "Modern web development practices"
+      ]
+    }
+  },
+  {
+    "id": "job-board",
+    "title": "Active Job Board",
+    "subtitle": "Job Freshness Tracking Tool",
+    "description": "A dynamic job board that helps job hunters identify fresh opportunities by tracking how long each posting has been active. Features visual age indicators and automatic daily updates to reduce time wasted on stale job applications.",
+    "icon": "fas fa-briefcase",
+    "iconGradient": "from-success to-warning",
+    "tags": ["Web Development", "CSV Processing", "Data Visualization", "Vanilla JS"],
+    "status": "Live Application",
+    "statusIcon": "fas fa-globe",
+    "actionButton": {
+      "text": "View Live App",
+      "url": "/job-board/",
+      "icon": "fas fa-external-link-alt",
+      "target": "_self",
+      "isJobBoard": true
+    },
+    "modalContent": {
+      "detailedDescription": "Developed a specialized job board application that addresses a critical pain point for job hunters - identifying fresh job opportunities versus stale postings. The application processes daily CSV updates and provides visual indicators showing how long each job has been active, helping users prioritize their application efforts on recent postings.",
+      "features": [
+        "Daily CSV parsing and job data processing",
+        "Visual age indicators (0-2 days fresh, 3-6 days recent, 7-13 days old, 30+ days stale)",
+        "Automatic filtering to show only active jobs",
+        "Responsive design for mobile and desktop",
+        "Real-time job count and status display",
+        "Error handling for data loading failures"
+      ],
+      "technologies": ["Vanilla JavaScript", "Tailwind CSS", "CSV Processing", "GitHub Pages", "Responsive Design"],
+      "outcomes": [
+        "Helps job hunters avoid wasting time on stale postings",
+        "Provides immediate visual feedback on job freshness",
+        "Fully static site compatible with GitHub Pages",
+        "Mobile-responsive design for on-the-go job searching"
+      ]
+    }
+  }
+]

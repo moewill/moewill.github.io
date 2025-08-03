@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecOps Services - Designed to be loved.</title>
+    <link rel="stylesheet" href="css/apple-iphone-style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Critical CSS for loading */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-out;
+        }
+        
+        .maurice-logo-loader {
+            width: 80px;
+            height: 80px;
+            opacity: 0.3;
+            animation: logoReveal 3s ease-in-out forwards;
+        }
+        
+        @keyframes logoReveal {
+            0% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+            30% { opacity: 1; transform: scale(1.1) rotate(5deg); }
+            60% { opacity: 1; transform: scale(0.95) rotate(-2deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Loading Screen with 3-second logo animation -->
+    <div class="loading-screen" id="loadingScreen">
+        <svg class="maurice-logo-loader" viewBox="0 0 60 60" fill="none">
+            <defs>
+                <linearGradient id="loadingLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff">
+                        <animate attributeName="stop-color" values="#ffffff;#007AFF;#ffffff" dur="3s" repeatCount="1"/>
+                    </stop>
+                    <stop offset="100%" stop-color="#666666">
+                        <animate attributeName="stop-color" values="#666666;#007AFF;#666666" dur="3s" repeatCount="1"/>
+                    </stop>
+                </linearGradient>
+            </defs>
+            <path d="M30 5 L47 15 L47 35 L30 45 L13 35 L13 15 Z" 
+                  stroke="url(#loadingLogoGradient)" 
+                  stroke-width="2" 
+                  fill="none" 
+                  opacity="0.8"
+                  stroke-dasharray="100"
+                  stroke-dashoffset="100">
+                <animate attributeName="stroke-dashoffset" values="100;0" dur="2s" begin="0.5s" fill="freeze"/>
+            </path>
+            <text x="20" y="32" 
+                  font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" 
+                  font-size="16" 
+                  font-weight="600" 
+                  fill="url(#loadingLogoGradient)"
+                  opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2s" fill="freeze"/>
+                MW
+            </text>
+        </svg>
+    </div>
+
+    <!-- Apple-style Global Navigation -->
+    <nav class="globalnav" id="globalnav">
+        <div class="globalnav-content">
+            <div class="globalnav-item globalnav-menuicon">
+                <svg class="maurice-logo" width="24" height="24" viewBox="0 0 60 60" fill="none">
+                    <path d="M30 5 L47 15 L47 35 L30 45 L13 35 L13 15 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="16" font-weight="600" fill="currentColor">MW</text>
+                </svg>
+            </div>
+            <div class="globalnav-item globalnav-link">
+                <a href="#services">Services</a>
+            </div>
+            <div class="globalnav-item globalnav-link">
+                <a href="#devops">DevOps</a>
+            </div>
+            <div class="globalnav-item globalnav-link">
+                <a href="#security">Security</a>
+            </div>
+            <div class="globalnav-item globalnav-link">
+                <a href="#ai">AI</a>
+            </div>
+            <div class="globalnav-item globalnav-link">
+                <a href="#portfolio">Portfolio</a>
+            </div>
+            <div class="globalnav-item globalnav-link">
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="globalnav-item globalnav-bag">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Apple iPhone Style -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-headline">DevSecOps Services</h1>
+            <p class="hero-subheadline">Designed to be loved.</p>
+            <div class="hero-cta">
+                <a href="#services" class="button-primary">Learn more</a>
+                <a href="#contact" class="button-secondary">Get started</a>
+            </div>
+        </div>
+        <div class="hero-imagery">
+            <div class="device-lineup">
+                <div class="device-card device-premium">
+                    <div class="device-screen">
+                        <div class="screen-content">
+                            <div class="service-icon">🛡️</div>
+                            <div class="service-name">SOC2</div>
+                            <div class="service-feature">Compliance Ready</div>
+                        </div>
+                    </div>
+                    <div class="device-reflection"></div>
+                </div>
+                <div class="device-card device-standard">
+                    <div class="device-screen">
+                        <div class="screen-content">
+                            <div class="service-icon">⚡</div>
+                            <div class="service-name">DevOps Pro</div>
+                            <div class="service-feature">CI/CD Ready</div>
+                        </div>
+                    </div>
+                    <div class="device-reflection"></div>
+                </div>
+                <div class="device-card device-ai">
+                    <div class="device-screen">
+                        <div class="screen-content">
+                            <div class="service-icon">🤖</div>
+                            <div class="service-name">AI Integration</div>
+                            <div class="service-feature">Claude MCP</div>
+                        </div>
+                    </div>
+                    <div class="device-reflection"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Lineup - iPhone Model Grid Style -->
+    <section class="lineup-section" id="services">
+        <div class="lineup-content">
+            <h2 class="section-headline">Which service is right for you?</h2>
+            <div class="model-grid">
+                
+                <!-- Elite Implementation - iPhone Pro equivalent -->
+                <div class="model-card model-pro">
+                    <div class="model-badge">Most Advanced</div>
+                    <div class="model-image">
+                        <div class="service-device service-premium">
+                            <div class="device-screen-mini">
+                                <div class="mini-content">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="model-name">Elite Implementation</h3>
+                    <p class="model-description">Complete end-to-end development with white-glove service.</p>
+                    <div class="model-pricing">
+                        <span class="price">From $150/hour</span>
+                    </div>
+                    <div class="model-features">
+                        <div class="feature-item">Full-stack development</div>
+                        <div class="feature-item">AI & automation systems</div>
+                        <div class="feature-item">Cloud infrastructure</div>
+                        <div class="feature-item">SOC 2 compliance</div>
+                    </div>
+                    <div class="model-cta">
+                        <a href="#contact" class="button-outline" onclick="selectService('implementation')">Learn more</a>
+                        <a href="#contact" class="button-filled" onclick="selectService('implementation')">Get started</a>
+                    </div>
+                </div>
+
+                <!-- Tech Chat Elite - iPhone standard equivalent -->
+                <div class="model-card model-standard">
+                    <div class="model-badge">Most Popular</div>
+                    <div class="model-image">
+                        <div class="service-device service-standard">
+                            <div class="device-screen-mini">
+                                <div class="mini-content">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="model-name">Tech Chat Elite</h3>
+                    <p class="model-description">Strategic technology guidance from a certified expert.</p>
+                    <div class="model-pricing">
+                        <span class="price">From $100/month</span>
+                    </div>
+                    <div class="model-features">
+                        <div class="feature-item">Expert technical guidance</div>
+                        <div class="feature-item">Implementation roadmaps</div>
+                        <div class="feature-item">Priority support access</div>
+                        <div class="feature-item">Free consultation</div>
+                    </div>
+                    <div class="model-cta">
+                        <a href="#contact" class="button-outline" onclick="selectService('tech-chat')">Learn more</a>
+                        <a href="#contact" class="button-filled" onclick="selectService('tech-chat')">Get started</a>
+                    </div>
+                </div>
+
+                <!-- Master Classes - iPhone SE equivalent -->
+                <div class="model-card model-compact">
+                    <div class="model-badge">Great Value</div>
+                    <div class="model-image">
+                        <div class="service-device service-compact">
+                            <div class="device-screen-mini">
+                                <div class="mini-content">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="model-name">Master Classes</h3>
+                    <p class="model-description">Intensive workshops on cutting-edge technologies.</p>
+                    <div class="model-pricing">
+                        <span class="price">From $199/workshop</span>
+                    </div>
+                    <div class="model-features">
+                        <div class="feature-item">Advanced cybersecurity</div>
+                        <div class="feature-item">AI implementation</div>
+                        <div class="feature-item">Cloud architecture</div>
+                        <div class="feature-item">DevOps mastery</div>
+                    </div>
+                    <div class="model-cta">
+                        <a href="#contact" class="button-outline" onclick="selectService('workshops')">Learn more</a>
+                        <a href="#contact" class="button-filled" onclick="selectService('workshops')">Get started</a>
+                    </div>
+                </div>
+
+                <!-- Consulting Plus - Previous generation equivalent -->
+                <div class="model-card model-previous">
+                    <div class="model-badge">Still Amazing</div>
+                    <div class="model-image">
+                        <div class="service-device service-previous">
+                            <div class="device-screen-mini">
+                                <div class="mini-content">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="model-name">Consulting Plus</h3>
+                    <p class="model-description">Strategic consulting with proven methodologies.</p>
+                    <div class="model-pricing">
+                        <span class="price">From $75/hour</span>
+                    </div>
+                    <div class="model-features">
+                        <div class="feature-item">Technology assessment</div>
+                        <div class="feature-item">Strategic planning</div>
+                        <div class="feature-item">Best practices</div>
+                        <div class="feature-item">Documentation</div>
+                    </div>
+                    <div class="model-cta">
+                        <a href="#contact" class="button-outline" onclick="selectService('consulting')">Learn more</a>
+                        <a href="#contact" class="button-filled" onclick="selectService('consulting')">Get started</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Sections - Apple iPhone Feature Style -->
+    <section class="feature-ai" id="ai">
+        <div class="feature-content">
+            <div class="feature-text">
+                <h2 class="feature-headline">AI Intelligence</h2>
+                <p class="feature-subheadline">Building agentic AI that works for you.</p>
+                <p class="feature-description">
+                    Our AI systems don't just automate tasks—they intelligently manage projects, 
+                    handle sprint planning, and adapt to your team's workflow patterns.
+                </p>
+                <a href="#contact" class="feature-link" onclick="learnMore('ai')">Learn more about AI systems</a>
+            </div>
+            <div class="feature-visual">
+                <div class="ai-demo-container">
+                    <div class="demo-window">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <span class="control control-close"></span>
+                                <span class="control control-minimize"></span>
+                                <span class="control control-expand"></span>
+                            </div>
+                            <div class="window-title">AI Project Manager</div>
+                        </div>
+                        <div class="window-content">
+                            <div class="ai-task">✅ Sprint planning completed</div>
+                            <div class="ai-task">🔄 Code review assigned</div>
+                            <div class="ai-task">📊 Performance metrics updated</div>
+                            <div class="ai-task">🚀 Deployment ready</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-security" id="security">
+        <div class="feature-content">
+            <div class="feature-visual">
+                <div class="security-demo-container">
+                    <div class="security-shield">
+                        <div class="shield-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="shield-text">SOC 2 Compliant</div>
+                        <div class="security-badges">
+                            <span class="security-badge">AWS Certified</span>
+                            <span class="security-badge">Security Engineer</span>
+                            <span class="security-badge">Incident Response</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-text">
+                <h2 class="feature-headline">Enterprise Security</h2>
+                <p class="feature-subheadline">SOC 2 compliance built into every service.</p>
+                <p class="feature-description">
+                    From security controls and management policies to incident response planning, 
+                    we ensure your infrastructure meets the highest security standards.
+                </p>
+                <a href="#contact" class="feature-link" onclick="learnMore('security')">Learn more about security</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-devops" id="devops">
+        <div class="feature-content">
+            <div class="feature-text">
+                <h2 class="feature-headline">DevOps Excellence</h2>
+                <p class="feature-subheadline">Infrastructure as Code. Automated. Scalable.</p>
+                <p class="feature-description">
+                    Terraform modules, Ansible automation, and CI/CD pipelines that have enhanced 
+                    observability by 4x and reduced deployment time by 75%.
+                </p>
+                <a href="#contact" class="feature-link" onclick="learnMore('devops')">Learn more about DevOps</a>
+            </div>
+            <div class="feature-visual">
+                <div class="devops-demo-container">
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <div class="editor-tabs">
+                                <div class="tab active">main.tf</div>
+                                <div class="tab">pipeline.yml</div>
+                            </div>
+                        </div>
+                        <div class="editor-content">
+                            <div class="code-line">resource "aws_instance" "web" {</div>
+                            <div class="code-line">  ami = "ami-12345678"</div>
+                            <div class="code-line">  instance_type = "t3.micro"</div>
+                            <div class="code-line">}</div>
+                        </div>
+                        <div class="pipeline-status">
+                            <div class="status-item status-success">✅ Build</div>
+                            <div class="status-item status-success">✅ Test</div>
+                            <div class="status-item status-running">🚀 Deploy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-content">
+            <h2 class="section-headline">Get started with DevSecOps services.</h2>
+            <p class="section-subheadline">Choose your service and let's accelerate your business growth.</p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="service" class="form-label">Service Interest</label>
+                    <select id="service" name="service" class="form-select">
+                        <option value="">Select a service</option>
+                        <option value="implementation">Elite Implementation ($150/hour)</option>
+                        <option value="tech-chat">Tech Chat Elite ($100/month)</option>
+                        <option value="workshops">Master Classes ($199/workshop)</option>
+                        <option value="consulting">Consulting Plus ($75/hour)</option>
+                        <option value="custom">Custom Project</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">Project Details</label>
+                    <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Tell us about your project or challenge..."></textarea>
+                </div>
+                <button type="submit" class="button-primary form-submit">
+                    <span>Get Started</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Apple-style Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h4 class="footer-title">Services</h4>
+                    <ul>
+                        <li><a href="#" onclick="selectService('implementation')">Elite Implementation</a></li>
+                        <li><a href="#" onclick="selectService('tech-chat')">Tech Chat Elite</a></li>
+                        <li><a href="#" onclick="selectService('workshops')">Master Classes</a></li>
+                        <li><a href="#" onclick="selectService('consulting')">Consulting Plus</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Technologies</h4>
+                    <ul>
+                        <li><a href="#" onclick="learnMore('aws')">AWS</a></li>
+                        <li><a href="#" onclick="learnMore('kubernetes')">Kubernetes</a></li>
+                        <li><a href="#" onclick="learnMore('terraform')">Terraform</a></li>
+                        <li><a href="#" onclick="learnMore('ai')">AI Systems</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="/portfolio/">Portfolio</a></li>
+                        <li><a href="mailto:mauricerashad@gmail.com">Email Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">About Maurice</h4>
+                    <ul>
+                        <li><a href="https://linkedin.com/in/mauricerashadwilliams" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://github.com/moewill" target="_blank">GitHub</a></li>
+                        <li><a href="/portfolio/">Portfolio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <svg width="24" height="24" viewBox="0 0 60 60" fill="none">
+                        <path d="M30 5 L47 15 L47 35 L30 45 L13 35 L13 15 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="16" font-weight="600" fill="currentColor">MW</text>
+                    </svg>
+                </div>
+                <div class="footer-legal">
+                    <p>© 2024 Maurice Williams. All rights reserved.</p>
+                    <p>DevSecOps and AI automation for small to medium businesses.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/apple-iphone-authentic.js"></script>
+    
+    <script>
+        // Loading screen with 3-second animation
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 1000);
+            }, 3000); // 3 seconds as requested
+        });
+
+        // Service selection functionality
+        function selectService(serviceType) {
+            const serviceSelect = document.getElementById('service');
+            if (serviceSelect) {
+                serviceSelect.value = serviceType;
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Learn more functionality
+        function learnMore(topic) {
+            const sections = {
+                'ai': '#ai',
+                'security': '#security', 
+                'devops': '#devops',
+                'aws': '#devops',
+                'kubernetes': '#devops',
+                'terraform': '#devops'
+            };
+            
+            const targetSection = sections[topic] || '#services';
+            document.querySelector(targetSection).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

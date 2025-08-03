@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maurice Williams Services - Designed to deliver excellence</title>
+    
+    <!-- Apple iPhone Clone CSS -->
+    <link href="css/apple-iphone-clone.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Critical CSS for loading */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-out;
+        }
+        
+        .maurice-logo-loader {
+            width: 80px;
+            height: 80px;
+            opacity: 0.3;
+            animation: logoReveal 3s ease-in-out forwards;
+        }
+        
+        @keyframes logoReveal {
+            0% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+            30% { opacity: 1; transform: scale(1.1) rotate(5deg); }
+            60% { opacity: 1; transform: scale(0.95) rotate(-2deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Enhanced Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <svg class="maurice-logo-loader" viewBox="0 0 60 60" fill="none">
+            <defs>
+                <linearGradient id="loadingLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0071E3">
+                        <animate attributeName="stop-color" values="#0071E3;#667eea;#0071E3" dur="3s" repeatCount="1"/>
+                    </stop>
+                    <stop offset="100%" stop-color="#667eea">
+                        <animate attributeName="stop-color" values="#667eea;#0071E3;#667eea" dur="3s" repeatCount="1"/>
+                    </stop>
+                </linearGradient>
+            </defs>
+            <path d="M30 5 L47 15 L47 35 L30 45 L13 35 L13 15 Z" 
+                  stroke="url(#loadingLogoGradient)" 
+                  stroke-width="2" 
+                  fill="none" 
+                  opacity="0.8"
+                  stroke-dasharray="100"
+                  stroke-dashoffset="100">
+                <animate attributeName="stroke-dashoffset" values="100;0" dur="2s" begin="0.5s" fill="freeze"/>
+            </path>
+            <text x="20" y="32" 
+                  font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" 
+                  font-size="16" 
+                  font-weight="600" 
+                  fill="url(#loadingLogoGradient)"
+                  opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2s" fill="freeze"/>
+                MW
+            </text>
+        </svg>
+    </div>
+
+    <!-- Apple iPhone Style Navigation -->
+    <nav class="apple-nav" id="appleNav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="nav-maurice-logo" width="20" height="20" viewBox="0 0 60 60" fill="none">
+                    <defs>
+                        <linearGradient id="navLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="100%" stop-color="#ffffff"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M30 5 L47 15 L47 35 L30 45 L13 35 L13 15 Z" stroke="url(#navLogoGradient)" stroke-width="2" fill="none" opacity="0.9"/>
+                    <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="16" font-weight="600" fill="url(#navLogoGradient)">MW</text>
+                </svg>
+            </div>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">Overview</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#tech-specs" class="nav-link">Tech Specs</a>
+                <a href="#compare" class="nav-link">Compare</a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-buy-btn" onclick="scrollToContact()">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- iPhone-Style Hero Section -->
+    <section class="iphone-hero" id="overview">
+        <div class="hero-content">
+            <div class="hero-new-badge">New</div>
+            <h1 class="hero-headline">
+                <span class="hero-product-line">DevSecOps Services</span>
+                <span class="hero-tagline">Designed to deliver excellence.</span>
+            </h1>
+            <p class="hero-description">
+                From small startups to growing enterprises, our DevSecOps solutions are engineered for security, 
+                scalability, and seamless automation that adapts to your business needs.
+            </p>
+            <div class="hero-pricing">
+                From $100/month or $25/month for 4 months*
+            </div>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="scrollToContact()">Get Started</button>
+                <a href="#services" class="btn-secondary">Learn more</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="service-showcase">
+                <div class="service-device active" data-service="tech-chat">
+                    <div class="device-screen">
+                        <div class="service-showcase-content">
+                            <div class="showcase-header">
+                                <div class="service-icon-large">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="service-title">Tech Chat Elite</div>
+                                <div class="service-subtitle">Strategic Guidance</div>
+                            </div>
+                            <div class="showcase-preview">
+                                <div class="chat-bubble chat-bubble-primary">AWS Architecture Review</div>
+                                <div class="chat-bubble chat-bubble-secondary">Security best practices?</div>
+                                <div class="chat-bubble chat-bubble-primary">Terraform modules ready</div>
+                                <div class="service-status">
+                                    <span class="status-dot status-online"></span>
+                                    Expert Available
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-device" data-service="implementation">
+                    <div class="device-screen premium">
+                        <div class="service-showcase-content">
+                            <div class="showcase-header">
+                                <div class="service-icon-large">
+                                    <i class="fas fa-magic"></i>
+                                </div>
+                                <div class="service-title">Elite Implementation</div>
+                                <div class="service-subtitle">End-to-End Development</div>
+                            </div>
+                            <div class="showcase-preview">
+                                <div class="code-preview">
+                                    <div class="code-line">resource "aws_instance" "web" {</div>
+                                    <div class="code-line indent">ami = "ami-12345678"</div>
+                                    <div class="code-line indent">instance_type = "t3.micro"</div>
+                                    <div class="code-line">}</div>
+                                </div>
+                                <div class="service-status">
+                                    <span class="status-dot status-success"></span>
+                                    Infrastructure Deployed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-device" data-service="workshops">
+                    <div class="device-screen">
+                        <div class="service-showcase-content">
+                            <div class="showcase-header">
+                                <div class="service-icon-large">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="service-title">Master Classes</div>
+                                <div class="service-subtitle">Expert Training</div>
+                            </div>
+                            <div class="showcase-preview">
+                                <div class="workshop-modules">
+                                    <div class="module-item">
+                                        <span class="module-check">✓</span>
+                                        <span class="module-text">Security Fundamentals</span>
+                                    </div>
+                                    <div class="module-item">
+                                        <span class="module-check">✓</span>
+                                        <span class="module-text">Cloud Architecture</span>
+                                    </div>
+                                    <div class="module-item">
+                                        <span class="module-check">✓</span>
+                                        <span class="module-text">Hands-on Labs</span>
+                                    </div>
+                                </div>
+                                <div class="service-status">
+                                    <span class="status-dot status-learning"></span>
+                                    15 Participants
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-selector">
+                <button class="service-dot active" data-service="tech-chat"></button>
+                <button class="service-dot" data-service="implementation"></button>
+                <button class="service-dot" data-service="workshops"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- iPhone-Style Service Lineup -->
+    <section class="service-lineup" id="services">
+        <div class="lineup-header">
+            <h2 class="lineup-title">Which service is right for you?</h2>
+        </div>
+        <div class="lineup-grid">
+            <!-- Tech Chat Elite -->
+            <div class="service-card" data-service="tech-chat">
+                <div class="service-card-header">
+                    <div class="service-badge">Most accessible</div>
+                    <div class="service-image">
+                        <div class="service-icon-display">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                    </div>
+                    <h3 class="service-name">Tech Chat Elite</h3>
+                    <p class="service-desc">Strategic technology guidance from a certified expert.</p>
+                </div>
+                <div class="service-pricing">
+                    <div class="price-main">$100</div>
+                    <div class="price-period">per month</div>
+                    <div class="price-note">2 hours included</div>
+                </div>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Expert technical guidance</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Implementation roadmaps</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Priority support access</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Free 30-min consultation</span>
+                    </div>
+                </div>
+                <button class="service-cta" onclick="selectService('tech-chat')">Choose Tech Chat Elite</button>
+            </div>
+
+            <!-- Elite Implementation -->
+            <div class="service-card featured" data-service="implementation">
+                <div class="service-card-header">
+                    <div class="service-badge premium">Most popular</div>
+                    <div class="service-image premium">
+                        <div class="service-icon-display premium">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                    </div>
+                    <h3 class="service-name">Elite Implementation</h3>
+                    <p class="service-desc">Complete end-to-end development and deployment.</p>
+                </div>
+                <div class="service-pricing">
+                    <div class="price-main">$150</div>
+                    <div class="price-period">per hour</div>
+                    <div class="price-note">Premium tier</div>
+                </div>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-crown"></i>
+                        <span>Full-stack development</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-crown"></i>
+                        <span>AI & automation systems</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-crown"></i>
+                        <span>Cloud infrastructure</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-crown"></i>
+                        <span>White-glove service</span>
+                    </div>
+                </div>
+                <button class="service-cta premium" onclick="selectService('implementation')">Choose Elite Implementation</button>
+            </div>
+
+            <!-- Master Classes -->
+            <div class="service-card" data-service="workshops">
+                <div class="service-card-header">
+                    <div class="service-badge">Most comprehensive</div>
+                    <div class="service-image">
+                        <div class="service-icon-display">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <h3 class="service-name">Master Classes</h3>
+                    <p class="service-desc">Intensive workshops on cutting-edge technologies.</p>
+                </div>
+                <div class="service-pricing">
+                    <div class="price-main">$199</div>
+                    <div class="price-period">per workshop</div>
+                    <div class="price-note">Premium content</div>
+                </div>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <span>Advanced cybersecurity</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <span>AI implementation</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <span>Cloud architecture</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <span>DevOps mastery</span>
+                    </div>
+                </div>
+                <button class="service-cta" onclick="selectService('workshops')">Choose Master Classes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- iPhone-Style Feature Highlights -->
+    <section class="feature-highlights">
+        <!-- Feature 1: AI Intelligence -->
+        <div class="feature-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="feature-content">
+                <div class="feature-text">
+                    <div class="feature-eyebrow">AI Intelligence</div>
+                    <h2 class="feature-headline">Building agentic AI<br>that works for you.</h2>
+                    <p class="feature-description">
+                        Our AI systems don't just automate tasks—they intelligently manage projects, 
+                        handle sprint planning, and adapt to your team's workflow patterns.
+                    </p>
+                    <button class="feature-cta" onclick="learnMore('ai')">Learn more about AI systems</button>
+                </div>
+                <div class="feature-visual">
+                    <div class="ai-demo">
+                        <div class="ai-interface">
+                            <div class="ai-header">AI Project Manager</div>
+                            <div class="ai-task">✅ Sprint planning completed</div>
+                            <div class="ai-task">🔄 Code review assigned</div>
+                            <div class="ai-task">📊 Performance metrics updated</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 2: Security -->
+        <div class="feature-section" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="feature-content reverse">
+                <div class="feature-visual">
+                    <div class="security-demo">
+                        <div class="security-shield">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="security-text">SOC 2 Compliant</div>
+                        </div>
+                        <div class="security-badges">
+                            <span class="badge">AWS Certified</span>
+                            <span class="badge">Security Engineer</span>
+                            <span class="badge">Incident Response</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-text">
+                    <div class="feature-eyebrow">Enterprise Security</div>
+                    <h2 class="feature-headline">SOC 2 compliance<br>built into every service.</h2>
+                    <p class="feature-description">
+                        From security controls and management policies to incident response planning, 
+                        we ensure your infrastructure meets the highest security standards.
+                    </p>
+                    <button class="feature-cta" onclick="learnMore('security')">Learn more about security</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 3: DevOps -->
+        <div class="feature-section" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="feature-content">
+                <div class="feature-text">
+                    <div class="feature-eyebrow">DevOps Excellence</div>
+                    <h2 class="feature-headline">Infrastructure as Code.<br>Automated. Scalable.</h2>
+                    <p class="feature-description">
+                        Terraform modules, Ansible automation, and CI/CD pipelines that have enhanced 
+                        observability by 4x and reduced deployment time by 75%.
+                    </p>
+                    <button class="feature-cta" onclick="learnMore('devops')">Learn more about DevOps</button>
+                </div>
+                <div class="feature-visual">
+                    <div class="devops-demo">
+                        <div class="code-block">
+                            <div class="code-line">resource "aws_instance" "web" {</div>
+                            <div class="code-line">&nbsp;&nbsp;ami = "ami-12345678"</div>
+                            <div class="code-line">&nbsp;&nbsp;instance_type = "t3.micro"</div>
+                            <div class="code-line">}</div>
+                        </div>
+                        <div class="pipeline-status">
+                            <div class="status-item">✅ Build</div>
+                            <div class="status-item">✅ Test</div>
+                            <div class="status-item">🚀 Deploy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- iPhone-Style Tech Specs -->
+    <section class="tech-specs" id="tech-specs">
+        <div class="specs-header">
+            <h2 class="specs-title">Tech Specs</h2>
+            <p class="specs-subtitle">Get the technical details.</p>
+        </div>
+        <div class="specs-content">
+            <div class="specs-nav">
+                <button class="specs-tab active" data-service="tech-chat">Tech Chat Elite</button>
+                <button class="specs-tab" data-service="implementation">Elite Implementation</button>
+                <button class="specs-tab" data-service="workshops">Master Classes</button>
+            </div>
+            <div class="specs-details">
+                <div class="specs-panel active" data-service="tech-chat">
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <div class="spec-label">Consultation Hours</div>
+                            <div class="spec-value">2 hours monthly</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Response Time</div>
+                            <div class="spec-value">Within 24 hours</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Technologies Covered</div>
+                            <div class="spec-value">AWS, Kubernetes, Terraform, Python, DevSecOps</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Support Channels</div>
+                            <div class="spec-value">Email, Video Call, Slack</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Documentation</div>
+                            <div class="spec-value">Implementation roadmaps, Best practices guide</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Free Consultation</div>
+                            <div class="spec-value">30 minutes included</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specs-panel" data-service="implementation">
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <div class="spec-label">Service Type</div>
+                            <div class="spec-value">Full-stack development</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Hourly Rate</div>
+                            <div class="spec-value">$150 per hour</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Specializations</div>
+                            <div class="spec-value">AI systems, Cloud infrastructure, Security</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Deployment</div>
+                            <div class="spec-value">AWS, Azure, Multi-cloud</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Monitoring</div>
+                            <div class="spec-value">Honeycomb.io, OpenTelemetry, Custom dashboards</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Security Standards</div>
+                            <div class="spec-value">SOC 2 Type II, FEDRAMP ready</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specs-panel" data-service="workshops">
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <div class="spec-label">Workshop Duration</div>
+                            <div class="spec-value">4-8 hours intensive</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Group Size</div>
+                            <div class="spec-value">Up to 15 participants</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Format</div>
+                            <div class="spec-value">Hands-on, Interactive labs</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Topics Available</div>
+                            <div class="spec-value">Cybersecurity, AI, Cloud, DevOps</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Materials Included</div>
+                            <div class="spec-value">Code samples, Documentation, Follow-up support</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Certification</div>
+                            <div class="spec-value">Completion certificate provided</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- iPhone-Style Comparison -->
+    <section class="service-comparison" id="compare">
+        <div class="comparison-header">
+            <h2 class="comparison-title">Compare services</h2>
+            <p class="comparison-subtitle">Find the one that's perfect for you.</p>
+        </div>
+        <div class="comparison-table">
+            <div class="comparison-header-row">
+                <div class="comparison-cell header"></div>
+                <div class="comparison-cell header">
+                    <div class="service-icon-small">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="service-name-small">Tech Chat Elite</div>
+                </div>
+                <div class="comparison-cell header featured">
+                    <div class="service-icon-small premium">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="service-name-small">Elite Implementation</div>
+                </div>
+                <div class="comparison-cell header">
+                    <div class="service-icon-small">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="service-name-small">Master Classes</div>
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-cell label">Price</div>
+                <div class="comparison-cell">$100/month</div>
+                <div class="comparison-cell featured">$150/hour</div>
+                <div class="comparison-cell">$199/workshop</div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-cell label">Best for</div>
+                <div class="comparison-cell">Strategic guidance</div>
+                <div class="comparison-cell featured">Complete solutions</div>
+                <div class="comparison-cell">Learning & training</div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-cell label">Time commitment</div>
+                <div class="comparison-cell">2 hours/month</div>
+                <div class="comparison-cell featured">Project-based</div>
+                <div class="comparison-cell">4-8 hours</div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-cell label">Support level</div>
+                <div class="comparison-cell">Email + Video</div>
+                <div class="comparison-cell featured">White-glove</div>
+                <div class="comparison-cell">Workshop + Follow-up</div>
+            </div>
+            <div class="comparison-actions">
+                <div class="comparison-cell"></div>
+                <div class="comparison-cell">
+                    <button class="compare-cta" onclick="selectService('tech-chat')">Choose</button>
+                </div>
+                <div class="comparison-cell featured">
+                    <button class="compare-cta premium" onclick="selectService('implementation')">Choose</button>
+                </div>
+                <div class="comparison-cell">
+                    <button class="compare-cta" onclick="selectService('workshops')">Choose</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2 class="contact-title">Get started with DevSecOps services.</h2>
+                <p class="contact-subtitle">Choose your service and let's accelerate your business growth.</p>
+            </div>
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service" class="form-label">Service Interest</label>
+                        <select id="service" name="service" class="form-select">
+                            <option value="">Select a service</option>
+                            <option value="tech-chat">Tech Chat Elite ($100/month)</option>
+                            <option value="implementation">Elite Implementation ($150/hour)</option>
+                            <option value="workshops">Master Classes ($199/workshop)</option>
+                            <option value="custom">Custom Project</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Project Details</label>
+                        <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Tell us about your project or challenge..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apple-Style Footer -->
+    <footer class="apple-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="selectService('tech-chat')">Tech Chat Elite</a></li>
+                        <li><a href="#" onclick="selectService('implementation')">Elite Implementation</a></li>
+                        <li><a href="#" onclick="selectService('workshops')">Master Classes</a></li>
+                        <li><a href="#contact">Custom Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Technologies</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="learnMore('aws')">AWS</a></li>
+                        <li><a href="#" onclick="learnMore('kubernetes')">Kubernetes</a></li>
+                        <li><a href="#" onclick="learnMore('terraform')">Terraform</a></li>
+                        <li><a href="#" onclick="learnMore('ai')">AI Systems</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#tech-specs">Tech Specs</a></li>
+                        <li><a href="#compare">Compare</a></li>
+                        <li><a href="mailto:mauricerashad@gmail.com">Email Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">About Maurice</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://linkedin.com/in/mauricerashadwilliams" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://github.com/moewill" target="_blank">GitHub</a></li>
+                        <li><a href="#overview">Experience</a></li>
+                        <li><a href="/portfolio/">Portfolio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <svg width="24" height="24" viewBox="0 0 60 60" fill="none">
+                        <path d="M30 5 L47 15 L47 35 L30 45 L13 35 L13 15 Z" stroke="#6E6E73" stroke-width="2" fill="none" opacity="0.8"/>
+                        <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="16" font-weight="600" fill="#6E6E73">MW</text>
+                    </svg>
+                </div>
+                <div class="footer-legal">
+                    <p>© 2024 Maurice Williams. All rights reserved.</p>
+                    <p>DevSecOps and AI automation for small to medium businesses.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/apple-iphone-clone.js"></script>
+    
+    <script>
+        // Enhanced loading screen with 3-second animation
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 1000);
+            }, 3000); // 3 seconds as requested
+        });
+
+        // Service selection functionality
+        function selectService(serviceType) {
+            const serviceSelect = document.getElementById('service');
+            const serviceMap = {
+                'tech-chat': 'tech-chat',
+                'implementation': 'implementation', 
+                'workshops': 'workshops'
+            };
+            
+            if (serviceSelect && serviceMap[serviceType]) {
+                serviceSelect.value = serviceMap[serviceType];
+                scrollToContact();
+            }
+        }
+
+        // Learn more functionality
+        function learnMore(topic) {
+            const sections = {
+                'ai': '#services',
+                'security': '#tech-specs', 
+                'devops': '#compare',
+                'aws': '#tech-specs',
+                'kubernetes': '#tech-specs',
+                'terraform': '#tech-specs'
+            };
+            
+            const targetSection = sections[topic] || '#services';
+            document.querySelector(targetSection).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Scroll to contact
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

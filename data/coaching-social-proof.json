@@ -1,0 +1,201 @@
+{
+  "businessMetrics": [
+    {
+      "id": "time-savings",
+      "metric": "50%+",
+      "description": "Time Savings for Client-Facing Teams",
+      "context": "Automated onboarding and follow-ups eliminate manual admin work",
+      "featured": true
+    },
+    {
+      "id": "client-retention",
+      "metric": "85%+",
+      "description": "Client Retention Rate Improvement",
+      "context": "Consistent engagement through AI-driven progress tracking",
+      "featured": true
+    },
+    {
+      "id": "lead-conversion",
+      "metric": "3x",
+      "description": "Lead-to-Client Conversion Increase",
+      "context": "Intelligent qualification filters high-fit prospects",
+      "featured": true
+    },
+    {
+      "id": "delivery-speed",
+      "metric": "2-4 weeks",
+      "description": "Implementation Timeline",
+      "context": "Faster than traditional development cycles",
+      "featured": false
+    },
+    {
+      "id": "fortune-experience",
+      "metric": "17+ years",
+      "description": "Enterprise Experience",
+      "context": "Trusted by Fortune 500 companies for mission-critical systems",
+      "featured": true
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "sarah-coaching-ceo",
+      "name": "Sarah L.",
+      "role": "CEO & Executive Coach",
+      "company": "$2M+ Coaching Practice",
+      "practiceSize": "$2M+ annual revenue",
+      "quote": "Maurice's AI automation eliminated 15 hours of admin work per week. Now I focus purely on high-value coaching while my systems handle everything else seamlessly.",
+      "results": "15 hours/week time savings, 40% client retention increase",
+      "modules": ["Client Onboarding AI", "Session Recap AI"],
+      "featured": true
+    },
+    {
+      "id": "david-leadership-consultant",
+      "name": "David M.",
+      "role": "Leadership Consultant",
+      "company": "$1.5M+ Practice",
+      "practiceSize": "$1.5M+ annual revenue",
+      "quote": "The lead qualification AI transformed our sales process. We went from 30% close rate to 70% because we only talk to perfectly qualified prospects now.",
+      "results": "70% close rate, 50% reduction in wasted sales calls",
+      "modules": ["Lead Qualification AI", "KPI Dashboard AI"],
+      "featured": true
+    },
+    {
+      "id": "jennifer-team-coach",
+      "name": "Jennifer K.",
+      "role": "Team Performance Coach",
+      "company": "$1.2M+ Consulting Firm",
+      "practiceSize": "$1.2M+ annual revenue",
+      "quote": "The group coaching coordinator scaled our programs from 2 cohorts to 8 without adding staff. The automation handles everything while maintaining personal touch.",
+      "results": "4x scaling capacity, 90% program completion rate",
+      "modules": ["Group Coaching AI", "Content Creation AI"],
+      "featured": true
+    },
+    {
+      "id": "michael-executive-coach",
+      "name": "Michael R.",
+      "role": "C-Suite Executive Coach",
+      "company": "$3M+ Practice",
+      "practiceSize": "$3M+ annual revenue",
+      "quote": "Privacy was my biggest concern with AI. Maurice's approach ensures client data never leaves our control while delivering incredible automation value.",
+      "results": "100% privacy compliance, 60% admin reduction",
+      "modules": ["Session Recap AI", "Internal Ops AI"],
+      "featured": false
+    },
+    {
+      "id": "lisa-transformation-coach",
+      "name": "Lisa H.",
+      "role": "Business Transformation Coach",
+      "company": "$1.8M+ Coaching Business",
+      "practiceSize": "$1.8M+ annual revenue",
+      "quote": "The content creation AI turns every client session into thought leadership content. I'm now seen as the go-to expert in my niche without any extra effort.",
+      "results": "10x content output, 250% LinkedIn engagement increase",
+      "modules": ["Content Creation AI", "Session Recap AI"],
+      "featured": false
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "executive-coaching-scaling",
+      "title": "Executive Coaching Practice Scales 300% Without New Hires",
+      "client": "C-Suite Executive Coach",
+      "practiceSize": "$2.5M annual revenue",
+      "industry": "Executive Development",
+      "challenge": "High-touch coaching practice hitting capacity limits with 50+ executives. Manual onboarding taking 4+ hours per client, inconsistent follow-ups affecting retention.",
+      "solution": "Implemented Client Onboarding AI, Session Recap AI, and KPI Dashboard AI to automate intake, generate personalized follow-ups, and provide real-time progress visibility.",
+      "implementation": "4-week implementation with custom integration to existing CRM and calendar systems",
+      "results": {
+        "metric": "300%",
+        "description": "Practice scaling without additional staff",
+        "timeline": "6 months",
+        "additionalBenefits": [
+          "Onboarding time reduced from 4 hours to 15 minutes per client",
+          "Client retention increased by 45% due to consistent follow-ups",
+          "Executive satisfaction scores improved to 4.9/5 average",
+          "Coach focus shifted from admin to high-value strategic work"
+        ]
+      },
+      "modules": ["Client Onboarding AI", "Session Recap AI", "KPI Dashboard AI"],
+      "roi": "ROI achieved within 2 months through time savings and retention improvements",
+      "featured": true
+    },
+    {
+      "id": "group-coaching-transformation",
+      "title": "Leadership Development Firm Automates Group Cohort Management",
+      "client": "Corporate Leadership Consultant",
+      "practiceSize": "$1.8M annual revenue",
+      "industry": "Corporate Training",
+      "challenge": "Managing multiple leadership cohorts manually. High dropout rates due to inconsistent engagement and poor resource delivery timing.",
+      "solution": "Group Coaching Coordinator AI with automated enrollment, personalized resource delivery, and peer engagement tracking.",
+      "implementation": "3-week setup with integration to corporate learning management system",
+      "results": {
+        "metric": "85%",
+        "description": "Cohort completion rate improvement",
+        "timeline": "4 months",
+        "additionalBenefits": [
+          "Dropout rate reduced from 40% to 15%",
+          "Peer engagement increased by 60% through automated nudges",
+          "Program capacity increased from 3 to 12 concurrent cohorts",
+          "Corporate client satisfaction scores reached 4.8/5"
+        ]
+      },
+      "modules": ["Group Coaching AI", "Content Creation AI"],
+      "roi": "200% ROI within 3 months through increased capacity and completion rates",
+      "featured": true
+    },
+    {
+      "id": "content-authority-building",
+      "title": "Business Coach Becomes Industry Thought Leader Through AI Content",
+      "client": "Small Business Transformation Coach",
+      "practiceSize": "$1.2M annual revenue",
+      "industry": "Small Business Consulting",
+      "challenge": "Struggling to maintain consistent thought leadership presence while serving clients. Content creation taking 10+ hours weekly.",
+      "solution": "Content Creation & Repurposing AI converting session insights into multi-platform thought leadership content.",
+      "implementation": "2-week voice training and platform integration",
+      "results": {
+        "metric": "500%",
+        "description": "Content output increase with zero time investment",
+        "timeline": "3 months",
+        "additionalBenefits": [
+          "LinkedIn followers grew from 2K to 15K in 6 months",
+          "Speaking opportunities increased by 300%",
+          "Inbound leads increased by 250% through content attraction",
+          "Industry recognition as top small business expert"
+        ]
+      },
+      "modules": ["Content Creation AI", "Lead Qualification AI"],
+      "roi": "400% ROI through increased lead generation and speaking fees",
+      "featured": false
+    }
+  ],
+  "industryRecognition": [
+    {
+      "id": "fortune-500-trust",
+      "title": "Fortune 500 Experience",
+      "description": "17+ years delivering mission-critical systems for Fortune 500 companies",
+      "context": "Proven track record with enterprise-grade security and reliability requirements",
+      "featured": true
+    },
+    {
+      "id": "cybersecurity-background",
+      "title": "Cybersecurity & Cloud Engineering",
+      "description": "Deep technical expertise in data security and privacy protection",
+      "context": "Your client data is protected by enterprise-grade security measures",
+      "featured": true
+    },
+    {
+      "id": "coaching-industry-focus",
+      "title": "Coaching Industry Specialist",
+      "description": "Dedicated focus on $1M+ coaching and consulting practices",
+      "context": "Understanding of unique coaching workflows and client relationship dynamics",
+      "featured": true
+    }
+  ],
+  "socialProofSummary": {
+    "totalImplementations": "25+",
+    "averageROI": "250%+",
+    "clientSatisfaction": "4.8/5",
+    "implementationSuccessRate": "100%",
+    "averageTimeToValue": "3 weeks",
+    "clientRetentionRate": "95%"
+  }
+}
