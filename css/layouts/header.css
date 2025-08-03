@@ -1,0 +1,88 @@
+/* Header/Navigation Layout - Apple Design System */
+
+/* ===== GLOBAL NAVIGATION ===== */
+.globalnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+    background: var(--bg-nav);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.18);
+    height: var(--nav-height);
+}
+
+.globalnav__content {
+    max-width: var(--container-lg);
+    margin: 0 auto;
+    padding: 0 var(--nav-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.globalnav__item {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    transition: color var(--transition-fast);
+}
+
+.globalnav__item:hover {
+    color: var(--text-link);
+}
+
+.globalnav__link {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.globalnav__link:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ===== MOBILE NAVIGATION ===== */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-primary);
+    z-index: var(--z-modal);
+    padding: var(--space-6);
+}
+
+.mobile-nav.is-active {
+    display: block;
+}
+
+.mobile-nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-nav__item {
+    margin-bottom: var(--space-4);
+}
+
+.mobile-nav__link {
+    display: block;
+    padding: var(--space-4);
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+}
+
+.mobile-nav__link:hover {
+    background-color: var(--bg-secondary);
+}

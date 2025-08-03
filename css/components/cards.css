@@ -1,0 +1,87 @@
+/* Card Components - Apple Design System */
+
+/* ===== BASE CARD ===== */
+.card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-base);
+    transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.card__header {
+    margin-bottom: var(--space-4);
+}
+
+.card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.card__description {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+/* ===== TESTIMONIAL CARDS ===== */
+.testimonial-card {
+    @extend .card;
+    text-align: center;
+    padding: var(--space-8);
+}
+
+.testimonial__quote {
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+}
+
+.testimonial__author {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+/* ===== CAPABILITY CARDS ===== */
+.capability-module {
+    @extend .card;
+    text-align: center;
+}
+
+.capability-module__icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto var(--space-4);
+    background: var(--color-blue);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+}
+
+/* ===== CASE STUDY CARDS ===== */
+.case-study-card {
+    @extend .card;
+}
+
+.case-study__title {
+    @extend .card__title;
+}
+
+.case-study__description {
+    @extend .card__description;
+    margin-bottom: var(--space-4);
+}
+
+.case-study__result {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-green);
+}

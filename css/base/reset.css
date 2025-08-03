@@ -1,0 +1,205 @@
+/* CSS Reset & Normalize - Apple Design System */
+/* Modern reset with Apple-specific optimizations */
+
+/* ===== MODERN CSS RESET ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove default margins and paddings */
+body,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul,
+figure,
+hr,
+fieldset, legend {
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== DOCUMENT & ROOT ===== */
+html {
+    font-size: var(--font-size-base, 17px);
+    line-height: var(--line-height-normal, 1.47059);
+    scroll-behavior: smooth;
+    
+    /* Apple font smoothing */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Prevent iOS text size adjust */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-system);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    
+    /* Improve rendering on low-DPI displays */
+    text-rendering: optimizeLegibility;
+}
+
+/* ===== TYPOGRAPHY NORMALIZATION ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-semibold, 600);
+    line-height: var(--line-height-tight, 1.25);
+    letter-spacing: var(--letter-spacing-tight, -0.025em);
+}
+
+p {
+    line-height: var(--line-height-normal, 1.47059);
+}
+
+/* Remove list styles on ul, ol elements with a list role */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+}
+
+/* ===== MEDIA ELEMENTS ===== */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    border-style: none;
+}
+
+/* ===== INTERACTIVE ELEMENTS ===== */
+a {
+    color: var(--text-link);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+a:hover,
+a:focus {
+    color: var(--text-link-hover);
+    text-decoration-color: currentColor;
+}
+
+/* Remove default button styles */
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+button:focus,
+[type="button"]:focus,
+[type="reset"]:focus,
+[type="submit"]:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* ===== FORM ELEMENTS ===== */
+input,
+select,
+textarea {
+    background: transparent;
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-base);
+    padding: var(--space-2) var(--space-3);
+    transition: border-color var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--border-focus);
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+}
+
+/* ===== TABLE ELEMENTS ===== */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ===== UTILITY CLASSES ===== */
+/* Hide content visually but keep it available to screen readers */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Remove all animations and transitions for users that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===== APPLE-SPECIFIC OPTIMIZATIONS ===== */
+/* Disable tap highlights on iOS */
+a,
+button,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve scrolling performance */
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix iOS double-tap zoom */
+button,
+input,
+select,
+textarea {
+    touch-action: manipulation;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "maurice-williams-website",
+  "version": "1.0.0",
+  "description": "Apple-inspired website with component-based CSS architecture",
+  "scripts": {
+    "css:build": "postcss css/main.css -o dist/main.css",
+    "css:watch": "postcss css/main.css -o dist/main.css --watch",
+    "css:minify": "postcss css/main.css -o dist/main.min.css --env production",
+    "lint:css": "stylelint 'css/**/*.css' --fix",
+    "start": "npm run css:watch",
+    "build": "npm run lint:css && npm run css:minify"
+  },
+  "devDependencies": {
+    "stylelint": "^15.10.0",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-config-recess-order": "^4.3.0",
+    "postcss": "^8.4.0",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "autoprefixer": "^10.4.0",
+    "cssnano": "^6.0.0"
+  }
+}

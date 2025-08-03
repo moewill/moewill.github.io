@@ -1,0 +1,88 @@
+/* Hero Components - Apple Design System */
+
+/* ===== STORY HERO SECTION ===== */
+.story-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--nav-height) var(--space-6) var(--space-16);
+    background: var(--bg-primary);
+    position: relative;
+}
+
+.story-hero__content {
+    max-width: 980px;
+    margin: 0 auto var(--space-16);
+    z-index: var(--z-base);
+}
+
+.story-hero__headline {
+    font-size: clamp(40px, 8vw, 56px);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.07143;
+    letter-spacing: -0.005em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.story-hero__subheadline {
+    font-size: clamp(19px, 4vw, 28px);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.14286;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-10);
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.story-hero__cta {
+    display: flex;
+    gap: var(--space-6);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-16);
+}
+
+/* ===== STORY SECTIONS ===== */
+.story-section {
+    padding: var(--space-20) var(--space-6);
+    max-width: var(--container-xl);
+    margin: 0 auto;
+}
+
+.story-section--centered {
+    text-align: center;
+}
+
+.story-section__headline {
+    font-size: clamp(32px, 6vw, 48px);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+}
+
+.story-section__content {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ===== LEGACY CLASS MAPPINGS ===== */
+.story-section-1 { @extend .story-hero; }
+.story-section-2,
+.story-section-3,
+.story-section-4,
+.story-section-5,
+.story-section-6,
+.story-section-7,
+.story-section-8 {
+    @extend .story-section;
+    @extend .story-section--centered;
+}

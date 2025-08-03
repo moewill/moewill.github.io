@@ -1,0 +1,63 @@
+/* Spacing Utilities - Apple Design System */
+
+/* ===== MARGIN UTILITIES ===== */
+.u-m-0 { margin: var(--space-0); }
+.u-m-1 { margin: var(--space-1); }
+.u-m-2 { margin: var(--space-2); }
+.u-m-3 { margin: var(--space-3); }
+.u-m-4 { margin: var(--space-4); }
+.u-m-6 { margin: var(--space-6); }
+.u-m-8 { margin: var(--space-8); }
+.u-m-12 { margin: var(--space-12); }
+.u-m-16 { margin: var(--space-16); }
+
+/* Margin Top */
+.u-mt-0 { margin-top: var(--space-0); }
+.u-mt-1 { margin-top: var(--space-1); }
+.u-mt-2 { margin-top: var(--space-2); }
+.u-mt-3 { margin-top: var(--space-3); }
+.u-mt-4 { margin-top: var(--space-4); }
+.u-mt-6 { margin-top: var(--space-6); }
+.u-mt-8 { margin-top: var(--space-8); }
+.u-mt-12 { margin-top: var(--space-12); }
+.u-mt-16 { margin-top: var(--space-16); }
+
+/* Margin Bottom */
+.u-mb-0 { margin-bottom: var(--space-0); }
+.u-mb-1 { margin-bottom: var(--space-1); }
+.u-mb-2 { margin-bottom: var(--space-2); }
+.u-mb-3 { margin-bottom: var(--space-3); }
+.u-mb-4 { margin-bottom: var(--space-4); }
+.u-mb-6 { margin-bottom: var(--space-6); }
+.u-mb-8 { margin-bottom: var(--space-8); }
+.u-mb-12 { margin-bottom: var(--space-12); }
+.u-mb-16 { margin-bottom: var(--space-16); }
+
+/* ===== PADDING UTILITIES ===== */
+.u-p-0 { padding: var(--space-0); }
+.u-p-1 { padding: var(--space-1); }
+.u-p-2 { padding: var(--space-2); }
+.u-p-3 { padding: var(--space-3); }
+.u-p-4 { padding: var(--space-4); }
+.u-p-6 { padding: var(--space-6); }
+.u-p-8 { padding: var(--space-8); }
+.u-p-12 { padding: var(--space-12); }
+.u-p-16 { padding: var(--space-16); }
+
+/* Padding Top */
+.u-pt-0 { padding-top: var(--space-0); }
+.u-pt-3 { padding-top: var(--space-3); }
+.u-pt-6 { padding-top: var(--space-6); }
+.u-pt-8 { padding-top: var(--space-8); }
+.u-pt-12 { padding-top: var(--space-12); }
+.u-pt-16 { padding-top: var(--space-16); }
+.u-pt-20 { padding-top: var(--space-20); }
+
+/* Padding Bottom */
+.u-pb-0 { padding-bottom: var(--space-0); }
+.u-pb-3 { padding-bottom: var(--space-3); }
+.u-pb-6 { padding-bottom: var(--space-6); }
+.u-pb-8 { padding-bottom: var(--space-8); }
+.u-pb-12 { padding-bottom: var(--space-12); }
+.u-pb-16 { padding-bottom: var(--space-16); }
+.u-pb-20 { padding-bottom: var(--space-20); }

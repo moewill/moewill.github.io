@@ -1,0 +1,188 @@
+/* CSS Custom Properties - Apple Design System */
+/* Maintains Apple iPhone aesthetic with semantic naming */
+
+:root {
+    /* ===== APPLE COLOR SYSTEM ===== */
+    /* Base Colors */
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    
+    /* Apple Gray Scale */
+    --color-gray-50: #F5F5F7;
+    --color-gray-100: #E8E8ED;
+    --color-gray-200: #D2D2D7;
+    --color-gray-300: #A1A1A6;
+    --color-gray-400: #6E6E73;
+    --color-gray-500: #424245;
+    --color-gray-900: #1D1D1F;
+    
+    /* Apple System Colors */
+    --color-blue: #0071E3;
+    --color-blue-dark: #0051D5;
+    --color-green: #1DD65A;
+    --color-orange: #FF9500;
+    --color-red: #FF3B30;
+    --color-purple: #BF5AF2;
+    --color-pink: #FF2D92;
+    --color-yellow: #FFD60A;
+    
+    /* ===== SEMANTIC COLOR TOKENS ===== */
+    /* Text Colors */
+    --text-primary: var(--color-gray-900);
+    --text-secondary: var(--color-gray-400);
+    --text-tertiary: var(--color-gray-300);
+    --text-inverse: var(--color-white);
+    --text-link: var(--color-blue);
+    --text-link-hover: var(--color-blue-dark);
+    
+    /* Background Colors */
+    --bg-primary: var(--color-white);
+    --bg-secondary: var(--color-gray-50);
+    --bg-tertiary: var(--color-gray-100);
+    --bg-overlay: rgba(0, 0, 0, 0.4);
+    --bg-nav: rgba(251, 251, 253, 0.8);
+    
+    /* Border Colors */
+    --border-primary: var(--color-gray-200);
+    --border-secondary: var(--color-gray-100);
+    --border-focus: var(--color-blue);
+    
+    /* ===== TYPOGRAPHY SYSTEM ===== */
+    /* Font Families */
+    --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+    
+    /* Font Sizes - Apple Scale */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 17px;
+    --font-size-lg: 19px;
+    --font-size-xl: 21px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 28px;
+    --font-size-4xl: 32px;
+    --font-size-5xl: 40px;
+    --font-size-6xl: 48px;
+    --font-size-7xl: 56px;
+    --font-size-8xl: 64px;
+    
+    /* Line Heights */
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.47059;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+    
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-heavy: 800;
+    
+    /* Letter Spacing */
+    --letter-spacing-tight: -0.025em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.025em;
+    
+    /* ===== SPACING SYSTEM ===== */
+    --space-0: 0;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+    --space-32: 128px;
+    
+    /* ===== LAYOUT SYSTEM ===== */
+    /* Breakpoints */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+    
+    /* Container Widths */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1400px;
+    
+    /* Navigation */
+    --nav-height: 44px;
+    --nav-padding: 22px;
+    
+    /* ===== BORDER RADIUS ===== */
+    --radius-none: 0;
+    --radius-sm: 4px;
+    --radius-base: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-full: 9999px;
+    
+    /* ===== SHADOWS ===== */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+    
+    /* Easing Functions */
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* ===== Z-INDEX SCALE ===== */
+    --z-hide: -1;
+    --z-auto: auto;
+    --z-base: 0;
+    --z-docked: 10;
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-banner: 1030;
+    --z-overlay: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-skiplink: 1070;
+    --z-toast: 1080;
+    --z-tooltip: 1090;
+    
+    /* ===== BACKDROP EFFECTS ===== */
+    --backdrop-blur: saturate(180%) blur(20px);
+    --backdrop-blur-sm: blur(4px);
+    --backdrop-blur-md: blur(8px);
+    --backdrop-blur-lg: blur(16px);
+}
+
+/* ===== MEDIA QUERY HELPERS ===== */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-fast: 0ms;
+        --transition-base: 0ms;
+        --transition-slow: 0ms;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark mode overrides would go here */
+        /* Currently maintaining light theme only per Apple aesthetic */
+    }
+}

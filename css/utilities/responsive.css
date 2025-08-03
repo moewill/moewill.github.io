@@ -1,0 +1,28 @@
+/* Responsive Utilities - Apple Design System */
+
+/* ===== DISPLAY UTILITIES ===== */
+.u-block { display: block; }
+.u-inline { display: inline; }
+.u-inline-block { display: inline-block; }
+.u-flex { display: flex; }
+.u-grid { display: grid; }
+.u-hidden { display: none; }
+
+/* ===== FLEX UTILITIES ===== */
+.u-flex-col { flex-direction: column; }
+.u-flex-row { flex-direction: row; }
+.u-flex-wrap { flex-wrap: wrap; }
+.u-justify-center { justify-content: center; }
+.u-justify-between { justify-content: space-between; }
+.u-items-center { align-items: center; }
+.u-items-start { align-items: flex-start; }
+
+/* ===== RESPONSIVE DISPLAY ===== */
+@media (max-width: 767px) {
+    .u-hidden-mobile { display: none; }
+}
+
+@media (min-width: 768px) {
+    .u-hidden-desktop { display: none; }
+    .u-block-desktop { display: block; }
+}

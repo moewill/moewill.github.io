@@ -1,0 +1,55 @@
+/* Grid System - Apple Design System */
+
+/* ===== CONTAINER ===== */
+.container {
+    width: 100%;
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+.container--narrow {
+    max-width: var(--container-md);
+}
+
+.container--wide {
+    max-width: var(--container-2xl);
+}
+
+/* ===== GRID SYSTEM ===== */
+.grid {
+    display: grid;
+    gap: var(--space-6);
+}
+
+.grid--2-cols {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3-cols {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4-cols {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* ===== RESPONSIVE GRID ===== */
+@media (max-width: 768px) {
+    .grid--2-cols,
+    .grid--3-cols,
+    .grid--4-cols {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 var(--space-4);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .grid--3-cols,
+    .grid--4-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
