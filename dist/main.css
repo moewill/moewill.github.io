@@ -102,6 +102,17 @@
     --space-24: 96px;
     --space-32: 128px;
     
+    /* ===== STANDARDIZED SECTION SPACING ===== */
+    --section-padding-y: 80px;          /* Standard vertical section padding */
+    --section-padding-y-sm: 60px;       /* Small section padding (mobile) */
+    --section-padding-x: 22px;          /* Standard horizontal section padding */
+    --section-gap: 60px;                /* Gap between section elements */
+    --section-gap-sm: 40px;             /* Small gap between elements */
+    --component-gap: 32px;              /* Gap between components */
+    --component-gap-sm: 24px;           /* Small gap between components */
+    --hero-padding-top: 44px;           /* Top padding accounting for nav */
+    --hero-padding-bottom: 80px;        /* Bottom padding for hero sections */
+    
     /* ===== LAYOUT SYSTEM ===== */
     /* Breakpoints */
     --breakpoint-sm: 640px;

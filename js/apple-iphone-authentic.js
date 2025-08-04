@@ -14,6 +14,7 @@ class AppleIPhoneExperience {
         this.initDeviceAnimations();
         this.initIntersectionObserver();
         this.initLoadingScreen();
+        this.initInteractiveElements();
         console.log('🍎 Apple iPhone Experience initialized');
     }
 
@@ -341,6 +342,144 @@ class AppleIPhoneExperience {
     initLoadingScreen() {
         // The loading screen is handled in the main HTML script
         // This method can be used for additional loading screen features
+    }
+
+    // Interactive Elements Click Handlers
+    initInteractiveElements() {
+        // Make cost items clickable - show detailed info
+        document.querySelectorAll('.cost-item').forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showItemDetails('cost', index, item);
+            });
+        });
+
+        // Make metric items clickable - show expanded metrics
+        document.querySelectorAll('.metric-item').forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showItemDetails('metric', index, item);
+            });
+        });
+
+        // Make capability modules clickable - navigate to capability page
+        document.querySelectorAll('.capability-module').forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.navigateToCapability(index, item);
+            });
+        });
+
+        // Make case study cards clickable - show case study details
+        document.querySelectorAll('.case-study-card').forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showCaseStudyDetails(index, item);
+            });
+        });
+    }
+
+    showItemDetails(type, index, element) {
+        // Create a subtle notification showing this is interactive
+        const details = this.getItemDetails(type, index);
+        this.showNotification(details.title, details.message, 'info');
+        
+        // Add visual feedback
+        element.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+            element.style.transform = '';
+        }, 150);
+    }
+
+    getItemDetails(type, index) {
+        const details = {
+            cost: [
+                {
+                    title: "Manual Onboarding Impact",
+                    message: "High-touch coaches spend 8-12 hours per new client on setup. At $500+/hr, that's $4,000-$6,000 in unbillable time per client."
+                },
+                {
+                    title: "Missed Follow-up Costs", 
+                    message: "Inconsistent follow-ups reduce client results by 40% and increase churn by 60%. Each lost client represents $50,000+ in LTV."
+                },
+                {
+                    title: "Unqualified Lead Drain",
+                    message: "Discovery calls with poor-fit prospects waste 15-20 hours monthly. That's $7,500-$10,000 in lost revenue opportunity."
+                }
+            ],
+            metric: [
+                {
+                    title: "Client Capacity Expansion",
+                    message: "Our AI systems enable coaches to maintain quality while scaling from 20 to 50+ clients by automating 80% of administrative tasks."
+                },
+                {
+                    title: "Onboarding Acceleration", 
+                    message: "Automated onboarding reduces setup time from 8 hours to 30 minutes while improving client satisfaction scores by 35%."
+                },
+                {
+                    title: "Revenue Protection",
+                    message: "Consistent AI-driven follow-ups prevent $2M+ in annual churn while increasing client LTV by 40% through better engagement."
+                },
+                {
+                    title: "Quality Lead Focus",
+                    message: "AI qualification increases qualified lead ratio from 15% to 85%, saving 90 hours monthly and generating $45,000+ additional revenue."
+                }
+            ]
+        };
+        
+        return details[type] && details[type][index] || { 
+            title: "Interactive Element", 
+            message: "This element provides additional functionality." 
+        };
+    }
+
+    navigateToCapability(index, element) {
+        const capabilities = [
+            'client-onboarding',
+            'session-recap', 
+            'lead-qualification',
+            'content-creation',
+            'group-coaching',
+            'internal-ops',
+            'kpi-dashboard'
+        ];
+        
+        if (capabilities[index]) {
+            // Add visual feedback
+            element.style.transform = 'scale(0.98)';
+            
+            // Show loading state
+            this.showNotification("Opening Capability", `Loading ${element.querySelector('.module-title')?.textContent || 'capability'} details...`, 'info');
+            
+            // Navigate after brief delay for UX
+            setTimeout(() => {
+                window.location.href = `capabilities/${capabilities[index]}.html`;
+            }, 500);
+        }
+    }
+
+    showCaseStudyDetails(index, element) {
+        const studies = [
+            {
+                title: "Enterprise Coaching Firm Transformation",
+                details: "7-figure coaching practice automated 85% of client onboarding, increased capacity by 150%, and maintained 98% client satisfaction."
+            },
+            {
+                title: "Leadership Development Scale-Up", 
+                details: "Executive coaching firm reduced admin overhead by 12 hours weekly, enabling focus on high-value strategic sessions worth $2M annually."
+            }
+        ];
+        
+        const study = studies[index];
+        if (study) {
+            this.showNotification(study.title, study.details, 'success');
+        }
+        
+        // Visual feedback
+        element.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+            element.style.transform = '';
+        }, 150);
     }
 
     // Utility Methods

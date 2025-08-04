@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 44px 22px 60px;
+    padding: var(--hero-padding-top) var(--section-padding-x) var(--hero-padding-bottom);
     background: #fff;
     position: relative;
 }
@@ -106,7 +106,7 @@
 
 /* ===== SECTION 2: PROBLEM (SECURITY GAPS) ===== */
 .story-section-2 {
-    padding: 100px 22px;
+    padding: var(--section-padding-y) var(--section-padding-x);
     background: #f5f5f7;
 }
 
@@ -151,9 +151,20 @@
     border: 1px solid #e5e5e7;
 }
 
+.cost-item {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 .cost-item:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.cost-item:active {
+    transform: translateY(-2px);
+    transition: all 0.1s ease;
 }
 
 .cost-item-icon {
@@ -186,7 +197,7 @@
 
 /* ===== SECTION 3: GUIDE (ABOUT MAURICE) ===== */
 .story-section-3 {
-    padding: 100px 22px;
+    padding: var(--section-padding-y) var(--section-padding-x);
     background: #fff;
 }
 
@@ -284,7 +295,7 @@
 
 /* ===== SECTION 4: PLAN (3 STEPS) ===== */
 .story-section-4 {
-    padding: 100px 22px;
+    padding: var(--section-padding-y) var(--section-padding-x);
     background: #f5f5f7;
 }
 
@@ -363,7 +374,7 @@
 
 /* ===== SECTION 5: SUCCESS (BEFORE/AFTER) ===== */
 .story-section-5 {
-    padding: 100px 22px;
+    padding: var(--section-padding-y) var(--section-padding-x);
     background: #fff;
 }
 
@@ -453,7 +464,7 @@
 
 /* ===== SECTION 6: PROOF (CASE STUDIES) ===== */
 .story-section-6 {
-    padding: 100px 22px;
+    padding: var(--section-padding-y) var(--section-padding-x);
     background: #f5f5f7;
 }
 
@@ -487,9 +498,20 @@
     border: 1px solid #e5e5e7;
 }
 
+.metric-item {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 .metric-item:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.metric-item:active {
+    transform: translateY(-2px);
+    transition: all 0.1s ease;
 }
 
 .metric-number {
@@ -528,9 +550,20 @@
     border: 1px solid #e5e5e7;
 }
 
+.case-study-card {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 .case-study-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.case-study-card:active {
+    transform: translateY(-2px);
+    transition: all 0.1s ease;
 }
 
 .case-study-title {
@@ -593,9 +626,20 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.capability-module {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 .capability-module:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.capability-module:active {
+    transform: translateY(-2px);
+    transition: all 0.1s ease;
 }
 
 .module-icon {
@@ -699,7 +743,7 @@
 
 /* ===== SECTION 7: TRANSITIONAL CTA (PLAYBOOK) ===== */
 .story-section-7 {
-    padding: 100px 22px;
+    padding: var(--section-padding-y) var(--section-padding-x);
     background: #fff;
 }
 
@@ -790,7 +834,7 @@
 
 /* ===== SECTION 8: FINAL CTA (ASSESSMENT) ===== */
 .story-section-8 {
-    padding: 100px 22px;
+    padding: var(--section-padding-y) var(--section-padding-x);
     background: #f5f5f7;
 }
 
@@ -888,7 +932,7 @@
     .story-section-6,
     .story-section-7,
     .story-section-8 {
-        padding: 60px 16px;
+        padding: var(--section-padding-y-sm) var(--space-4);
     }
     
     .story-proof-points,
