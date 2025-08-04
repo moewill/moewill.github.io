@@ -1,0 +1,269 @@
+/* Missing Component Styles - Apple Design System */
+/* Styles for components that were used in HTML but missing CSS */
+
+/* ===== BUNDLE COMPONENTS ===== */
+.bundle-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--component-gap);
+    margin: var(--section-gap) 0;
+}
+
+.bundle-option {
+    background: var(--bg-primary);
+    border: 2px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    text-align: center;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.bundle-option:hover {
+    border-color: var(--border-focus);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.bundle-option.selected {
+    border-color: var(--color-blue);
+    background: rgba(0, 113, 227, 0.02);
+}
+
+.bundle-name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.bundle-price {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-blue);
+    margin-bottom: var(--space-4);
+}
+
+.bundle-note {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: var(--space-3);
+}
+
+.bundle-pricing {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin: var(--space-4) 0;
+}
+
+/* ===== ASSESSMENT COMPONENTS ===== */
+.assessment-cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--space-8);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-secondary);
+}
+
+.pre-assessment-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 400px;
+    margin: var(--space-6) auto 0;
+}
+
+/* ===== AUTHORITY COMPONENTS ===== */
+.authority-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin: var(--section-gap) 0;
+}
+
+.authority-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    border: 1px solid var(--border-secondary);
+}
+
+/* ===== EXPERIENCE COMPONENTS ===== */
+.experience-highlight {
+    background: linear-gradient(135deg, var(--color-blue), var(--color-purple));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: var(--font-weight-semibold);
+}
+
+.credentials-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--component-gap);
+    margin: var(--section-gap) 0;
+}
+
+.credentials-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+/* ===== TRANSFORMATION COMPONENTS ===== */
+.before-after-comparison {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--component-gap);
+    align-items: center;
+    margin: var(--section-gap) 0;
+}
+
+.before-column,
+.after-column {
+    text-align: center;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+}
+
+.before-column {
+    background: rgba(255, 59, 48, 0.05);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+}
+
+.after-column {
+    background: rgba(29, 214, 90, 0.05);
+    border: 1px solid rgba(29, 214, 90, 0.2);
+}
+
+.transformation-arrow {
+    font-size: var(--font-size-2xl);
+    color: var(--color-blue);
+    font-weight: var(--font-weight-bold);
+}
+
+.column-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+}
+
+/* ===== URGENCY COMPONENTS ===== */
+.urgency-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin: var(--component-gap) 0;
+}
+
+.urgency-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: rgba(255, 149, 0, 0.1);
+    border: 1px solid rgba(255, 149, 0, 0.3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+}
+
+.urgency-icon {
+    color: var(--color-orange);
+    font-size: var(--font-size-base);
+}
+
+.urgency-text {
+    font-weight: var(--font-weight-medium);
+}
+
+/* ===== LOADING COMPONENTS ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+}
+
+.loading-spinner,
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-secondary);
+    border-top: 3px solid var(--color-blue);
+    border-radius: var(--radius-full);
+    animation: spin 1s linear infinite;
+}
+
+.maurice-logo-loader {
+    width: 60px;
+    height: 60px;
+    margin-bottom: var(--space-4);
+}
+
+/* ===== STEP COMPONENTS ===== */
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--color-blue);
+    color: var(--color-white);
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-3);
+}
+
+.step-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.step-description {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .bundle-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .before-after-comparison {
+        grid-template-columns: 1fr;
+    }
+    
+    .transformation-arrow {
+        transform: rotate(90deg);
+        margin: var(--space-2) 0;
+    }
+    
+    .urgency-indicators {
+        flex-direction: column;
+        align-items: center;
+    }
+}

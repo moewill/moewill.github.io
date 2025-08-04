@@ -18,8 +18,10 @@
 @import 'components/modals.css';
 @import 'components/navigation.css';
 @import 'components/heroes.css';
+@import 'components/missing.css';
 
 /* ===== UTILITY LAYER ===== */
 @import 'utilities/spacing.css';
 @import 'utilities/colors.css';
 @import 'utilities/responsive.css';
+@import 'utilities/tailwind-compat.css';
