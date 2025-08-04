@@ -1,0 +1,183 @@
+/* Conversion CTAs Component - Apple iPhone Style */
+
+.story-hero-cta {
+    margin-top: 30px;
+}
+
+.story-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background: #007AFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 22px;
+    font-size: 17px;
+    line-height: 1.47;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    border: none;
+    cursor: pointer;
+}
+
+.story-cta-primary:hover {
+    background: #0056CC;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+}
+
+.story-cta-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
+}
+
+.story-cta-subtext {
+    margin-top: 12px;
+    font-size: 15px;
+    color: #86868b;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* Final CTA Section Styling */
+.assessment-cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 22px;
+    text-align: center;
+}
+
+.final-headline {
+    font-size: 48px;
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    color: #1d1d1f;
+    margin-bottom: 20px;
+}
+
+.final-description {
+    font-size: 21px;
+    line-height: 1.38;
+    color: #1d1d1f;
+    margin-bottom: 40px;
+}
+
+.urgency-indicators {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.urgency-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    background: rgba(0, 122, 255, 0.05);
+    border-radius: 12px;
+}
+
+.urgency-icon {
+    font-size: 24px;
+}
+
+.urgency-text {
+    font-size: 17px;
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+.final-cta-button {
+    font-size: 21px;
+    padding: 16px 32px;
+    border-radius: 28px;
+    margin-top: 20px;
+}
+
+/* Secondary CTA Styling */
+.story-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background: transparent;
+    color: #007AFF;
+    text-decoration: none;
+    border: 2px solid #007AFF;
+    border-radius: 22px;
+    font-size: 17px;
+    line-height: 1.47;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    margin-left: 12px;
+}
+
+.story-cta-secondary:hover {
+    background: #007AFF;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .assessment-cta-content {
+        padding: 60px 22px;
+    }
+    
+    .final-headline {
+        font-size: 32px;
+        line-height: 1.125;
+    }
+    
+    .final-description {
+        font-size: 19px;
+        line-height: 1.42;
+    }
+    
+    .urgency-indicators {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .urgency-item {
+        padding: 16px;
+    }
+    
+    .story-cta-primary,
+    .story-cta-secondary {
+        width: 100%;
+        margin: 8px 0;
+    }
+    
+    .final-cta-button {
+        font-size: 19px;
+        padding: 14px 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .final-headline {
+        font-size: 28px;
+    }
+    
+    .final-description {
+        font-size: 17px;
+    }
+    
+    .urgency-text {
+        font-size: 15px;
+    }
+    
+    .story-cta-primary,
+    .story-cta-secondary {
+        font-size: 15px;
+        padding: 10px 20px;
+    }
+}

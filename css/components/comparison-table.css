@@ -1,0 +1,157 @@
+/* Comparison Table Component - Apple iPhone Style */
+
+.comparison-content {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 80px 22px;
+}
+
+.comparison-headline {
+    font-size: 48px;
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    color: #1d1d1f;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.comparison-table-wrapper {
+    overflow-x: auto;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 17px;
+    line-height: 1.47;
+}
+
+.comparison-table th {
+    background: #f5f5f7;
+    padding: 20px;
+    text-align: left;
+    font-weight: 600;
+    color: #1d1d1f;
+    border-bottom: 1px solid #d2d2d7;
+}
+
+.comparison-table th.maurice-column {
+    background: rgba(0, 122, 255, 0.05);
+    color: #007AFF;
+}
+
+.comparison-table td {
+    padding: 20px;
+    border-bottom: 1px solid #f5f5f7;
+    vertical-align: top;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.feature-name {
+    font-weight: 600;
+    color: #1d1d1f;
+    background: #fafafa;
+}
+
+.maurice-advantage {
+    background: rgba(0, 122, 255, 0.03);
+    color: #007AFF;
+    font-weight: 500;
+    position: relative;
+}
+
+.maurice-advantage::before {
+    content: "✓";
+    color: #30d158;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+/* Mobile Responsive - Accordion Style */
+@media (max-width: 768px) {
+    .comparison-content {
+        padding: 60px 22px;
+    }
+    
+    .comparison-headline {
+        font-size: 32px;
+        line-height: 1.125;
+        margin-bottom: 40px;
+    }
+    
+    .comparison-table-wrapper {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .comparison-table {
+        display: block;
+        font-size: 15px;
+    }
+    
+    .comparison-table thead {
+        display: none;
+    }
+    
+    .comparison-table tbody {
+        display: block;
+    }
+    
+    .comparison-table tr {
+        display: block;
+        margin-bottom: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+    
+    .comparison-table td {
+        display: block;
+        padding: 15px 20px;
+        border-bottom: 1px solid #f5f5f7;
+        position: relative;
+    }
+    
+    .comparison-table td:last-child {
+        border-bottom: none;
+    }
+    
+    .feature-name {
+        background: #f5f5f7;
+        font-size: 17px;
+        font-weight: 600;
+    }
+    
+    .comparison-table td:not(.feature-name):before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #86868b;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .maurice-advantage {
+        background: rgba(0, 122, 255, 0.05);
+    }
+}
+
+@media (max-width: 480px) {
+    .comparison-headline {
+        font-size: 28px;
+    }
+    
+    .comparison-table td {
+        padding: 12px 16px;
+    }
+}
