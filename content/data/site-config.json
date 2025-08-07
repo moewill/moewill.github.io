@@ -1,0 +1,49 @@
+{
+  "site": {
+    "title": "The Capability Engine - AI Automation for $1M+ Coaches",
+    "description": "Privacy-first AI automation that eliminates admin work for 7 & 8-figure coaching practices. Scale client capacity, deliver world-class experiences.",
+    "author": "Maurice Williams",
+    "url": "https://moewill.github.io",
+    "logo": "/images/maurice-williams-logo.png"
+  },
+  "contact": {
+    "linkedin": "https://linkedin.com/in/mauricerashadwilliams",
+    "github": "https://github.com/moewill"
+  },
+  "seo": {
+    "keywords": ["AI automation", "coaching", "productivity", "workflow automation", "privacy-first"],
+    "ogImage": "/images/og-image.jpg"
+  },
+  "capabilities": [
+    {
+      "title": "Client Onboarding AI",
+      "description": "Automated client onboarding with personalized welcomes and instant setup",
+      "icon": "fas fa-user-plus"
+    },
+    {
+      "title": "Session Recap & Follow-Up",
+      "description": "Automatic session summaries and personalized follow-up workflows", 
+      "icon": "fas fa-clipboard-check"
+    },
+    {
+      "title": "Lead Qualification AI",
+      "description": "Intelligent lead scoring and automated prospect nurturing",
+      "icon": "fas fa-filter"
+    },
+    {
+      "title": "Content Creation AI", 
+      "description": "AI-powered content generation for courses, emails, and social media",
+      "icon": "fas fa-pen-fancy"
+    },
+    {
+      "title": "Internal Operations",
+      "description": "Streamlined internal workflows and team collaboration tools",
+      "icon": "fas fa-cogs"
+    },
+    {
+      "title": "KPI Dashboard",
+      "description": "Real-time analytics and performance insights for your practice",
+      "icon": "fas fa-chart-line"
+    }
+  ]
+}
