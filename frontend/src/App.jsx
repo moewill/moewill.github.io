@@ -13,6 +13,7 @@ import ProofSection from './components/sections/ProofSection'
 import AssessmentSection from './components/sections/AssessmentSection'
 import { useLoadingScreen } from './hooks/useLoadingScreen'
 import './styles/apple.css'
+import './styles/animations.css'
 
 function App() {
   const { isLoading, isVisible, handleLoadingComplete } = useLoadingScreen()

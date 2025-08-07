@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
+import { originalContent } from '../../data/originalContent'
+import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
 const AssessmentSection = () => {
+  const { assessment } = originalContent
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     revenue: '',
-    challenge: ''
+    role: '',
+    challenges: []
   })
+
+  const headerAnimation = useScrollAnimation({ delay: 200 })
+  const formAnimation = useScrollAnimation({ delay: 400 })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -38,24 +45,45 @@ const AssessmentSection = () => {
   }
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+    const { name, value, type, checked } = e.target
+    
+    if (type === 'checkbox') {
+      const challenges = formData.challenges || []
+      if (checked) {
+        setFormData({ ...formData, challenges: [...challenges, value] })
+      } else {
+        setFormData({ ...formData, challenges: challenges.filter(c => c !== value) })
+      }
+    } else {
+      setFormData({ ...formData, [name]: value })
+    }
   }
 
   return (
     <section id="assessment" className="apple-section apple-section-large" style={{ background: 'var(--apple-gray-light)' }}>
       <div className="apple-container">
         <div className="assessment-content">
-          <div className="assessment-header">
+          <div 
+            ref={headerAnimation.elementRef}
+            className={`assessment-header scroll-reveal ${headerAnimation.animationClass}`}
+            style={headerAnimation.style}
+          >
             <h2 className="apple-headline-medium assessment-headline">
-              Get Your Free AI Capability Assessment
+              {assessment.headline}
             </h2>
             <p className="apple-body-large assessment-subheadline">
-              30-minute conversation to identify exactly which AI capabilities will have the 
-              biggest impact on your coaching practice and revenue.
+              {assessment.description}
             </p>
+            
+            {/* Urgency Indicators */}
+            <div className="urgency-indicators">
+              {assessment.urgencyIndicators.map((indicator, index) => (
+                <div key={index} className="urgency-item">
+                  <span className="urgency-icon">{indicator.icon}</span>
+                  <div className="urgency-text">{indicator.text}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="assessment-main">

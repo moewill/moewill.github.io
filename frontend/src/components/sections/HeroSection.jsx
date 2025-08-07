@@ -1,45 +1,40 @@
 import React from 'react'
+import { originalContent } from '../../data/originalContent'
 
 const HeroSection = () => {
+  const { hero } = originalContent
+
   return (
     <section id="hero" className="apple-section apple-section-large">
       <div className="apple-container">
         <div className="hero-content">
           <h1 className="apple-headline-large hero-headline">
-            The Three Core AI Capabilities That Scale $1M+ Coaches
+            {hero.headline}
           </h1>
           <p className="apple-body-large hero-subheadline">
-            Privacy-first AI automation for coaching practices: qualify better leads, 
-            prove your impact, and streamline your team.
+            {hero.subheadline}
           </p>
 
           {/* Proof Points */}
           <div className="hero-proof-points">
-            <div className="proof-point">
-              <div className="proof-icon">🤖</div>
-              <span className="apple-body-medium">Automate Admin Work</span>
-            </div>
-            <div className="proof-point">
-              <div className="proof-icon">🔒</div>
-              <span className="apple-body-medium">Privacy by Design</span>
-            </div>
-            <div className="proof-point">
-              <div className="proof-icon">📈</div>
-              <span className="apple-body-medium">Performance-Linked</span>
-            </div>
+            {hero.proofPoints.map((point, index) => (
+              <div key={index} className="proof-point">
+                <div className="proof-icon">{point.icon}</div>
+                <div className="proof-content">
+                  <span className="apple-body-medium proof-title">{point.title}</span>
+                  <span className="apple-body-small proof-description">{point.description}</span>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Trust Indicators */}
           <div className="hero-trust-indicators">
-            <div className="trust-indicator">
-              <span className="apple-body-small">17+ years technical experience</span>
-            </div>
-            <div className="trust-indicator">
-              <span className="apple-body-small">Built for coaches, not generic businesses</span>
-            </div>
-            <div className="trust-indicator">
-              <span className="apple-body-small">Data never used to train public AI models</span>
-            </div>
+            {hero.trustIndicators.map((indicator, index) => (
+              <div key={index} className="trust-indicator">
+                <span className="apple-body-small">{indicator}</span>
+              </div>
+            ))}
           </div>
 
           {/* CTA Button */}
@@ -48,8 +43,11 @@ const HeroSection = () => {
               className="apple-button apple-button-primary hero-cta-button"
               onClick={() => document.getElementById('assessment')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Get Your AI Assessment
+              {hero.cta.primary}
             </button>
+            <p className="apple-body-small hero-cta-subtext">
+              {hero.cta.subtext}
+            </p>
           </div>
         </div>
       </div>
@@ -90,11 +88,34 @@ const HeroSection = () => {
           flex-direction: column;
           align-items: center;
           gap: 12px;
+          text-align: center;
         }
 
         .proof-icon {
           font-size: 32px;
           line-height: 1;
+          margin-bottom: 8px;
+        }
+
+        .proof-content {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .proof-title {
+          font-weight: 600;
+          color: var(--apple-text-primary);
+        }
+
+        .proof-description {
+          color: var(--apple-text-secondary);
+          line-height: 1.4;
+        }
+
+        .hero-cta-subtext {
+          color: var(--apple-text-secondary);
+          margin-top: 12px;
         }
 
         .hero-trust-indicators {

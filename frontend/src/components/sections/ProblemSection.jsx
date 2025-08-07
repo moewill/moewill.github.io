@@ -1,50 +1,29 @@
 import React from 'react'
+import { originalContent } from '../../data/originalContent'
 
 const ProblemSection = () => {
-  const problems = [
-    {
-      icon: "⏰",
-      title: "Time Drain",
-      description: "Spending hours on admin tasks instead of coaching high-value clients"
-    },
-    {
-      icon: "📊",
-      title: "Impact Invisibility",
-      description: "Struggling to quantify and prove the real value of your coaching"
-    },
-    {
-      icon: "🔍",
-      title: "Lead Quality",
-      description: "Wasting time on unqualified prospects who aren't ready to invest"
-    },
-    {
-      icon: "📈",
-      title: "Scale Barriers",
-      description: "Manual processes preventing you from scaling beyond your time limits"
-    }
-  ]
+  const { problem } = originalContent
 
   return (
     <section id="problem" className="apple-section">
       <div className="apple-container">
         <div className="problem-content">
           <h2 className="apple-headline-medium problem-headline">
-            The Hidden Costs of Manual Coaching Operations
+            {problem.headline}
           </h2>
           <p className="apple-body-large problem-subheadline">
-            Million-dollar coaches are losing 20+ hours per week to tasks that AI can automate, 
-            while struggling to prove their impact and scale their practice.
+            {problem.description}
           </p>
 
           <div className="problem-grid">
-            {problems.map((problem, index) => (
+            {problem.challenges.map((challenge, index) => (
               <div key={index} className="problem-card apple-card">
-                <div className="problem-icon">{problem.icon}</div>
+                <div className="problem-icon">{challenge.icon}</div>
                 <h3 className="apple-headline-small problem-card-title">
-                  {problem.title}
+                  {challenge.title}
                 </h3>
                 <p className="apple-body-medium problem-card-description">
-                  {problem.description}
+                  {challenge.description}
                 </p>
               </div>
             ))}
@@ -52,11 +31,10 @@ const ProblemSection = () => {
 
           <div className="problem-impact">
             <h3 className="apple-headline-small impact-headline">
-              The Real Cost?
+              The Result?
             </h3>
             <p className="apple-body-large impact-description">
-              <strong>$250,000+ in lost revenue annually</strong> from inefficient operations, 
-              plus the opportunity cost of not scaling your highest-impact coaching work.
+              {problem.bridge}
             </p>
           </div>
         </div>

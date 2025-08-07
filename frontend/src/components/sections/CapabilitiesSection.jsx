@@ -1,102 +1,26 @@
 import React, { useState } from 'react'
+import { useScrollAnimation, useStaggeredAnimation } from '../../hooks/useScrollAnimation'
+import { originalContent } from '../../data/originalContent'
 
 const CapabilitiesSection = () => {
   const [activeCapability, setActiveCapability] = useState(0)
+  const { capabilities } = originalContent
+  
+  const headerAnimation = useScrollAnimation({ delay: 200 })
+  const tabsAnimation = useStaggeredAnimation(capabilities.modules.length, { staggerDelay: 100 })
 
-  const capabilities = [
-    {
-      id: "lead-qualification",
-      title: "Lead Qualification AI",
-      subtitle: "Identify high-intent prospects before your first call",
-      description: "AI analyzes prospect behavior, engagement patterns, and communication style to score lead quality and readiness to invest in high-ticket coaching.",
-      features: [
-        "Behavioral analysis from website and email interactions",
-        "Automated lead scoring based on coaching-specific criteria", 
-        "Pre-call intelligence reports for each prospect",
-        "Integration with existing CRM and marketing tools"
-      ],
-      benefit: "3x more qualified prospects",
-      roi: "Save 15+ hours weekly on unqualified leads"
-    },
-    {
-      id: "session-optimization",
-      title: "Session Intelligence",
-      subtitle: "Maximize impact of every coaching conversation",
-      description: "AI captures session insights, tracks client progress, and provides personalized follow-up recommendations to enhance coaching effectiveness.",
-      features: [
-        "Automated session note generation and summaries",
-        "Client progress tracking with milestone alerts",
-        "Personalized follow-up task recommendations",
-        "Goal achievement probability scoring"
-      ],
-      benefit: "40% improvement in client outcomes",
-      roi: "Increase client retention by 60%"
-    },
-    {
-      id: "content-creation",
-      title: "Content Automation",
-      subtitle: "Scale your thought leadership effortlessly", 
-      description: "AI creates coaching-specific content across all channels while maintaining your unique voice and expertise positioning.",
-      features: [
-        "Course material and worksheet generation",
-        "Social media content calendar automation",
-        "Email sequence personalization at scale",
-        "Video script and presentation outlines"
-      ],
-      benefit: "10x content output volume",
-      roi: "Save 20+ hours weekly on content creation"
-    },
-    {
-      id: "client-onboarding",
-      title: "Onboarding Intelligence",
-      subtitle: "Create world-class first impressions automatically",
-      description: "AI orchestrates perfect client onboarding experiences, personalizing welcome sequences and setting up success foundations.",
-      features: [
-        "Personalized welcome experience based on client profile",
-        "Automated goal-setting and expectation alignment",
-        "Custom resource delivery and timeline creation",
-        "Early warning system for potential engagement issues"
-      ],
-      benefit: "95% client satisfaction scores",
-      roi: "Reduce onboarding time by 80%"
-    },
-    {
-      id: "performance-analytics",
-      title: "Impact Measurement",
-      subtitle: "Prove your coaching ROI with precision data",
-      description: "AI tracks and reports on client progress, coaching effectiveness, and business impact to demonstrate clear value and results.",
-      features: [
-        "Client progress visualization and reporting",
-        "Coaching ROI calculations and projections", 
-        "Practice performance benchmarking",
-        "Outcome prediction and optimization recommendations"
-      ],
-      benefit: "Quantifiable coaching impact",
-      roi: "Justify 2x higher coaching fees"
-    },
-    {
-      id: "workflow-automation",
-      title: "Operations Engine",
-      subtitle: "Eliminate manual work that doesn't scale",
-      description: "AI handles scheduling, follow-ups, and administrative tasks so you can focus entirely on high-value coaching activities.",
-      features: [
-        "Intelligent scheduling with preference learning",
-        "Automated follow-up sequence management",
-        "Document generation and client communication",
-        "Payment processing and renewal optimization"
-      ],
-      benefit: "Zero administrative overhead",
-      roi: "Reclaim 25+ hours weekly for coaching"
-    }
-  ]
 
   return (
     <section id="capabilities" className="apple-section apple-section-large">
       <div className="apple-container">
         <div className="capabilities-content">
-          <div className="capabilities-header">
+          <div 
+            ref={headerAnimation.elementRef}
+            className={`capabilities-header scroll-reveal ${headerAnimation.animationClass}`}
+            style={headerAnimation.style}
+          >
             <h2 className="apple-headline-medium capabilities-headline">
-              Six AI Capabilities That Transform Your Practice
+              {capabilities.headline}
             </h2>
             <p className="apple-body-large capabilities-subheadline">
               Purpose-built automation modules that integrate seamlessly into your existing workflow, 
@@ -105,67 +29,44 @@ const CapabilitiesSection = () => {
           </div>
 
           <div className="capabilities-interface">
-            {/* Capability Tabs */}
-            <div className="capability-tabs">
-              {capabilities.map((capability, index) => (
-                <button
-                  key={capability.id}
-                  className={`capability-tab ${activeCapability === index ? 'active' : ''}`}
+            {/* Capability Modules Grid */}
+            <div 
+              ref={tabsAnimation.containerRef}
+              className="capability-modules-grid"
+            >
+              {capabilities.modules.map((module, index) => (
+                <div
+                  key={index}
+                  className={`capability-module apple-hover ${tabsAnimation.isItemVisible(index) ? 'stagger-item animate-in' : 'stagger-item'}`}
                   onClick={() => setActiveCapability(index)}
                 >
-                  <div className="tab-content">
-                    <h3 className="apple-body-medium tab-title">
-                      {capability.title}
-                    </h3>
-                    <p className="apple-body-small tab-subtitle">
-                      {capability.subtitle}
-                    </p>
-                  </div>
-                </button>
+                  <div className="module-icon">{module.icon}</div>
+                  <h3 className="apple-headline-small module-title">
+                    {module.title}
+                  </h3>
+                  <p className="apple-body-medium module-subtitle">
+                    {module.subtitle}
+                  </p>
+                  <p className="apple-body-medium module-description">
+                    {module.description}
+                  </p>
+                  <div className="module-pricing">{module.pricing}</div>
+                </div>
               ))}
             </div>
 
-            {/* Active Capability Detail */}
-            <div className="capability-detail">
-              <div className="detail-content">
-                <div className="detail-header">
-                  <h3 className="apple-headline-small detail-title">
-                    {capabilities[activeCapability].title}
-                  </h3>
-                  <p className="apple-body-large detail-description">
-                    {capabilities[activeCapability].description}
-                  </p>
-                </div>
-
-                <div className="detail-features">
-                  <h4 className="apple-body-medium features-title">
-                    Key Features
-                  </h4>
-                  <ul className="features-list">
-                    {capabilities[activeCapability].features.map((feature, index) => (
-                      <li key={index} className="apple-body-medium feature-item">
-                        <span className="feature-check">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="detail-results">
-                  <div className="result-item">
-                    <span className="apple-body-small result-label">Expected Benefit:</span>
-                    <span className="apple-body-medium result-value benefit">
-                      {capabilities[activeCapability].benefit}
-                    </span>
+            {/* Bundle Pricing */}
+            <div className="bundle-pricing">
+              <h3 className="bundle-title">{capabilities.bundlePricing.title}</h3>
+              <div className="bundle-options">
+                {capabilities.bundlePricing.options.map((option, index) => (
+                  <div key={index} className="bundle-option">
+                    <span className="bundle-name">{option.name}:</span>
+                    <span className="bundle-price">{option.price}</span>
                   </div>
-                  <div className="result-item">
-                    <span className="apple-body-small result-label">ROI Impact:</span>
-                    <span className="apple-body-medium result-value roi">
-                      {capabilities[activeCapability].roi}
-                    </span>
-                  </div>
-                </div>
+                ))}
               </div>
+              <p className="bundle-note">{capabilities.bundlePricing.note}</p>
             </div>
           </div>
 
@@ -210,153 +111,105 @@ const CapabilitiesSection = () => {
         }
 
         .capabilities-interface {
-          display: grid;
-          grid-template-columns: 350px 1fr;
-          gap: 60px;
           margin-bottom: 80px;
         }
 
-        .capability-tabs {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
+        .capability-modules-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 32px;
+          margin-bottom: 60px;
         }
 
-        .capability-tab {
+        .capability-module {
           background: var(--apple-white);
           border: 1px solid var(--apple-border-light);
-          border-radius: 12px;
-          padding: 20px;
-          text-align: left;
+          border-radius: 16px;
+          padding: 32px;
+          text-align: center;
           cursor: pointer;
           transition: all 0.3s ease;
           position: relative;
         }
 
-        .capability-tab:hover {
-          border-color: var(--apple-blue);
-          transform: translateX(4px);
-        }
-
-        .capability-tab.active {
-          background: var(--apple-blue);
-          border-color: var(--apple-blue);
-          transform: translateX(8px);
-          box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
-        }
-
-        .capability-tab.active .tab-title,
-        .capability-tab.active .tab-subtitle {
-          color: white;
-        }
-
-        .tab-content {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .tab-title {
-          margin: 0;
-          color: var(--apple-text-primary);
-          font-weight: 600;
-        }
-
-        .tab-subtitle {
-          margin: 0;
-          color: var(--apple-text-secondary);
-          line-height: 1.4;
-        }
-
-        .capability-detail {
-          background: var(--apple-white);
-          border-radius: 20px;
-          padding: 40px;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-          border: 0.5px solid var(--apple-border-light);
-          min-height: 500px;
-        }
-
-        .detail-header {
-          margin-bottom: 32px;
-        }
-
-        .detail-title {
-          margin-bottom: 16px;
-          color: var(--apple-text-primary);
-        }
-
-        .detail-description {
-          color: var(--apple-text-secondary);
-          line-height: 1.6;
-        }
-
-        .detail-features {
-          margin-bottom: 32px;
-        }
-
-        .features-title {
+        .module-icon {
+          font-size: 48px;
           margin-bottom: 20px;
+          line-height: 1;
+        }
+
+        .module-title {
+          margin-bottom: 12px;
           color: var(--apple-text-primary);
+        }
+
+        .module-subtitle {
+          margin-bottom: 16px;
+          color: var(--apple-blue);
           font-weight: 600;
         }
 
-        .features-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .feature-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
+        .module-description {
+          margin-bottom: 24px;
           color: var(--apple-text-secondary);
           line-height: 1.5;
         }
 
-        .feature-check {
-          color: #34c759;
+        .module-pricing {
+          font-size: 18px;
           font-weight: 600;
-          flex-shrink: 0;
-          margin-top: 2px;
+          color: var(--apple-text-primary);
+          padding: 8px 16px;
+          background: var(--apple-gray-light);
+          border-radius: 8px;
+          display: inline-block;
         }
 
-        .detail-results {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
+        .bundle-pricing {
+          background: var(--apple-gray-light);
+          border-radius: 20px;
+          padding: 40px;
+          text-align: center;
+          margin-bottom: 40px;
         }
 
-        .result-item {
+        .bundle-title {
+          margin-bottom: 24px;
+          color: var(--apple-text-primary);
+          font-size: 24px;
+          font-weight: 600;
+        }
+
+        .bundle-options {
+          display: flex;
+          justify-content: center;
+          gap: 40px;
+          margin-bottom: 20px;
+          flex-wrap: wrap;
+        }
+
+        .bundle-option {
           display: flex;
           flex-direction: column;
           gap: 8px;
-          padding: 20px;
-          background: var(--apple-gray-light);
-          border-radius: 12px;
+          align-items: center;
         }
 
-        .result-label {
+        .bundle-name {
           color: var(--apple-text-secondary);
-          text-transform: uppercase;
-          font-weight: 600;
-          letter-spacing: 0.5px;
+          font-weight: 500;
         }
 
-        .result-value {
-          font-weight: 600;
-        }
-
-        .result-value.benefit {
+        .bundle-price {
           color: var(--apple-blue);
+          font-weight: 700;
+          font-size: 20px;
         }
 
-        .result-value.roi {
-          color: #34c759;
+        .bundle-note {
+          color: var(--apple-text-secondary);
+          font-size: 14px;
+          margin: 0;
         }
 
         .capabilities-cta {
@@ -387,77 +240,40 @@ const CapabilitiesSection = () => {
           font-weight: 500;
         }
 
-        /* Animation Classes */
-        .capability-detail {
-          opacity: 0;
-          transform: translateY(20px);
-          animation: detailReveal 0.4s ease-out forwards;
-        }
-
-        @keyframes detailReveal {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         /* Responsive Design */
         @media (max-width: 767px) {
           .capabilities-header {
             margin-bottom: 60px;
           }
 
-          .capabilities-interface {
+          .capability-modules-grid {
             grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
+            gap: 24px;
+            margin-bottom: 40px;
           }
 
-          .capability-tabs {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-          }
-
-          .capability-tab {
-            padding: 16px;
-            transform: none !important;
-          }
-
-          .capability-tab:hover {
-            transform: none !important;
-          }
-
-          .capability-tab.active {
-            transform: none !important;
-          }
-
-          .capability-detail {
+          .capability-module {
             padding: 24px;
-            min-height: auto;
           }
 
-          .detail-results {
-            grid-template-columns: 1fr;
+          .module-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+          }
+
+          .bundle-pricing {
+            padding: 24px;
+            margin-bottom: 32px;
+          }
+
+          .bundle-options {
+            flex-direction: column;
+            gap: 20px;
           }
 
           .capabilities-cta {
             padding: 32px 24px;
             margin: 0 16px;
-          }
-        }
-
-        @media (max-width: 600px) {
-          .capability-tabs {
-            grid-template-columns: 1fr;
-          }
-
-          .tab-title {
-            font-size: 14px;
-          }
-
-          .tab-subtitle {
-            font-size: 12px;
           }
         }
       `}</style>
