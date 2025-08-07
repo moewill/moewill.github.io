@@ -1,113 +1,275 @@
-# Maurice Rashad - Tech Services Website
+# Maurice Williams - The Capability Engine
 
-A modern, interactive website for Maurice Rashad's technology consulting business, featuring an AI-powered chatbot connected to resume data.
+Privacy-first AI automation that eliminates admin work for 7 & 8-figure coaching practices. Modern React frontend with secure FastAPI backend.
 
-## 🚀 Features
+## 🚀 Quick Start
 
-- **Modern Design**: Responsive design with Tailwind CSS, gradient backgrounds, and smooth animations
-- **Interactive Elements**: Hover effects, floating animations, and dynamic content
-- **AI Chatbot**: Claude-powered assistant that can answer questions about services and experience
-- **Modular Structure**: Separated CSS, JavaScript, and data files following best practices
-- **Mobile-First**: Fully responsive design optimized for all devices
+### Option 1: One-Command Start (Recommended)
+```bash
+./scripts/start-dev.sh
+```
 
-## 📁 File Structure
+### Option 2: Manual Development Setup
+```bash
+# Terminal 1: Backend
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+alembic upgrade head
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+# Terminal 2: Frontend  
+cd frontend
+npm install
+npm run dev
+```
+
+### Option 3: Docker Compose
+```bash
+docker-compose up --build
+```
+
+## 🌐 Access Points
+
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000  
+- **API Documentation**: http://localhost:8000/api/docs
+- **Health Check**: http://localhost:8000/api/health
+
+## 🛑 Stop Services
+
+```bash
+./scripts/stop-dev.sh
+# Or manually: Ctrl+C in terminals
+```
+
+## 🏗️ Architecture
+
+### Frontend (React + Vite)
+- **Modern React 18** with functional components and hooks
+- **Vite** for fast development and optimized builds
+- **Tailwind CSS** for Apple-inspired design system
+- **Responsive design** with mobile-first approach
+- **Component-based** architecture for maintainability
+
+### Backend (FastAPI)
+- **FastAPI** for high-performance async API
+- **SQLite** database with SQLAlchemy ORM
+- **Pydantic** for data validation and serialization
+- **Alembic** for database migrations
+- **Security hardening** with rate limiting, CORS, headers
+
+### Key Features
+- ✅ **Email Capture**: Secure endpoint with unique code generation
+- ✅ **Rate Limiting**: 5 requests/minute per IP
+- ✅ **Input Validation**: Comprehensive Pydantic models
+- ✅ **Error Handling**: Structured error responses
+- ✅ **Health Checks**: Monitoring and observability
+- ✅ **Database Migrations**: Version-controlled schema changes
+
+## 📁 Project Structure
 
 ```
 moewill.github.io/
-├── index.html              # Main HTML file
-├── css/
-│   └── styles.css          # Custom styles and animations
-├── js/
-│   ├── main.js            # Main website functionality
-│   └── claude-chatbot.js  # Enhanced Claude AI chatbot
-├── data/
-│   └── resume.json        # Structured resume/service data
-└── README.md              # This file
+├── 📱 frontend/                 # React frontend
+│   ├── src/
+│   │   ├── components/         # React components
+│   │   ├── utils/             # API client, utilities
+│   │   └── styles/            # Tailwind CSS
+│   ├── package.json           # Dependencies
+│   └── vite.config.js         # Build configuration
+│
+├── 🔧 backend/                 # FastAPI backend
+│   ├── app/
+│   │   ├── api/               # API endpoints
+│   │   ├── models/            # Pydantic models
+│   │   ├── database/          # SQLAlchemy models
+│   │   └── utils/             # Security utilities
+│   ├── alembic/               # Database migrations
+│   └── requirements.txt       # Python dependencies
+│
+├── 📝 content/                 # Markdown content
+│   ├── pages/                 # Page content
+│   └── data/                  # Site configuration
+│
+├── 🐳 Docker files
+│   ├── docker-compose.yml     # Development
+│   └── docker-compose.prod.yml # Production
+│
+├── 🧪 tests/                   # Test suites
+│   ├── integration/           # End-to-end tests
+│   └── css/                   # Style validation
+│
+├── 🚀 scripts/                 # Utility scripts
+│   ├── start-dev.sh          # Development startup
+│   ├── stop-dev.sh           # Stop services
+│   └── deploy.sh             # Production deployment
+│
+└── 📚 docs/                    # Documentation
+    └── TROUBLESHOOTING.md     # Common issues
 ```
 
-## 🤖 Chatbot Setup
+## 🛠️ Development
 
-The website includes an AI-powered chatbot that uses Claude API to answer questions about Maurice's services and experience.
+### Adding New Features
+1. **Backend**: Add endpoints in `backend/app/api/`
+2. **Frontend**: Create components in `frontend/src/components/`
+3. **Database**: Use Alembic for schema changes
+4. **Content**: Update markdown files in `content/`
 
-### To use the chatbot:
+### Running Tests
+```bash
+# Backend tests
+cd backend && source venv/bin/activate
+pytest app/tests/
 
-1. **Get a Claude API Key**:
-   - Visit [Anthropic's website](https://www.anthropic.com/)
-   - Sign up and obtain an API key (starts with `sk-ant-`)
+# Frontend tests  
+cd frontend
+npm test
 
-2. **Configure the Chatbot**:
-   - Click the chat icon in the bottom-right corner
-   - Enter your Claude API key when prompted
-   - The key is stored locally in your browser
+# Integration tests
+pytest tests/integration/
 
-3. **Features**:
-   - Answers questions about services, pricing, and experience
-   - Connected to structured resume data
-   - Fallback responses when API is unavailable
-   - Professional, context-aware responses
+# All tests via Docker
+docker-compose -f docker-compose.test.yml up --build
+```
 
-## 🎨 Services Offered
+### Database Operations
+```bash
+# Create migration
+cd backend && source venv/bin/activate
+alembic revision --autogenerate -m "Description"
 
-### Strategic Consulting
-- **Price**: $100/month
-- **Includes**: 2x 1-hour calls, strategic planning, technology roadmaps
+# Apply migrations
+alembic upgrade head
 
-### Technology Services
-- **Price**: $75/hour
-- **Includes**: Custom automation, web development, hosting solutions
+# Check database
+sqlite3 backend/app.db "SELECT * FROM email_captures;"
+```
 
-### Expert Workshops
-- **Price**: $99/workshop
-- **Topics**: AI agents, cybersecurity, web development, cloud technologies
+## 🚀 Production Deployment
 
-## 🛠️ Technologies Used
+### Docker Deployment
+```bash
+# Production stack
+docker-compose -f docker-compose.prod.yml up -d
 
-- **Frontend**: HTML5, Tailwind CSS, Vanilla JavaScript
-- **Icons**: Font Awesome
-- **AI**: Claude API (Anthropic)
-- **Animation**: Custom CSS animations and transitions
-- **Design**: Modern gradient designs, glassmorphism effects
+# With automated deployment
+./scripts/deploy.sh
+```
 
-## 📱 Responsive Design
+### Manual Deployment
+1. **Build frontend**: `cd frontend && npm run build`
+2. **Configure Nginx**: Use provided nginx configurations
+3. **SSL Setup**: Let's Encrypt certificates (see `nginx/ssl/README.md`)
+4. **Environment**: Set production environment variables
 
-The website is fully responsive and optimized for:
-- Desktop (1200px+)
-- Tablet (768px-1199px)
-- Mobile (320px-767px)
+## 🧪 API Testing
 
-## 🔧 Customization
+### Email Capture Endpoint
+```bash
+# Success case
+curl -X POST "http://localhost:8000/api/email/capture" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}'
 
-### Updating Services
-Edit `data/resume.json` to modify service information, pricing, and experience details.
+# Expected: {"success":true,"code":"ABC123DEF0","message":"Email captured successfully"}
 
-### Styling Changes
-Modify `css/styles.css` for custom styles. The design uses CSS custom properties for easy color scheme updates.
+# Duplicate email
+curl -X POST "http://localhost:8000/api/email/capture" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}'
 
-### Chatbot Responses
-The chatbot uses the data in `resume.json` to provide accurate responses. Update this file to improve chatbot knowledge.
+# Expected: 409 Conflict - {"detail":"Email already exists"}
+```
 
-## 📈 Performance Features
+### Health Check
+```bash
+curl http://localhost:8000/api/health
+# Expected: {"status":"healthy","timestamp":1654321000.123}
+```
 
-- **Fast Loading**: Optimized assets and minimal dependencies
-- **SEO Friendly**: Semantic HTML and proper meta tags
-- **Accessibility**: ARIA labels and keyboard navigation support
-- **Progressive Enhancement**: Works with JavaScript disabled
+## 🔒 Security Features
 
-## 🚀 Deployment
+- **Rate Limiting**: Prevents abuse (5 req/min per IP)
+- **CORS Protection**: Frontend-only origin restrictions  
+- **Security Headers**: HSTS, CSP, X-Frame-Options, etc.
+- **Input Validation**: Email format and length validation
+- **SQL Injection Prevention**: SQLAlchemy ORM protection
+- **Error Handling**: No sensitive data in error responses
 
-This is a static website that can be deployed to:
-- GitHub Pages (recommended for github.io domain)
-- Netlify
-- Vercel
-- Any static hosting service
+## 📱 Content Management
 
-## 📞 Contact
+### Updating Page Content
+1. Edit markdown files in `content/pages/`
+2. Use Tailwind CSS classes in markdown
+3. Content hot-reloads in development
+4. Supports frontmatter metadata
 
-**Maurice Rashad**
-- Email: mauricerashad@gmail.com
-- Response Time: Within 24 hours
-- Availability: Global, Remote-First
+### Site Configuration
+- Global settings: `content/data/site-config.json`
+- Capabilities: Defined in site configuration
+- SEO metadata: Frontmatter in markdown files
+
+## 🏷️ Technologies Used
+
+### Frontend Stack
+- **React 18** - Modern UI framework
+- **Vite** - Fast build tool and dev server  
+- **Tailwind CSS** - Utility-first styling
+- **Axios** - HTTP client for API calls
+- **Remark** - Markdown processing
+- **Vitest** - Unit testing framework
+
+### Backend Stack  
+- **FastAPI** - High-performance async API framework
+- **SQLAlchemy** - SQL toolkit and ORM
+- **Alembic** - Database migration tool
+- **Pydantic** - Data validation using Python type hints
+- **slowapi** - Rate limiting middleware
+- **structlog** - Structured logging
+- **pytest** - Testing framework
+
+### Infrastructure
+- **Docker** - Containerization
+- **Nginx** - Reverse proxy and static file serving
+- **SQLite** - Embedded database (dev), PostgreSQL (prod)
+- **GitHub Actions** - CI/CD pipeline
+
+## 📊 Performance
+
+- **Frontend**: <3s page load, code splitting, asset optimization
+- **Backend**: <100ms API response times, connection pooling
+- **Database**: Indexed queries, migration-based schema
+- **Security**: Minimal attack surface, comprehensive validation
+
+## 📞 Support
+
+### Getting Help
+- **Documentation**: Check `docs/TROUBLESHOOTING.md`
+- **Logs**: `docker-compose logs -f`
+- **Health Checks**: Visit `/api/health` endpoints
+
+### Common Commands
+```bash
+# View running processes
+docker-compose ps
+
+# Follow logs
+docker-compose logs -f backend frontend
+
+# Reset database
+rm backend/app.db && cd backend && alembic upgrade head
+
+# Clean rebuild
+docker-compose down && docker-compose up --build
+```
 
 ## 📄 License
 
-© 2024 Maurice Rashad. All rights reserved.
+© 2024 Maurice Williams. All rights reserved.
+
+---
+
+**🌟 Built with privacy-first AI automation for high-growth coaching practices**
